@@ -51,5 +51,5 @@ const vacanciesSlice = createSlice({
   },
 });
 
-export const { reducer: vacanciesSReducer, actions: vacanciesSActions } =
+export const { reducer: vacanciesReducer, actions: vacanciesActions } =
   vacanciesSlice;
