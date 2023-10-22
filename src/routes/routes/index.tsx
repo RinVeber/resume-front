@@ -6,6 +6,7 @@ import CreateVacancies from '../../pages/create-vacancies/CreateVacancies';
 import Vacancies from '../../pages/vacancies/Vacancies';
 import MainPage from '../../pages/main-page/MainPage';
 import Respond from '../../pages/respond/Respond';
+import RootLayout from '../RootLayout';
 
 export const router = createBrowserRouter([
   {
@@ -13,23 +14,29 @@ export const router = createBrowserRouter([
     element: <NotFound />,
   },
   {
-    path: paths.respond,
-    element: <Respond />,
-  },
-  {
-    path: paths.resume,
-    element: <Resume />,
-  },
-  {
-    path: paths.vacancies,
-    element: <Vacancies />,
-  },
-  {
-    path: paths.create,
-    element: <CreateVacancies />,
-  },
-  {
     path: paths.main,
-    element: <MainPage />,
-  }, 
+    element: <RootLayout />,
+    children: [
+      {
+        path: paths.main,
+        element: <MainPage />,
+      },
+      {
+        path: paths.respond,
+        element: <Respond />,
+      },
+      {
+        path: paths.resume,
+        element: <Resume />,
+      },
+      {
+        path: paths.vacancies,
+        element: <Vacancies />,
+      },
+      {
+        path: paths.create,
+        element: <CreateVacancies />,
+      },
+    ],
+  },
 ]);
