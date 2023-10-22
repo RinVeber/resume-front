@@ -6,7 +6,7 @@ import Navbar from '../components/Navbar';
 export default function RootLayout() {
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row',  margin: '0 auto' }}>
         <Navbar />
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
           <Header />
