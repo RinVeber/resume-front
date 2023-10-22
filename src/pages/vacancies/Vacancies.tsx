@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
-import CustomizedTabs from './Tabs';
 import CardList from '../../components/CardList';
+import CustomizedTabs from '../../components/Tabs';
 
 export default function Vacancies() {
   return (
