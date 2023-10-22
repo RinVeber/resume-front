@@ -2,9 +2,12 @@ import React from 'react';
 import book from '../../../assets/book.svg';
 import { ListItemButton, ListItemText } from '@mui/material';
 import List from '@mui/material/List';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../routes/routes/paths';
 
 export default function SelectedItem() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const navigate = useNavigate();
 
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -17,7 +20,9 @@ export default function SelectedItem() {
       <List component="nav" aria-label="main mailbox folders">
         <ListItemButton
           selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
+          onClick={(event) => {
+            navigate(`${paths.vacancies}`);
+            handleListItemClick(event, 0)}}
           sx={{ display: 'flex', gap: '4px' }}
         >
           <img
@@ -42,7 +47,8 @@ export default function SelectedItem() {
           sx={{ fontSize: '5px' }}
           disabled={true}
           selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
+          onClick={(event) => {
+            handleListItemClick(event, 0)}}
         >
           <ListItemText
             sx={{ fontSize: '1px', color: '#FFFFFF' }}
