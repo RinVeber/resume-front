@@ -4,6 +4,7 @@ import NotFound from '../../pages/not-found/NotFound';
 import Resume from '../../pages/resume/Resume';
 import CreateVacancies from '../../pages/create-vacancies/CreateVacancies';
 import Vacancies from '../../pages/vacancies/Vacancies';
+import VacanciesLayout from '../VacanciesLayout';
 import MainPage from '../../pages/main-page/MainPage';
 import Respond from '../../pages/respond/Respond';
 import RootLayout from '../RootLayout';
@@ -19,7 +20,13 @@ export const router = createBrowserRouter([
     children: [
       {
         path: paths.main,
-        element: <MainPage />,
+        element: <VacanciesLayout />,
+        children: [
+          {
+            path: paths.main,
+            element: <MainPage />,
+          }
+        ]
       },
       {
         path: paths.respond,
