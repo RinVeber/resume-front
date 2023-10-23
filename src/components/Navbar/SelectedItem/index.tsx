@@ -22,7 +22,8 @@ export default function SelectedItem() {
           selected={selectedIndex === 0}
           onClick={(event) => {
             navigate(`${paths.vacancies}`);
-            handleListItemClick(event, 0)}}
+            handleListItemClick(event, 0);
+          }}
           sx={{ display: 'flex', gap: '4px' }}
         >
           <img
@@ -32,7 +33,7 @@ export default function SelectedItem() {
           />
 
           <ListItemText
-            sx={{ fontSize: '16px', color: '#FFFFFF' }}
+            sx={{ fontSize: '13px', fontWeight: '500', color: '#FFFFFF' }}
             primary="Вакансии"
           />
         </ListItemButton>
@@ -44,25 +45,26 @@ export default function SelectedItem() {
         sx={{ borderBottom: '1px solid white', borderTop: '1px solid white' }}
       >
         <ListItemButton
-          sx={{ fontSize: '5px' }}
-          disabled={true}
+          sx={{ fontSize: '13px', color: '#B5B5B7' }}
+          disabled
           selected={selectedIndex === 0}
           onClick={(event) => {
-            handleListItemClick(event, 0)}}
+            handleListItemClick(event, 0);
+          }}
         >
           <ListItemText
-            sx={{ fontSize: '1px', color: '#FFFFFF' }}
+            sx={{ fontSize: '13px', color: '#FFFFFF' }}
             primary="Тестовый режим"
           />
         </ListItemButton>
         <ListItemButton
-          sx={{ fontSize: '5px' }}
+          sx={{ fontSize: '5px', color: '#FFFFFF' }}
           disabled={true}
           selected={selectedIndex === 0}
           onClick={(event) => handleListItemClick(event, 0)}
         >
           <ListItemText
-            sx={{ fontSize: '1px', color: '#FFFFFF' }}
+            sx={{ fontSize: '13px', color: '#FFFFFF' }}
             primary="Нейросеть"
           />
         </ListItemButton>

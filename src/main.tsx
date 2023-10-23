@@ -5,15 +5,15 @@ import { RouterProvider } from 'react-router-dom';
 import './index.css';
 import store from './redux/store';
 import { router } from './routes/routes/index';
-// import { ThemeProvider } from '@mui/material';
-// import { muiTheme } from './libs/theme/theme';
+import { ThemeProvider } from '@mui/material';
+import { muiTheme } from './libs/theme/theme';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <ThemeProvider theme={muiTheme}> */}
+      <ThemeProvider theme={muiTheme}>
         <RouterProvider router={router} />
-      {/* </ThemeProvider> */}
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
 );
