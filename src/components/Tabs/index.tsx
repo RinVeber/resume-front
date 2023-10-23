@@ -48,7 +48,9 @@ export default function CustomizedTabs() {
     <Box sx={{ width: '100%' }}>
       <Box sx={{ bgcolor: '#fff' }}>
         <CustomTabs value={value} onChange={handleChange}>
-          <CustomTab label="Канбан доска" />
+          <CustomTab label="Отклики" />
+          <CustomTab label="Избранное" />
+          <CustomTab label="Приглашенные" />
           <CustomTab label="Информация о вакансии" />
         </CustomTabs>
       </Box>
