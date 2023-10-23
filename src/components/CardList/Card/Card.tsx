@@ -4,6 +4,7 @@ import heart from '../../../assets/heart.png';
 import { LocationOnOutlined } from '@mui/icons-material';
 import suiltcase from '../../../assets/suilcase.png';
 import Chips from './Chips/Chips';
+import heartActive from '../../../assets/like_active.png';
 
 type CardType = {
   id: number;
@@ -13,6 +14,7 @@ type CardType = {
   city: string;
   suiltcase: string;
   isCheked: boolean;
+  isLiked: boolean;
   avatar: string;
   skills: {
     id: number;
@@ -25,6 +27,7 @@ interface CardProps {
 }
 
 export default function Card({ card }: CardProps) {
+
   return (
     <>
       <Stack
@@ -70,9 +73,9 @@ export default function Card({ card }: CardProps) {
             </Typography>
           </Box>
           <img
-            src={heart}
+            src={card.isLiked ? heartActive : heart}
             alt={'heart'}
-            style={{ width: '20px', height: '20px' }}
+            style={{ width: '20px', height: '20px', cursor: 'pointer' }}
           />
         </Stack>
         <Stack sx={{ color: '#959595' }} flexDirection={'column'} gap={'10px'}>

@@ -8,6 +8,7 @@ export const dataMokCardVacancies= [
         suiltcase: '2 года',
         avatar: '',
         isCheked: true,
+        isLiked: false,
         skills: [
           {
             id: 1,
@@ -28,6 +29,7 @@ export const dataMokCardVacancies= [
     suiltcase: '2 года',
     avatar: '',
     isCheked: true,
+    isLiked: true,
     skills: [
       {
         id: 1,
@@ -48,6 +50,7 @@ export const dataMokCardVacancies= [
     suiltcase: '2 года',
     avatar: '',
     isCheked: true,
+    isLiked: false,
     skills: [
       {
         id: 1,
@@ -68,6 +71,7 @@ export const dataMokCardVacancies= [
     suiltcase: '2 года',
     avatar: '',
     isCheked: true,
+    isLiked: false,
     skills: [
       {
         id: 1,
