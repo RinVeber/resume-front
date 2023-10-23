@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 export default function VacanciesLayout() {
   return (
     <>
-      <Box>
+      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
         <VacanciesMenu />
         <Outlet />
       </Box>
