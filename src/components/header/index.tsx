@@ -10,7 +10,7 @@ export default function Header() {
     <Box
       sx={{
         backgroundColor: '#1A1B22',
-        width: '1440px',
+        width: 'calc(100vw - 134px)',
         display: 'flex',
         height: '60px',
       }}
