@@ -1,6 +1,6 @@
 import React from 'react';
 import book from '../../../assets/book.svg';
-import { ListItemButton, ListItemText } from '@mui/material';
+import { ListItemButton, ListItemText, Typography } from '@mui/material';
 import List from '@mui/material/List';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
@@ -17,7 +17,7 @@ export default function SelectedItem() {
   };
   return (
     <>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component="nav" aria-label="main mailbox folders" sx={{paddingTop: '70px'}}>
         <ListItemButton
           selected={selectedIndex === 0}
           onClick={(event) => {
@@ -42,32 +42,21 @@ export default function SelectedItem() {
       <List
         component="nav"
         aria-label="main mailbox folders"
-        sx={{ borderBottom: '1px solid white', borderTop: '1px solid white' }}
+        sx={{
+          borderBottom: '1px solid white',
+          borderTop: '1px solid white',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '10px',
+          padding: '10px 20px',
+        }}
       >
-        <ListItemButton
-          sx={{ fontSize: '13px', color: '#B5B5B7' }}
-          disabled
-          selected={selectedIndex === 0}
-          onClick={(event) => {
-            handleListItemClick(event, 0);
-          }}
-        >
-          <ListItemText
-            sx={{ fontSize: '13px', color: '#FFFFFF' }}
-            primary="Тестовый режим"
-          />
-        </ListItemButton>
-        <ListItemButton
-          sx={{ fontSize: '5px', color: '#FFFFFF' }}
-          disabled={true}
-          selected={selectedIndex === 0}
-          onClick={(event) => handleListItemClick(event, 0)}
-        >
-          <ListItemText
-            sx={{ fontSize: '13px', color: '#FFFFFF' }}
-            primary="Нейросеть"
-          />
-        </ListItemButton>
+        <Typography sx={{ fontSize: '13px', color: '#B5B5B7',  whiteSpace: 'nowrap' }}>
+          Тестовый режим
+        </Typography>
+        <Typography sx={{ fontSize: '13px', color: '#B5B5B7'}}>
+          Нейросеть
+        </Typography>
       </List>
     </>
   );

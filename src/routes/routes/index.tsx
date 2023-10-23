@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         element: <VacanciesLayout />,
         children: [
           {
-            path: paths.main,
+            path: paths.vacancies,
             element: <Vacancies />,
           }
         ]
