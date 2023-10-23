@@ -40,20 +40,17 @@ export const muiTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Inter', 'sans-serif'].join(','),
+    fontFamily: ['YS-Text', 'sans-serif'].join(','),
     h5: {
-      fontSize: '24px',
       lineHeight: 'normal',
     },
     body1: {
-      fontSize: '20px',
       lineHeight: 'normal',
     },
     button: {
-      textTransform: 'none',
-      fontWeight: 'normal',
-      lineHeight: 'normal',
+      textTransform:'none',
+      fontWeight:'normal',
+      lineHeight:'normal',
     }
-  }
-
+  },
 });
