@@ -54,6 +54,11 @@ export const muiTheme = createTheme({
         fontSize: '20px',
         lineHeight: 'normal',
       },
+      button: {
+        textTransform:'none',
+        fontWeight:'normal',
+        lineHeight:'normal',
+      }
     }
     
 });
