@@ -19,7 +19,6 @@ declare module '@mui/material/styles' {
   }
 }
 
-
 export const muiTheme = createTheme({
   breakpoints: {
     values: {
@@ -41,16 +40,38 @@ export const muiTheme = createTheme({
   },
   typography: {
     fontFamily: ['YS-Text', 'sans-serif'].join(','),
-    h5: {
+    h1: {
+      color: '#1A1B22',
+      fontFamily: ['YS-Display', 'sans-serif'].join(','),
+      fontSize: '34px',
+      fontStyle: 'normal',
+      fontWeight: '500',
       lineHeight: 'normal',
+    },
+    h3: {
+      fontSize: '18px',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      lineHeight: 'normal',
+    },
+    h4: {
+      color: '#000',
+      fontSize: '16px',
+      fontStyle: 'normal',
+    },
+    h6: {
+      lineHeight: 'normal',
+      fontSize: '13px',
     },
     body1: {
       lineHeight: 'normal',
     },
     button: {
-      textTransform:'none',
-      fontWeight:'normal',
-      lineHeight:'normal',
-    }
+      borderRadius: '6px',
+      textTransform: 'none',
+      fontWeight: 'normal',
+      lineHeight: 'normal',
+
+    },
   },
 });
