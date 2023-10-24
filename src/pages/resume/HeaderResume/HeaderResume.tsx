@@ -1,8 +1,7 @@
 import { Stack, Box, Typography, Button } from '@mui/material';
-import React from 'react';
-import BackgroundLetterAvatars from '../Avatar/Avatar';
 import { useNavigate } from 'react-router-dom';
 import arrow from '../../../assets/arrow_left.svg';
+import Avatar from '../../../components/Avatar';
 
 export default function HeaderResume() {
   const navigate = useNavigate();
@@ -28,7 +27,7 @@ export default function HeaderResume() {
         <Typography>Назад</Typography>
       </Button>
       <Stack flexDirection={'row'} gap={'38px'}>
-        <BackgroundLetterAvatars />
+        <Avatar img={''} textSize={'96px'} nameUser={'Королев Василий'} sizes={'207px'} />
         <Stack flexDirection={'column'} gap={'20px'}>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Typography variant="h1">Королев Василий</Typography>
