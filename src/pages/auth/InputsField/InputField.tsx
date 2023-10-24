@@ -5,7 +5,9 @@ import {
   Checkbox,
   Box,
   Button,
+  InputAdornment,
 } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import {
   FormProvider,
   Controller,
@@ -16,8 +18,20 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { authForm, FormAuth } from '../libs/ValidSchema';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
+import React from 'react';
+import { VisibilityOutlined, VisibilityOffOutlined } from '@mui/icons-material';
 
 export default function InputField() {
+  const [showPassword, setShowPassword] = React.useState(true);
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
+  };
+
   const navigate = useNavigate();
 
   const methods = useForm<FormAuth>({
@@ -36,7 +50,7 @@ export default function InputField() {
   return (
     <FormProvider {...methods}>
       <Box
-        sx={{ display: 'flex', gap: '20px', flexDirection: 'column' }}
+        sx={{ display: 'flex', gap: '15px', flexDirection: 'column' }}
         component="form"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
@@ -49,6 +63,7 @@ export default function InputField() {
           control={methods.control}
           render={({ field }) => (
             <TextField
+              sx={{ minHeight: '80px' }}
               placeholder="Почта"
               {...field}
               error={!!methods.formState.errors.email}
@@ -64,12 +79,30 @@ export default function InputField() {
             control={methods.control}
             render={({ field }) => (
               <TextField
+                sx={{ minHeight: '80px' }}
                 placeholder="Пароль"
-                type="password"
+                type={!showPassword ? 'text' : 'password'}
                 {...field}
                 error={!!methods.formState.errors.password}
                 helperText={methods.formState.errors.password?.message}
                 fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {!showPassword ? (
+                          <VisibilityOffOutlined />
+                        ) : (
+                          <VisibilityOutlined />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             )}
           />
@@ -79,11 +112,7 @@ export default function InputField() {
             justifyContent={'space-between'}
             alignItems={'center'}
           >
-            <Box
-              display={'flex'}
-              flexDirection={'row'}
-              alignItems={'center'}
-            >
+            <Box display={'flex'} flexDirection={'row'} alignItems={'center'}>
               <Checkbox
                 sx={{
                   color: '#1D6BF3',
@@ -104,7 +133,7 @@ export default function InputField() {
           <Button
             type="submit"
             disabled={!methods.formState.isValid}
-            sx={{ height: '50px' }}
+            sx={{ height: '50px', fontWeight: '500' }}
             variant="default"
             onClick={async () => {
               const isValid = await methods.trigger();
