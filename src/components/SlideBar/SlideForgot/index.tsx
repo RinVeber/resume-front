@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Slide, { SlideProps } from '@mui/material/Slide';
 
@@ -11,10 +10,10 @@ function TransitionRight(props: TransitionProps) {
 }
 
 interface SlideSuccessProps {
-    children?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
-export default function SlideSuccess({children}: SlideSuccessProps) {
+export default function SlideForgot({ children }: SlideSuccessProps) {
   const [open, setOpen] = React.useState(false);
   const [transition, setTransition] = React.useState<
     React.ComponentType<TransitionProps> | undefined
@@ -31,8 +30,8 @@ export default function SlideSuccess({children}: SlideSuccessProps) {
   };
 
   return (
-    <Box sx={{ width: 300 }}>
-      <Button onClick={handleClick(TransitionRight)}>{children}</Button>
+    <Box sx={{ maxWidth: 300 }}>
+      <Box onClick={handleClick(TransitionRight)}>{children}</Box>
 
       <Snackbar
         sx={{
@@ -45,7 +44,7 @@ export default function SlideSuccess({children}: SlideSuccessProps) {
         open={open}
         onClose={handleClose}
         TransitionComponent={transition}
-        message="Авторизация завершена"
+        message="font@mail.ru 12345"
         key={transition ? transition.name : ''}
       />
     </Box>

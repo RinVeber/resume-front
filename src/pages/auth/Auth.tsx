@@ -24,7 +24,7 @@ export default function Auth() {
   return (
     <FormProvider {...methods}>
       <Box
-        sx={{ display: 'flex', gap: '15px', flexDirection: 'column' }}
+        sx={{ display: 'flex', gap: '10px', flexDirection: 'column' }}
         component="form"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
