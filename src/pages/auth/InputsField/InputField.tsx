@@ -82,7 +82,6 @@ export default function InputField() {
             <Box
               display={'flex'}
               flexDirection={'row'}
-              gap={'6px'}
               alignItems={'center'}
             >
               <Checkbox
@@ -93,7 +92,7 @@ export default function InputField() {
                   },
                   '& .MuiSvgIcon-root': { fontSize: 24 },
                 }}
-              />{' '}
+              />
               <Typography variant="h6" sx={{ color: '#797981' }}>
                 Запомнить
               </Typography>

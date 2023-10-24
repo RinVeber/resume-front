@@ -6,7 +6,12 @@ export type FormAuth = {
 };
 
 export const authForm: yup.ObjectSchema<FormAuth> = yup.object({
-  email: yup.string().required('Укажите почту в формате you@yandex.ru'),
-  password: yup.string().min(1).required('Пароль не введен'),
-
+  email: yup
+    .string()
+    .email('Укажите почту в формате you@yandex.ru')
+    .required('Это поле обязательное'),
+  password: yup
+    .string()
+    .min(3, 'Минимум 3 символа')
+    .required('Это поле обязательное'),
 });
