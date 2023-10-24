@@ -20,7 +20,9 @@ export default function Navbar() {
         <CardProfile />
         <SelectedItem />
       </Stack>
-      <Logout />
+      <Box sx={{ mt: 'auto', mb:'0' }}>
+        <Logout />
+      </Box>
     </Box>
   );
 }

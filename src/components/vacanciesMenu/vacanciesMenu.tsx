@@ -36,7 +36,7 @@ const VacanciesMenu = () => {
 
     return (
         <Box sx={{ minWidth: '237px',height:'calc(100vh - 60px)', borderRight:'1px solid #E6E6E6' }}>
-            <Button sx={{
+            <Button href='/create' sx={{
                 fontFamily: ['YS-Text', 'sans-serif'],
                 fontSize: '14px',
                 fontWeight: '500',
