@@ -8,7 +8,7 @@ export default function Resume() {
   return (
     <Box
       sx={{
-        maxWidth: '1304px',
+        maxWidth: '1290px',
         boxSizing: 'border-box',
         display: 'flex',
         flexDirection: 'column',

@@ -10,7 +10,7 @@ export default function HeaderResume() {
       flexDirection={'column'}
       gap={'26px'}
       alignItems={'flex-start'}
-      sx={{ backgroundColor: '#FFF', borderRadius: '6px', padding: '40px 0 92px 40px' }}
+      sx={{ backgroundColor: '#FFF', borderRadius: '6px', boxSizing: 'border-box', padding: '40px 0 92px 40px' }}
     >
       <Button
         onClick={() => navigate(-1)}

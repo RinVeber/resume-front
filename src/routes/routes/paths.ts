@@ -5,6 +5,7 @@ export const paths = {
   respond: '/respond', // страничка с откликами на вакансии
   resume: '/resume/:id', // резюме
   notFound: '/*',
+  auth: '/auth'
 } as const;
 
 export type ApplicationRoute = typeof paths;

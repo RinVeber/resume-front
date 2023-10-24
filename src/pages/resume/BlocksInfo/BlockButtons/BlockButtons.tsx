@@ -1,16 +1,13 @@
 import { Stack, Button, Typography } from '@mui/material';
 import del from '../../../../assets/delete.svg';
-import {
-  MyOutlinedButton,
-  MyDefaultButton,
-} from '../../../../components/Buttons';
 
 export default function BlockButtons() {
   return (
     <Stack mt={'59px'} flexDirection={'column'} gap={'36px'}>
       <Stack flexDirection={'row'} gap={'32px'} justifyContent={'center'}>
-        <MyDefaultButton>Пригласить</MyDefaultButton>
-        <MyOutlinedButton>В избранное</MyOutlinedButton>
+
+        <Button sx={{padding: '15px 81px'}} variant={'default'}>Пригласить</Button>
+        <Button sx={{padding: '15px 81px'}}  variant={'outlined'}>В избранное</Button>
       </Stack>
       <Button
         sx={{

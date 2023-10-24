@@ -8,11 +8,16 @@ import VacanciesLayout from '../VacanciesLayout';
 // import MainPage from '../../pages/main-page/MainPage';
 import Respond from '../../pages/respond/Respond';
 import RootLayout from '../RootLayout';
+import Auth from '../../pages/auth/Auth';
 
 export const router = createBrowserRouter([
   {
     path: paths.notFound,
     element: <NotFound />,
+  },
+  {
+    path: paths.auth,
+    element: <Auth />,
   },
   {
     path: paths.main,
