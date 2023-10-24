@@ -1,4 +1,4 @@
-import { Box, Stack, Paper } from '@mui/material';
+import { Box, Stack, Paper, Typography } from '@mui/material';
 import background from '../assets/background.png';
 import { Outlet } from 'react-router-dom';
 
@@ -40,6 +40,22 @@ export default function AuthLayout() {
           <Outlet />
         </Stack>
       </Paper>
+      <Stack
+        mt={'12px'}
+        display={'flex'}
+        flexDirection={'row'}
+        alignItems={'center'}
+        gap={'5px'}
+      >
+        <Typography
+          sx={{ fontSize: '14px', color: '#DDE0E4', lineHeight: '20px' }}
+        >
+          Новый пользователь?
+        </Typography>
+        <Typography sx={{ fontSize: '14px', color: '#FFFFFF' }}>
+          Зарегистрироваться
+        </Typography>
+      </Stack>
     </Box>
   );
 }

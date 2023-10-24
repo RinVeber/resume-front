@@ -22,6 +22,7 @@ export default function Auth() {
     navigate(paths.main);
   };
   return (
+
     <FormProvider {...methods}>
       <Box
         sx={{ display: 'flex', gap: '10px', flexDirection: 'column' }}
@@ -30,6 +31,8 @@ export default function Auth() {
       >
         <InputField />
       </Box>
+    
     </FormProvider>
+ 
   );
 }
