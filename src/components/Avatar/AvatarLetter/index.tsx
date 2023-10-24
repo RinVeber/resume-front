@@ -12,6 +12,20 @@ export default function BackgroundLetterAvatars({
   sizes,
   textSize,
 }: BackgroundLetterAvatarsProps) {
+  const colorArray = [
+    '#87CC9E',
+    '#7F67D2',
+    '#FFCE92',
+    '#C2E5CE',
+    '#CCC2ED',
+    '#FFE1BD',
+    '#FFDDE5',
+    '#FFF9D3',
+    '#FFBFFDDE',
+    '#A9917542',
+    '#ACCCFF',
+  ];
+
   function stringToColor(string: string) {
     let hash = 0;
     let i;
@@ -20,12 +34,17 @@ export default function BackgroundLetterAvatars({
       hash = string.charCodeAt(i) + ((hash << 5) - hash);
     }
 
-    let color = '#';
+    // Случайный цвет
 
-    for (i = 0; i < 3; i += 1) {
-      const value = (hash >> (i * 8)) & 0xff;
-      color += `00${value.toString(16)}`.slice(-2);
-    }
+    // let color = '#';
+    // for (i = 0; i < 3; i += 1) {
+    //   const value = (hash >> (i * 8)) & 0xff;
+    //   color += `00${value.toString(16)}`.slice(-2);
+    // }
+
+    // Случайный цвет из выборки цветов в UI-kit в фигме
+    const randomColor = Math.floor(Math.random() * colorArray.length);
+    const color = colorArray[randomColor];
     return color;
   }
 
