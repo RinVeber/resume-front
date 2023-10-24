@@ -33,8 +33,8 @@ export default function Card({ card }: CardProps) {
         display={'flex'}
         flexDirection={'column'}
         p={'16px'}
-        gap={'10px'}
-        sx={{ borderRadius: '12px', border: '1px solid grey' }}
+        gap={'16px'}
+        sx={{boxSizing: 'border-box', borderRadius: '12px', border: '1px solid grey' }}
       >
         <Stack
           display={'flex'}
