@@ -12,8 +12,9 @@ export default function Chips({ chip }: ChipProps) {
       key={chip.id}
       fontSize={'11px'}
       p={'5px'}
-      bgcolor={'#EAEAEA'}
-      borderRadius={'6px'}
+      sx={{color: '#1A1B22'}}
+      bgcolor={'#DDE0E4'}
+      borderRadius={'4px'}
     >
       {chip.title}
     </Typography>

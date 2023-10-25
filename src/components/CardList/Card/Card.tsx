@@ -1,9 +1,11 @@
 import { Box, Stack, Typography } from '@mui/material';
 import defAvatar from '../../../assets/defAvatar.png';
-import heart from '../../../assets/heart.png';
-import { LocationOnOutlined } from '@mui/icons-material';
+import heart from '../../../assets/heart.svg';
 import suiltcase from '../../../assets/suilcase.png';
+import loc from '../../../assets/location.png';
 import Chips from './Chips/Chips';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../routes/routes/paths';
 
 type CardType = {
   id: number;
@@ -25,16 +27,29 @@ interface CardProps {
 }
 
 export default function Card({ card }: CardProps) {
+  const navigate = useNavigate();
   return (
     <>
       <Stack
+      onClick={() => navigate(`${paths.resume}/${1}`)}
         width={'316px'}
         height={'204px'}
         display={'flex'}
         flexDirection={'column'}
         p={'16px'}
         gap={'16px'}
-        sx={{boxSizing: 'border-box', borderRadius: '12px', border: '1px solid grey' }}
+        sx={{
+          boxShadow: '8px 6px 30px 0px rgba(0, 0, 0, 0.08)',
+
+          boxSizing: 'border-box',
+          borderRadius: '12px',
+          "&:hover": {
+            border: '1px solid #B5B5B7',
+          },
+          "&:focus": {
+            border: '1px solid #1D6BF3',
+          }
+        }}
       >
         <Stack
           display={'flex'}
@@ -83,7 +98,7 @@ export default function Card({ card }: CardProps) {
               gap: '5px',
             }}
           >
-            <LocationOnOutlined />
+            <img src={loc} alt="иконка" />
             <Typography fontSize={13} sx={{ alignItems: 'center' }}>
               {card.city}
             </Typography>
@@ -93,6 +108,7 @@ export default function Card({ card }: CardProps) {
               display: 'flex',
               flexDirection: 'row',
               gap: '5px',
+              paddingBottom: '6px',
             }}
           >
             <img src={suiltcase} alt={'case'} />

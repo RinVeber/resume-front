@@ -46,7 +46,7 @@ export const router = createBrowserRouter([
         element: <Respond />,
       },
       {
-        path: paths.resume,
+        path: `${paths.resume}/:id`,
         element: <Resume />,
       },
       {
