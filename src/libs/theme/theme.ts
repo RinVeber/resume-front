@@ -58,10 +58,10 @@ export const muiTheme = createTheme({
       lineHeight: 'normal',
     },
     h2: {
-      color: '#1A1B22',
+      fontFamily: ['YS-Display', 'sans-serif'].join(','),
       fontSize: '24px',
       fontStyle: 'normal',
-      fontWeight: '600',
+      fontWeight: '500',
       lineHeight: '32px',
     },
     h3: {
