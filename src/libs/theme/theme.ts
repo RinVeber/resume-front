@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { buttonsStyles } from './styles/ButtonStyles';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -16,6 +17,14 @@ declare module '@mui/material/styles' {
     tablet: true;
     laptop: true;
     desktop: true;
+  }
+}
+
+declare module '@mui/material/Button' {
+  interface ButtonPropsVariantOverrides {
+    default: true;
+    outlined: true;
+    red: true;
   }
 }
 
@@ -78,7 +87,52 @@ export const muiTheme = createTheme({
       textTransform: 'none',
       fontWeight: 'normal',
       lineHeight: 'normal',
-
+    },
+  },
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { variant: 'outlined' },
+          style: {
+            padding: '12px 24px',
+            background: 'none',
+            borderRadius: buttonsStyles.borderRadius,
+            border: buttonsStyles.outlined.border,
+            ':hover': {
+              backgroundColor: buttonsStyles.outlined.hover.backgroundColor,
+              border: buttonsStyles.outlined.hover.border,
+              color: buttonsStyles.outlined.hover.color,
+            },
+            ':focus': {
+              backgroundColor: buttonsStyles.outlined.hover.backgroundColor,
+              border: buttonsStyles.outlined.focus.border,
+              color: buttonsStyles.outlined.focus.color,
+            },
+            ':disabled': {
+              border: buttonsStyles.outlined.disabled.border,
+            },
+          },
+        },
+        {
+          props: { variant: 'default' },
+          style: {
+            color: '#fff',
+            backgroundColor: buttonsStyles.default.backgroundColor,
+            padding: '12px 24px',
+            borderRadius: buttonsStyles.borderRadius,
+            ':hover': {
+              backgroundColor: buttonsStyles.default.hover.backgroundColor,
+            },
+            ':focus': {
+              backgroundColor: buttonsStyles.default.focus.backgroundColor,
+            },
+            ':disabled': {
+              backgroundColor: buttonsStyles.default.disabled.backgroundColor,
+            },
+          },
+        },
+      ],
     },
   },
 });

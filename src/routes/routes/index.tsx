@@ -8,11 +8,23 @@ import VacanciesLayout from '../VacanciesLayout';
 // import MainPage from '../../pages/main-page/MainPage';
 import Respond from '../../pages/respond/Respond';
 import RootLayout from '../RootLayout';
+import Auth from '../../pages/auth/Auth';
+import AuthLayout from '../AuthLayout';
 
 export const router = createBrowserRouter([
   {
     path: paths.notFound,
     element: <NotFound />,
+  },
+  {
+    path: paths.auth,
+    element: <AuthLayout />,
+    children: [
+      {
+        path: paths.auth,
+        element: <Auth />,
+      }
+    ]
   },
   {
     path: paths.main,
@@ -35,10 +47,6 @@ export const router = createBrowserRouter([
       {
         path: paths.resume,
         element: <Resume />,
-      },
-      {
-        path: paths.vacancies,
-        element: <Vacancies />,
       },
       {
         path: paths.create,

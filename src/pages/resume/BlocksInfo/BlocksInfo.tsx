@@ -9,7 +9,7 @@ export default function BlocksInfo() {
     <Stack
       flexDirection={'row'}
       gap={'20px'}
-      sx={{ padding: '0 0 160px 40px' }}
+      sx={{boxSizing: 'border-box', padding: '0 0 160px 40px' }}
     >
       <Stack flexDirection={'column'} gap={'20px'}>
         <Stack flexDirection={'row'} gap={'20px'}>
