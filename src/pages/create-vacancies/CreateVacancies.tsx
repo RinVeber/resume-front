@@ -10,26 +10,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import FormHelperText from '@mui/material/FormHelperText';
-
-type FormData = {
-  companyName: string;
-  companyInfo: string;
-  vacanciesName: string;
-  city: string;
-  category: string;
-  vacancyDescription: string;
-  responsibilities: string;
-  program: {
-    weight?: string | undefined;
-    tag: string;
-  }[];
-  // ... Другие поля формы ...
-  refusalMessage: string;
-};
 
 const fieldStyles = {
   maxWidth: '400px',
@@ -65,17 +48,10 @@ const schema = yup.object().shape({
   category: yup.string().required('Выберите категорию').notOneOf(['Выбрать'], 'Выберите категорию'),
   vacancyDescription: yup.string().required('Введите описание вакансии'),
   responsibilities: yup.string().required('Введите обязанности сотрудника'),
-  program: yup
-    .array()
-    .of(
-      yup.object().shape({
-        tag: yup.string().required('Введите тег'),
-        weight: yup.string().notOneOf(['Выбрать вес'], 'Выберите вес'),
-      })
-    )
-    .required('Добавьте хотя бы один тег'),
-  incomeLevel: yup.string().required('Укажите уровень дохода'),
-  workFormat: yup.string().required('Выберите формат работы'),
+  //   .required('Добавьте хотя бы один тег'),
+  incomeLevelMoney: yup.string().required('Укажите уровень дохода'),
+  incomeLevelRub: yup.string().required('Укажите валюту').notOneOf(['Валюта'], 'Выберите категорию'),
+  workFormat: yup.string().required('Выберите формат работы').notOneOf(['Выбрать'], 'Выберите категорию'),
   workConditions: yup.string().required('Введите условия работы'),
   additionalInfo: yup.string().required('Введите дополнительную информацию'),
   tags: yup.string().required('Добавьте хотя бы один тег'),
@@ -98,14 +74,12 @@ export default function CreateVacancies() {
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
 
-  const onSubmit = () => {
-    const formData = getValues();
-    console.log('Данные формы:', formData);
+  const onSubmit = (data) => {
+    console.log('Данные:', data);
   };
 
-  const onSaveDraft = () => {
-    const formData = getValues();
-    console.log('Данные формы:', formData);
+  const onSaveDraft = (data) => {
+    console.log('Данные:', data);
   };
 
   useEffect(() => {
@@ -316,14 +290,14 @@ export default function CreateVacancies() {
                     },
                     '& .MuiSelect-select': {
                       color:
-                      field.value === 'Выбрать'
+                        category === 'Выбрать'
                           ? '#797981'
                           : 'black',
                     },
                   }}
                   id="category"
                   fullWidth
-                  value={field.value}
+                  value={category}
                   onChange={(e) => {
                     field.onChange(e);
                     handleCategoryChange(e);
@@ -465,31 +439,51 @@ export default function CreateVacancies() {
                 width: '400px',
                 gap: '20px'
               }}>
-                <TextField
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="999999"
-                  fullWidth
-                  multiline
+                <Controller
+                  name="incomeLevelMoney"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      sx={fieldStyles}
+                      placeholder="999999"
+                      fullWidth
+                      multiline
+                      error={!!fieldState.error}
+                      helperText={fieldState.error ? fieldState.error.message : ''}
+                    />
+                  )}
                 />
-                <Select
-                  sx={{
-                    maxWidth: '400px',
-                    '& div': {
-                      p: '10px 12px',
-                    },
-                    '& .MuiSelect-select': { color: money == "Валюта" ? '#797981' : 'black' }
-                  }}
-                  id="category"
-                  fullWidth
-                  value={money}
-                  onChange={handleMoneyChange}
-                >
-                  <MenuItem disabled value="Валюта" style={{ color: 'grey' }}>Валюта</MenuItem>
-                  <MenuItem value="rub">Рубль</MenuItem>
-                  <MenuItem value="teng">Тенге</MenuItem>
-                  <MenuItem value="com">Сомм</MenuItem>
-                </Select>
+                <Controller
+                  name="incomeLevelRub"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <Select
+                      {...field}
+                      sx={{
+                        maxWidth: '400px',
+                        height: '43px',
+                        '& div': {
+                          p: '10px 12px',
+                        },
+                        '& .MuiSelect-select': { color: money == "Валюта" ? '#797981' : 'black' }
+                      }}
+                      id="category"
+                      fullWidth
+                      value={money}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleMoneyChange(e);
+                      }}
+                      error={!!fieldState.error}
+                    >
+                      <MenuItem disabled value="Валюта" style={{ color: 'grey' }}>Валюта</MenuItem>
+                      <MenuItem value="rub">Рубль</MenuItem>
+                      <MenuItem value="teng">Тенге</MenuItem>
+                      <MenuItem value="com">Сомм</MenuItem>
+                    </Select>
+                  )}
+                />
               </Box>
             </Box>
           </Box>
@@ -500,23 +494,33 @@ export default function CreateVacancies() {
             width: '100%'
           }}>
             <Typography variant="h4">Формат работы</Typography>
-            <Select
-              sx={{
-                maxWidth: '400px',
-                '& div': {
-                  p: '10px 12px',
-                },
-                '& .MuiSelect-select': { color: workFormat == "Выбрать" ? '#797981' : 'black' }
-              }}
-              id="category"
-              fullWidth
-              value={workFormat}
-              onChange={handleWorkFormatChange}
-            >
-              <MenuItem disabled value="Выбрать" style={{ color: 'grey' }}>Выбрать</MenuItem>
-              <MenuItem value="rub">В Офисе</MenuItem>
-              <MenuItem value="teng">Удаленно</MenuItem>
-            </Select>
+            <Controller
+              name="workFormat"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Select
+                {...field}
+                  sx={{
+                    maxWidth: '400px',
+                    '& div': {
+                      p: '10px 12px',
+                    },
+                    '& .MuiSelect-select': { color: workFormat == "Выбрать" ? '#797981' : 'black' }
+                  }}
+                  fullWidth
+                  value={workFormat}
+                  onChange={(e) => {
+                    field.onChange(e);
+                    handleWorkFormatChange(e);
+                  }}
+                  error={!!fieldState.error}
+                >
+                  <MenuItem disabled value="Выбрать" style={{ color: 'grey' }}>Выбрать</MenuItem>
+                  <MenuItem value="rub">В Офисе</MenuItem>
+                  <MenuItem value="teng">Удаленно</MenuItem>
+                </Select>
+              )}
+            />
           </Box>
           <Box sx={{
             display: 'flex',
@@ -664,12 +668,10 @@ export default function CreateVacancies() {
             />
           )}
         </Box>
-
-      </form>
         <Box sx={{ display: 'flex', gap: '56px' }}>
           <Button
-            type="submit"
-            onClick={onSubmit}
+            type='submit'
+            onClick={handleSubmit(onSubmit)}
             sx={{
               p: '15px 42px',
               backgroundColor: '#5A9BFF',
@@ -679,8 +681,9 @@ export default function CreateVacancies() {
                 color: '#000',
               },
             }}>Разместить вакансию</Button>
+
           <Button
-            onClick={onSaveDraft}
+            onClick={handleSubmit(onSaveDraft)}
             sx={{
               p: '15px 42px',
               backgroundColor: '#fff',
@@ -689,6 +692,7 @@ export default function CreateVacancies() {
               fontSize: '16px',
             }}>Сохранить черновик</Button>
         </Box>
+      </form>
     </Box >
   )
 }
