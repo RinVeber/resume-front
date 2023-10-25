@@ -12,10 +12,7 @@ import Auth from '../../pages/auth/Auth';
 import AuthLayout from '../AuthLayout';
 
 export const router = createBrowserRouter([
-  {
-    path: paths.notFound,
-    element: <NotFound />,
-  },
+
   {
     path: paths.auth,
     element: <AuthLayout />,
@@ -30,6 +27,10 @@ export const router = createBrowserRouter([
     path: paths.main,
     element: <RootLayout />,
     children: [
+      {
+        path: paths.notFound,
+        element: <NotFound />,
+      },
       {
         path: paths.main,
         element: <VacanciesLayout />,
