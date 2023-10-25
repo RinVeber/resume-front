@@ -18,14 +18,15 @@ const CustomTab = styled((props: StyledTabProps) => (
   textTransform: 'none',
   fontWeight: theme.typography.fontWeightRegular,
   marginRight: theme.spacing(1),
-  color: 'rgba(0, 0, 0, 0.85)',
+  fontSize: '16px',
+  color: '#B5B5B7',
   '&:hover': {
     color: '#1A1B22',
     opacity: 1,
   },
   '&.Mui-selected': {
     color: '#1A1B22',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: '500',
   },
   '&.Mui-focusVisible': {
     color: '#1A1B22',
@@ -46,7 +47,7 @@ export default function CustomizedTabs() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Box sx={{ bgcolor: '#fff' }}>
+      <Box>
         <CustomTabs value={value} onChange={handleChange}>
           <CustomTab label="Отклики" />
           <CustomTab label="Избранное" />

@@ -1,9 +1,11 @@
 import React from 'react';
 import book from '../../../assets/book.svg';
-import { ListItemButton, ListItemText, Typography } from '@mui/material';
+import { ListItemButton, ListItemText, Typography, Box } from '@mui/material';
 import List from '@mui/material/List';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
+import global from '../../../assets/global.svg';
+import {Tooltip} from '@mui/material';
 
 export default function SelectedItem() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -17,7 +19,11 @@ export default function SelectedItem() {
   };
   return (
     <>
-      <List component="nav" aria-label="main mailbox folders" sx={{paddingTop: '70px'}}>
+      <List
+        component="nav"
+        aria-label="main mailbox folders"
+        sx={{ paddingTop: '70px' }}
+      >
         <ListItemButton
           selected={selectedIndex === 0}
           onClick={(event) => {
@@ -38,7 +44,11 @@ export default function SelectedItem() {
           />
         </ListItemButton>
       </List>
-
+      <Tooltip 
+            title={
+              'Если бы у нас были бы DS, то мы точно бы запилили нейросеть сюда'
+            }
+            placement="right">
       <List
         component="nav"
         aria-label="main mailbox folders"
@@ -47,17 +57,38 @@ export default function SelectedItem() {
           borderTop: '1px solid white',
           display: 'flex',
           flexDirection: 'column',
+          alignItems: 'flex-start',
           gap: '10px',
           padding: '10px 20px',
         }}
       >
-        <Typography sx={{ fontSize: '13px', color: '#B5B5B7',  whiteSpace: 'nowrap' }}>
+        <Typography
+          sx={{
+            width: '95px',
+            height: '16px',
+            fontSize: '11px',
+            backgroundColor: '#F1F6FF',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#1D6BF3',
+            whiteSpace: 'nowrap',
+            borderRadius: '4px',
+            lineHeight: '12px',
+          }}
+        >
           Тестовый режим
         </Typography>
-        <Typography sx={{ fontSize: '13px', color: '#B5B5B7'}}>
-          Нейросеть
-        </Typography>
+        <Box sx={{ display: 'flex', flexDirection: 'row', gap: '4px' }}>
+          <img src={global} alt={'картинка'} />
+       
+            <Typography sx={{ fontSize: '13px', color: '#B5B5B7' }}>
+              Нейросеть
+            </Typography>
+        
+        </Box>
       </List>
+      </Tooltip>
     </>
   );
 }

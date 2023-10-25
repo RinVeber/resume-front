@@ -20,7 +20,11 @@ export default function Navbar() {
         <CardProfile />
         <SelectedItem />
       </Stack>
+
+
+    
       <Logout />
+ 
     </Box>
   );
 }

@@ -2,9 +2,11 @@ import { Stack, Typography } from "@mui/material";
 import personal from '../../../assets/personal.svg';
 import phone from '../../../assets/phone.svg';
 import exit from '../../../assets/exit.svg';
+import {Tooltip} from "@mui/material";
 
 export default function Logout() {
   return (
+    <Tooltip title="Скоро сделаем...наверное.." placement='right'>
     <Stack
     display={'flex'}
     flexDirection={'column'}
@@ -57,5 +59,6 @@ export default function Logout() {
       </Typography>
     </Stack>
   </Stack>
+  </Tooltip>
   )
 }
