@@ -1,52 +1,45 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
-import Slide, { SlideProps } from '@mui/material/Slide';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
-type TransitionProps = Omit<SlideProps, 'direction'>;
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+  props,
+  ref,
+) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
-function TransitionRight(props: TransitionProps) {
-  return <Slide {...props} direction="right" />;
+type SlideForgotProps = {
+  children: React.ReactNode;
 }
 
-interface SlideSuccessProps {
-  children?: React.ReactNode;
-}
-
-export default function SlideForgot({ children }: SlideSuccessProps) {
+export default function CustomizedSnackbars({  children}: SlideForgotProps) {
   const [open, setOpen] = React.useState(false);
-  const [transition, setTransition] = React.useState<
-    React.ComponentType<TransitionProps> | undefined
-  >(undefined);
 
-  const handleClick =
-    (Transition: React.ComponentType<TransitionProps>) => () => {
-      setTransition(() => Transition);
-      setOpen(true);
-    };
+  const handleClick = () => {
+    setOpen(true);
+  };
 
-  const handleClose = () => {
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
     setOpen(false);
   };
 
   return (
-    <Box sx={{ maxWidth: 300 }}>
-      <Box onClick={handleClick(TransitionRight)}>{children}</Box>
-
-      <Snackbar
-        sx={{
-          fontSize: '18px',
-          fontWeight: '600',
-          '& .MuiSnackbarContent-root': {
-            backgroundColor: '#7F67D2',
-          },
-        }}
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={transition}
-        message="font@mail.ru 12345"
-        key={transition ? transition.name : ''}
-      />
+    <Box>
+      <Box  onClick={handleClick}>
+      {children}
+      </Box>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="info" sx={{ width: '100%' }}>
+          font@mail.ru 1234
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
+
