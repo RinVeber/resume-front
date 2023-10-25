@@ -7,7 +7,6 @@ export default function Navbar() {
   return (
     <Box
       sx={{
-        height: '100vh',
         backgroundColor: '#1A1B22',
         width: '134px',
         color: '#FFF',
