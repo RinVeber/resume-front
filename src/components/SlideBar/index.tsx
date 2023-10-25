@@ -1,0 +1,1 @@
+export {default as SlideForgot} from './SlideForgot/index';
