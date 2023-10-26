@@ -82,6 +82,7 @@ export default function FilterLayout() {
             <Autocomplete
               disableCloseOnSelect
               filterSelectedOptions
+              disablePortal
               id="multiple-limit-tags"
               options={listCityMok}
               getOptionLabel={(option) => option.name}
