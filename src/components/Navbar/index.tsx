@@ -10,6 +10,7 @@ export default function Navbar() {
         backgroundColor: '#1A1B22',
         width: '134px',
         color: '#FFF',
+        minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
