@@ -6,6 +6,7 @@ import { Typography, Stack } from '@mui/material';
 import CustomizedTabs from '../components/Tabs';
 import Vacancies from '../pages/vacancies/Vacancies';
 import MainPage from '../pages/main-page/MainPage';
+import VacanciesInfo from '../pages/vacanciesInfo/vacanciesInfo';
 
 export default function VacanciesLayout() {
   const [activeTab, setActiveTab] = useState(0);
@@ -28,7 +29,7 @@ export default function VacanciesLayout() {
           {activeTab === 0 && <Vacancies />}
           {activeTab === 1 && <MainPage />}
           {activeTab === 2 && <MainPage />}
-          {activeTab === 3 && <MainPage />}
+          {activeTab === 3 && <VacanciesInfo />}
         </Stack>
       </Box>
     </>
