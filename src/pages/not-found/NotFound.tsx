@@ -1,7 +1,7 @@
 import { Stack, Button, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import {paths} from '../../routes/routes/paths';
-import background from '../../assets/background.png'
+import background404 from '../../assets/background404.png'
 
 function NotFound() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function NotFound() {
       position: 'absolute',
       width: '100%',
       height: '100%',
-      backgroundImage: `url(${background})`,
+      backgroundImage: `url(${background404})`,
       backgroundPosition: 'center',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
