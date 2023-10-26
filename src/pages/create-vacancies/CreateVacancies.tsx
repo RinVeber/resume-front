@@ -60,7 +60,7 @@ const schema = yup.object().shape({
 
 export default function CreateVacancies() {
   const navigate = useNavigate();
-  const { handleSubmit, control, formState, getValues } = useForm({
+  const { handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
   });
   // const { isDirty, isSubmitting, isSubmitted } = formState;
@@ -74,11 +74,11 @@ export default function CreateVacancies() {
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: object) => {
     console.log('Данные:', data);
   };
 
-  const onSaveDraft = (data) => {
+  const onSaveDraft = (data: object) => {
     console.log('Данные:', data);
   };
 
