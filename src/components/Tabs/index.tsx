@@ -38,11 +38,12 @@ interface StyledTabProps {
   label: string;
 }
 
-export default function CustomizedTabs() {
+export default function CustomizedTabs({ onTabChange }: { onTabChange: (newValue: number) => void }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    onTabChange(newValue);
   };
 
   return (
