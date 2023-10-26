@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { paths } from './paths';
 import NotFound from '../../pages/not-found/NotFound';
-// import Resume from '../../pages/resume/Resume';
+import Resume from '../../pages/resume/Resume';
 import CreateVacancies from '../../pages/create-vacancies/CreateVacancies';
 // import Vacancies from '../../pages/vacancies/Vacancies';
 import VacanciesLayout from '../VacanciesLayout';
@@ -34,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: paths.vacancies,
         element: <VacanciesLayout />,
+      },
+      {
+        path: `${paths.resume}/:id`,
+        element: <Resume />,
       },
       {
         path: paths.create,
