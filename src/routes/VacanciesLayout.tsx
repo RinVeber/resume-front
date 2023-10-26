@@ -4,11 +4,13 @@ import VacanciesMenu from '../components/vacanciesMenu/vacanciesMenu';
 import Box from '@mui/material/Box';
 import { Typography, Stack, Button } from '@mui/material';
 import CustomizedTabs from '../components/Tabs';
+
+import FilterRespond from '../components/FilterRespond';
+import setting from '../assets/settings.svg';
+
 import Vacancies from '../pages/vacancies/Vacancies';
 import MainPage from '../pages/main-page/MainPage';
 import VacanciesInfo from '../pages/vacanciesInfo/vacanciesInfo';
-import FilterRespond from '../components/FilterRespond';
-import setting from '../assets/settings.svg';
 
 export default function VacanciesLayout() {
   const [activeTab, setActiveTab] = useState(0);
