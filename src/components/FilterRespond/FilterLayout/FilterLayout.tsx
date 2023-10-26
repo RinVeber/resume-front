@@ -5,8 +5,9 @@ import ListItemText from '@mui/material/ListItemText';
 import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { Checkbox, Box, Autocomplete, TextField } from '@mui/material';
+import { Checkbox, Box, Autocomplete, TextField, InputAdornment } from '@mui/material';
 import del from '../../../assets/delete.svg';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function FilterLayout() {
   const [openStatus, setOpenStatus] = React.useState(false);
@@ -83,16 +84,24 @@ export default function FilterLayout() {
               disableCloseOnSelect
               filterSelectedOptions
               disablePortal
-              id="multiple-limit-tags"
+      
               options={listCityMok}
               getOptionLabel={(option) => option.name}
               sx={{ width: '330px' }}
               isOptionEqualToValue={(option, value) => option.id === value.id}
               renderInput={(params) => (
                 <TextField
-                  variant="standard"
                   {...params}
-                  label="Поиск по названию"
+            
+                  fullWidth
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  placeholder="Поиск по названию"
                 />
               )}
             />
