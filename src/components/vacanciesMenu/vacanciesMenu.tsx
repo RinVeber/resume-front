@@ -36,20 +36,16 @@ const VacanciesMenu = () => {
 
     return (
         <Box sx={{ minWidth: '237px',height:'calc(100vh - 60px)', borderRight:'1px solid #E6E6E6' }}>
-            <Button href='/create' sx={{
-                fontFamily: ['YS-Text', 'sans-serif'],
+            <Button href='/create'
+            variant='default'
+            sx={{
+          
                 fontSize: '14px',
                 fontWeight: '500',
                 lineHeight: '20px',
-                color: '#fff',
-                backgroundColor: '#5A9BFF',
-                borderRadius: '6px',
                 mt:'40px',
                 ml:'24px',
                 padding: '10px 20px',
-                '&:hover': {
-                    color: 'black',
-                },
             }}>Создать вакансию</Button>
             <Box sx={{ mt: '28px', mb:'8px', ml:'24px', }}>
                 <Button onClick={toggleExpansion} sx={{
