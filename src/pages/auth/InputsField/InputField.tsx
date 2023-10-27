@@ -38,7 +38,7 @@ export default function InputField() {
 
         <SlideForgot>
           <Typography variant="h6" sx={{ color: '#5A9BFF', cursor: 'pointer' }}>
-            Не помню пароль
+            Подсказка
           </Typography>
         </SlideForgot>
       </Stack>
