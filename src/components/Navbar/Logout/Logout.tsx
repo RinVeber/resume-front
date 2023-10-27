@@ -59,11 +59,10 @@ export default function Logout() {
             display={'flex'}
             flexDirection={'row'}
             justifyContent={'flex-start'}
-            gap={'4px'}
           >
             <img src={exit} alt="exit" />
             <Button
-              sx={{ color: '#B5B5B7', fontWeight: '400', fontSize: '13px' }}
+              sx={{ color: '#B5B5B7', fontWeight: '400', fontSize: '13px', padding: '0' }}
               onClick={handleOpen}
             >
               Выход
