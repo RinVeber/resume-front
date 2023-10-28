@@ -132,6 +132,21 @@ export const muiTheme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'red' },
+          style: {
+            color: buttonsStyles.red.color,
+            border: buttonsStyles.red.border,
+            padding: '12px 24px',
+            borderRadius: buttonsStyles.borderRadius,
+            ':hover': {
+              backgroundColor: buttonsStyles.red.hover.backgroundColor,
+            },
+            ':focus': {
+              backgroundColor: buttonsStyles.red.focus.backgroundColor,
+            },
+          },
+        },
       ],
     },
   },

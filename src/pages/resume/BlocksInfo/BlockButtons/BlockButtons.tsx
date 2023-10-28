@@ -1,13 +1,16 @@
 import { Stack, Button, Typography } from '@mui/material';
 import del from '../../../../assets/delete.svg';
+import { SuccessBar } from '../../../../components/SlideBar';
 
 export default function BlockButtons() {
   return (
     <Stack mt={'59px'} flexDirection={'column'} gap={'36px'}>
       <Stack flexDirection={'row'} gap={'32px'} justifyContent={'center'}>
-        <Button sx={{ padding: '15px 81px' }} variant={'default'}>
-          Пригласить
-        </Button>
+        <SuccessBar>
+          <Button sx={{ padding: '15px 81px' }} variant={'default'}>
+            Пригласить
+          </Button>
+        </SuccessBar>
         <Button
           sx={{
             fontSize: '14px',
