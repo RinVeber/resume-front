@@ -39,7 +39,7 @@ const VacanciesMenu = () => {
             <Button href='/create'
             variant='default'
             sx={{
-          
+                fontFamily:'YS-Text',
                 fontSize: '14px',
                 fontWeight: '500',
                 lineHeight: '20px',
