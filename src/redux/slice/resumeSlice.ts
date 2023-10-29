@@ -7,7 +7,7 @@ import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
 export const getResume = createAsyncThunk(
   'resume/getResume',
   async (id, { rejectWithValue }) => {
-    const request = api.get(API_BASE_ALL_RESUME_URL + `/${id}`);
+    const request = api.get(API_BASE_ALL_RESUME_URL + `/${id}/`);
     return handleRequest(request, rejectWithValue);
   },
 );

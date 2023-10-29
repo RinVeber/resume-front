@@ -1,5 +1,5 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-import { getVacancies } from '../actions/vacanciesAction';
+// import { getVacancies } from '../actions/vacanciesAction';
 
 type VacanciesStateType = {
   data: unknown;
@@ -10,6 +10,16 @@ type VacanciesStateType = {
   status: 'init' | 'loading' | 'success' | 'error';
   error: string | undefined;
 };
+
+import { api, handleRequest } from '../api/api';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { API_BASE_ALL_VACANCIES_URL } from '../../utils/apiConstants';
+
+export const getVacancies = createAsyncThunk('vacancies/getVacancies', async (_, { rejectWithValue }) => {
+  const request = api.get(API_BASE_ALL_VACANCIES_URL);
+  return handleRequest(request, rejectWithValue);
+});
+
 
 export type VacanciesResponseType = {
   data: VacanciesStateType;

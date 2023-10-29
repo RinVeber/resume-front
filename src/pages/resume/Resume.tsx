@@ -5,14 +5,18 @@ import { getResume } from '../../redux/slice/resumeSlice';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { getVacancies } from '../../redux/slice/vacanciesSlice';
 
 export default function Resume() {
   const {id} = useParams();
   const dispatch = useAppDispatch();
 
   React.useEffect(() => {
-    dispatch(getResume(id))
+    dispatch(getResume(id));
+    dispatch(getVacancies());
   }, [dispatch]);
+
+  
 
   
   return (
