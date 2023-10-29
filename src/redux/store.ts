@@ -1,11 +1,13 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { vacanciesReducer } from './slice/vacanciesSlice';
+import { resumeReducer } from './slice/resumeSlice';
 
 
 const store = configureStore({
   reducer: {
-vacancies: vacanciesReducer
+vacancies: vacanciesReducer,
+resume: resumeReducer,
   },
 });
 

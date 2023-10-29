@@ -23,3 +23,15 @@ export default function Resume() {
     </Box>
   );
 }
+
+
+// export const ResumeLoader = async () => {
+// const res = await fetch(`http://career-tracker.duckdns.org/api/v1/vacancies/`);
+// return res.json();
+// }
+
+
+// export const ResumeLoader = async () => {
+// console.log('что тут у нас?');
+// return 2;
+// }

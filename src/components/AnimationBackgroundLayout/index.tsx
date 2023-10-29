@@ -67,10 +67,12 @@ export default function AnimationBackgroundLayout() {
         component="div"
         sx={{
           backgroundImage: `url(${treangle})`,
-          top: '18vh',
-          left: '-20vw',
-          width: '701px',
-          height: '635px',
+          top: '100px',
+          left: '-250px',
+          maxWidth: '701px',
+          width: '100%',
+          maxHeight: '635px',
+          height: '100%',
           animationDuration: '15s',
         }}
         className={classes.rotate}
@@ -82,8 +84,10 @@ export default function AnimationBackgroundLayout() {
           backgroundImage: `url(${circle})`,
           top: '-17vh',
           left: '45vw',
-          width: '750px',
-          height: '748px',
+          maxWidth: '750px',
+          width: '100%',
+          maxHeight: '748px',
+          height: '100%',
           animationDuration: '5s',
         }}
         className={classes.rotate}
@@ -95,8 +99,10 @@ export default function AnimationBackgroundLayout() {
           backgroundImage: `url(${square})`,
           left: '50vw',
           bottom: '-50vh',
-          width: '710px',
-          height: '769px',
+          maxWidth: '710px',
+          width: '100%',
+          maxHeight: '769px',
+          height: '100%',
           animationDuration: '20s'
         }}
         className={classes.rotate}
