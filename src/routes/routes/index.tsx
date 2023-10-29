@@ -10,6 +10,7 @@ import MainPage from '../../pages/main-page/MainPage';
 import RootLayout from '../RootLayout';
 import Auth from '../../pages/auth/Auth';
 import AuthLayout from '../AuthLayout';
+// import { ResumeLoader } from '../../pages/resume/Resume';
 
 export const router = createBrowserRouter([
 
@@ -39,6 +40,7 @@ export const router = createBrowserRouter([
       {
         path: `${paths.resume}/:id`,
         element: <Resume />,
+        // loader: ResumeLoader,
       },
       {
         path: paths.create,
