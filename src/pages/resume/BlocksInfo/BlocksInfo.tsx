@@ -23,8 +23,8 @@ export default function BlocksInfo() {
             subtitle={'Формат работы'}
           />
           <BlockInfo
-            second={currentResume!.experience}
-            first={`${currentResume!.education_year} года`}
+            second={currentResume!.salary}
+            first={`${currentResume!.experience} года(лет)`}
             title={'Опыт работы'}
             titleBlock={'Опыт'}
             subtitle={'Уровень дохода'}

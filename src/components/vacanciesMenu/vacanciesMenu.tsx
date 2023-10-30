@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import { vacanciesSelect } from '../../redux/getVacancies/getVacancies';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { getVacanciesIdApi } from '../../redux/getVacanciesId/getVacanciesId';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../routes/routes/paths';
 
 const VacanciesMenu = () => {
     const dispatch = useAppDispatch();
@@ -17,6 +19,7 @@ const VacanciesMenu = () => {
     const [planned, setPlanned] = useState(false);
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
     const vacancies = useAppSelector(vacanciesSelect);
+    const navigate = useNavigate();
 
     const toggleExpansion = () => {
         setExpanded(!expanded);
@@ -85,7 +88,9 @@ const VacanciesMenu = () => {
                                 cursor: 'pointer',
                                 borderRight: vacancy.id === selectedItem ? '2px solid black' : 'transparent',
                             }}
-                            onClick={() => handleItemClick(vacancy.id)}
+                            onClick={() => {
+                                navigate(`${paths.vacancies}/${vacancy.id}`)
+                                handleItemClick(vacancy.id)}}
                         >
                             <Typography sx={{
                                 fontSize: '14px',

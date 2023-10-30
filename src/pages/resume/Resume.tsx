@@ -13,17 +13,10 @@ export default function Resume() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { status } = useAppSelector((state) => state.resume);
-  const [isLoading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(getResume(id));
-    if (status == 'success') {
-      setLoading(true);
-    }
-    if (status == 'error') {
-      setLoading(false);
-    }
-  }, [dispatch, isLoading]);
+  }, [dispatch,]);
 
   return (
     <>
@@ -49,4 +42,6 @@ export default function Resume() {
     </>
   );
 }
+
+
 

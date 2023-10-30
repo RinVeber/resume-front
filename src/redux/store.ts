@@ -7,12 +7,14 @@ import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
 import { vacanciesPostReducer } from './postVacancies/postVacancies';
 
 
+
 const store = configureStore({
   reducer: {
     vacanciesPost: vacanciesPostReducer,
     vacanciesId: vacanciesIdReducer,
     vacancies: vacanciesReducer,
     resume: resumeReducer,
+    cardGroup: vacanciesGroupReducer,
   },
 });
 
