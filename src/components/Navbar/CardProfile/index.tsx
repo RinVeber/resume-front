@@ -1,4 +1,3 @@
-import React from 'react';
 import def from '../../../assets/default.png';
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import {Tooltip} from '@mui/material';
