@@ -6,14 +6,33 @@ import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
 
 export const getResume = createAsyncThunk(
   'resume/getResume',
-  async (id, { rejectWithValue }) => {
+  async (id :(string | undefined), { rejectWithValue }) => {
     const request = api.get(API_BASE_ALL_RESUME_URL + `/${id}/`);
+    return handleRequest(request, rejectWithValue);
+  },
+);
+export const getResumeСV = createAsyncThunk(
+  'resume/getResumeСV',
+  async (id, { rejectWithValue }) => {
+    const request = api.get(
+      API_BASE_ALL_RESUME_URL + `/${id}/` + `download_cv/`,
+    );
+    return handleRequest(request, rejectWithValue);
+  },
+);
+export const getResumePortfolio = createAsyncThunk(
+  'resume/getResumePortfolio',
+  async (id, { rejectWithValue }) => {
+    const request = api.get(
+      API_BASE_ALL_RESUME_URL + `/${id}/` + `download_portfolio/`,
+    );
     return handleRequest(request, rejectWithValue);
   },
 );
 
 type ResumeStateType = {
-  data: unknown;
+  data: ResumeResponseType | null;
+  cv: string | null;
   total: number;
   page: number;
   size: number;
@@ -23,15 +42,37 @@ type ResumeStateType = {
 };
 
 export type ResumeResponseType = {
-  data: ResumeStateType;
-  total: number;
-  page: number;
-  size: number;
-  pages: number;
+  id: number;
+  skills: [
+    {
+      name: string;
+    },
+  ];
+  activities: number;
+  birthdate: string;
+  brief: string;
+  photo: string;
+  telegram: string;
+  phone: string;
+  location: string;
+  cv: string;
+  portfolio: string;
+  education: string;
+  education_year: number;
+  course: string;
+  course_year: number;
+  seeking_for: boolean;
+  position: string;
+  level: string;
+  experience: string;
+  format: string;
+  salary: number;
+  user: number;
 };
 
 const initialState: ResumeStateType = {
   data: null,
+  cv: null,
   total: 0,
   page: 1,
   size: 1,
@@ -48,14 +89,24 @@ const resumeSlice = createSlice({
     builder
       .addCase(getResume.fulfilled, (state, action) => {
         state.status = 'success';
-
-        // TODO: Как появится сваггер от беков, так опишем типы response от сервера
         state.data = action.payload;
       })
       .addCase(getResume.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(getResume.rejected, (state) => {
+        state.status = 'error';
+        state.error = 'error';
+      })
+      .addCase(getResumeСV.fulfilled, (state, action) => {
+        state.status = 'success';
+
+        state.cv = action.payload;
+      })
+      .addCase(getResumeСV.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getResumeСV.rejected, (state) => {
         state.status = 'error';
         state.error = 'error';
       });
