@@ -6,10 +6,6 @@
 
 - [О проект](#about)
 - [Установка](#getting_started)
-- [Usage](#usage)
-
-
-
 
 :arrow_forward: **[Backend-репозиторий](https://github.com/Hakaton-resume/backend)**
 
