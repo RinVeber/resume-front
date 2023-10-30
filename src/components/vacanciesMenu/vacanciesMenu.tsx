@@ -6,9 +6,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Typography from '@mui/material/Typography';
 import { vacanciesSelect } from '../../redux/getVacancies/getVacancies';
-import { useAppSelector } from '../../redux/store';
+import { useAppSelector, useAppDispatch } from '../../redux/store';
+import { getVacanciesIdApi } from '../../redux/getVacanciesId/getVacanciesId';
 
 const VacanciesMenu = () => {
+    const dispatch = useAppDispatch();
     const [expanded, setExpanded] = useState(false);
     const [archive, setArchive] = useState(false);
     const [draft, setDraft] = useState(false);
@@ -35,7 +37,7 @@ const VacanciesMenu = () => {
 
     const handleItemClick = (itemIndex: number) => {
         setSelectedItem(itemIndex);
-
+        dispatch(getVacanciesIdApi({id: itemIndex}))
     };
 
     function determineLevel(experience: string) {
@@ -75,15 +77,15 @@ const VacanciesMenu = () => {
                     Активные {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </Button>
                 <Collapse in={expanded} sx={{ display: 'flex', flexDirection: 'column' }}>
-                    {vacancies.map((vacancy, index) => (
+                    {vacancies.map((vacancy) => (
                         <Box
-                            key={index}
+                            key={vacancy.id}
                             sx={{
                                 m: '12px 0',
                                 cursor: 'pointer',
-                                borderRight: index + 1 === selectedItem ? '2px solid black' : 'transparent',
+                                borderRight: vacancy.id === selectedItem ? '2px solid black' : 'transparent',
                             }}
-                            onClick={() => handleItemClick(index + 1)}
+                            onClick={() => handleItemClick(vacancy.id)}
                         >
                             <Typography sx={{
                                 fontSize: '14px',

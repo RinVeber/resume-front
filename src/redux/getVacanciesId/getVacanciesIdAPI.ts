@@ -18,8 +18,8 @@ const fetchData = (url: string) => {
   }).then((res) => checkRes(res));
 };
 
-export const fetchVacancies = () => {
+export const fetchVacanciesId = (id: number) => {
   return fetchData(
-    `${API_BASE_ALL_VACANCIES_URL}/`,
+    `${API_BASE_ALL_VACANCIES_URL}/${id}/`,
   );
 };

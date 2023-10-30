@@ -3,7 +3,7 @@
 export const API_BASE_URL = `https://career-tracker.duckdns.org/api/v1`
 
 
-export const API_BASE_ALL_VACANCIES_URL = API_BASE_URL + '/vacancies/';
+export const API_BASE_ALL_VACANCIES_URL = API_BASE_URL + '/vacancies';
 
 
 export const API_BASE_ALL_RESUME_URL = API_BASE_URL + `/students`
