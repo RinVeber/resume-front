@@ -4,10 +4,12 @@ import { configureStore } from '@reduxjs/toolkit';
 import { resumeReducer } from './slice/resumeSlice';
 import { vacanciesReducer } from './getVacancies/getVacancies';
 import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
+import { vacanciesPostReducer } from './postVacancies/postVacancies';
 
 
 const store = configureStore({
   reducer: {
+    vacanciesPost: vacanciesPostReducer,
     vacanciesId: vacanciesIdReducer,
     vacancies: vacanciesReducer,
     resume: resumeReducer,

@@ -28,9 +28,7 @@ export default function VacanciesLayout() {
           sx={{ padding: '40px 40px' }}
         >
           {vacancies == null ? (
-            <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', width:'calc(100vw - 300px)', height:'100vh'}}>
-              <Typography fontSize={'18px'} lineHeight={'32PX'} fontWeight={'400'}>Выберите вакансию которую хотите посмотреть</Typography>
-            </Box>
+            <MainPage />
           ) : (
             <>
               <Typography fontSize={'32px'} lineHeight={'32PX'} fontWeight={'500'}>{vacancies.name}</Typography>
