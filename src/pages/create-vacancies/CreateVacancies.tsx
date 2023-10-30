@@ -92,6 +92,7 @@ export default function CreateVacancies() {
   const [workFormat, setWorkFormat] = useState('Выбрать');
   const [tags, setTags] = useState<{ name: string; weight: string }[]>([]);
   const [selectedTag, setSelectedTag] = useState({ name: '', weight: '' });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isInputValid, setInputValid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
