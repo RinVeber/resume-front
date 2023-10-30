@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchVacancies } from './getVacanciesAPI';
+import { fetchVacanciesId } from './getVacanciesIdAPI';
 
 interface IСategoriesData {
     id: number
@@ -29,17 +29,18 @@ interface IСategoriesData {
 }
 
 interface IСategoriesState {
-    data: IСategoriesData[];
+    data: IСategoriesData | null;
 }
 
-export const getVacanciesApi = createAsyncThunk(
-    '@@vacancies/vacancies',
+export const getVacanciesIdApi = createAsyncThunk(
+    '@@vacanciesId/vacanciesId',
     async (
-        _,
+        arg: {id: number},
         { fulfillWithValue, rejectWithValue },
     ) => {
         try {
-            const response = await fetchVacancies();
+            const { id } = arg;
+            const response = await fetchVacanciesId(id);
             return fulfillWithValue(response);
         } catch (error: unknown) {
             return rejectWithValue(error);
@@ -48,21 +49,21 @@ export const getVacanciesApi = createAsyncThunk(
 );
 
 const initialState: IСategoriesState = {
-    data: [],
+    data: null,
 };
 
-const vacanciesSlice = createSlice({
-    name: '@@vacancies',
+const vacanciesIdSlice = createSlice({
+    name: '@@vacanciesId',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getVacanciesApi.fulfilled, (state, action) => {
+        builder.addCase(getVacanciesIdApi.fulfilled, (state, action) => {
             state.data = action.payload;
         });
     },
 });
 
-export const vacanciesReducer = vacanciesSlice.reducer;
+export const vacanciesIdReducer = vacanciesIdSlice.reducer;
 
-export const vacanciesSelect = (state: { vacancies: IСategoriesState }) => state.vacancies.data;
+export const vacanciesIdSelect = (state: { vacanciesId: IСategoriesState }) => state.vacanciesId.data;
 ;

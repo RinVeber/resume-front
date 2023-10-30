@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit';
 // import { vacanciesReducer } from './slice/vacanciesSlice';
 import { resumeReducer } from './slice/resumeSlice';
 import { vacanciesReducer } from './getVacancies/getVacancies';
+import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
 
 
 const store = configureStore({
   reducer: {
-vacancies: vacanciesReducer,
-resume: resumeReducer,
+    vacanciesId: vacanciesIdReducer,
+    vacancies: vacanciesReducer,
+    resume: resumeReducer,
   },
 });
 
