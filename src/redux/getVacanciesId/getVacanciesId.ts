@@ -29,11 +29,11 @@ interface IСategoriesData {
 }
 
 interface IСategoriesState {
-    data: IСategoriesData[];
+    data: IСategoriesData | null;
 }
 
 export const getVacanciesIdApi = createAsyncThunk(
-    '@@vacancies/vacancies',
+    '@@vacanciesId/vacanciesId',
     async (
         arg: {id: number},
         { fulfillWithValue, rejectWithValue },
@@ -49,11 +49,11 @@ export const getVacanciesIdApi = createAsyncThunk(
 );
 
 const initialState: IСategoriesState = {
-    data: [],
+    data: null,
 };
 
 const vacanciesIdSlice = createSlice({
-    name: '@@vacancies',
+    name: '@@vacanciesId',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -65,5 +65,5 @@ const vacanciesIdSlice = createSlice({
 
 export const vacanciesIdReducer = vacanciesIdSlice.reducer;
 
-export const vacanciesIdSelect = (state: { vacancies: IСategoriesState }) => state.vacancies.data;
+export const vacanciesIdSelect = (state: { vacanciesId: IСategoriesState }) => state.vacanciesId.data;
 ;

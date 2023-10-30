@@ -20,6 +20,6 @@ const fetchData = (url: string) => {
 
 export const fetchVacanciesId = (id: number) => {
   return fetchData(
-    `${API_BASE_ALL_VACANCIES_URL}/${id}/`,
+    `${API_BASE_ALL_VACANCIES_URL}${id}/`,
   );
 };

@@ -20,6 +20,6 @@ const fetchData = (url: string) => {
 
 export const fetchVacancies = () => {
   return fetchData(
-    `${API_BASE_ALL_VACANCIES_URL}/`,
+    `${API_BASE_ALL_VACANCIES_URL}`,
   );
 };
