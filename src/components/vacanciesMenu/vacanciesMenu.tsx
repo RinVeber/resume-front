@@ -83,7 +83,7 @@ const VacanciesMenu = () => {
                                 cursor: 'pointer',
                                 borderRight: index + 1 === selectedItem ? '2px solid black' : 'transparent',
                             }}
-                            onClick={() => handleItemClick(index)}
+                            onClick={() => handleItemClick(index + 1)}
                         >
                             <Typography sx={{
                                 fontSize: '14px',
