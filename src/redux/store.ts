@@ -5,6 +5,7 @@ import { resumeReducer } from './slice/resumeSlice';
 import { vacanciesReducer } from './getVacancies/getVacancies';
 import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
 import { vacanciesPostReducer } from './postVacancies/postVacancies';
+import { vacanciesGroupReducer } from './slice/vacanciesGroupSlice';
 
 
 
