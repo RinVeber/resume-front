@@ -1,6 +1,8 @@
 import WrapperModals from '../WrapperModal/WrapperModal';
 import { Stack, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 type DeleteVacanciesModalProps = {
   open: boolean;
@@ -9,7 +11,19 @@ type DeleteVacanciesModalProps = {
 };
 
 export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanciesModalProps) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const vacancy = useAppSelector(vacanciesIdSelect);
+
+  const resourceUrl = `http://career-tracker.duckdns.org/api/v1/vacancies/${vacancy?.id}/`;
+
+  const handleDeleteVacancy = async () => {
+    await fetch(resourceUrl, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+  };
   return (
     <>
       <WrapperModals open={open} handleClose={handleClose}>
@@ -27,14 +41,23 @@ export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanc
             >
               Закрыть вакансию
             </Typography>
-            <Typography component={'h4'} sx={{color: 'rgba(121, 121, 129, 1)'}}>Вакансия будет закрыта и перемещена в Архив</Typography>
+            <Typography component={'h4'} sx={{ color: 'rgba(121, 121, 129, 1)' }}>Вакансия будет закрыта и перемещена в Архив</Typography>
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'20px'}>
-            <Button variant="red" onClick={() => navigate(-1)}>Удалить вакансию</Button>
-            <Button variant="default" onClick={() => navigate(-1)}>Сохранить</Button>
+            <Button variant="red"
+              onClick={() => {
+                navigate(-1)
+                handleDeleteVacancy()
+              }}
+            >Удалить вакансию</Button>
+            <Button variant="default"
+              onClick={() =>
+                navigate(-1)
+              }
+            >Сохранить</Button>
           </Stack>
         </Stack>
-      </WrapperModals>
+      </WrapperModals >
     </>
   );
 }
