@@ -5,7 +5,11 @@ interface BlockInfoProps {
   title: string;
   subtitle: string;
   first: string;
-  second: string;
+  second?: string;
+  skills?: Array<{
+    name: string
+  }>;
+ type?: 'skills',
 }
 
 export default function BlockInfo({
@@ -14,6 +18,8 @@ export default function BlockInfo({
   subtitle,
   first,
   second,
+  type,
+  skills
 }: BlockInfoProps) {
   return (
     <Stack
@@ -32,8 +38,17 @@ export default function BlockInfo({
       </Stack>
       <Stack flexDirection={'column'} gap={'8px'}>
         <Typography variant={'h4'}>{subtitle}</Typography>
+        <Stack flexDirection={'row'} gap={'3px'}>
+        {type == 'skills' && skills!.map((item, index) => {
+            return (
+           <Typography key={index} variant={'h4'} sx={{ color: '#797981',}}>{item.name}, </Typography>
+            )
+          })}
+        </Stack>
         <Typography variant={'h4'} sx={{ color: '#797981' }}>
+       
           {second}
+          
         </Typography>
       </Stack>
     </Stack>
