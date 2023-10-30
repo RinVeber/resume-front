@@ -46,20 +46,22 @@ export default function HeaderResume() {
         <Avatar
           img={currentResume!.photo}
           textSize={'96px'}
-          nameUser={'Королев Василий'}
+          nameUser={currentResume!.first_name}
           sizes={'207px'}
         />
 
         <Stack flexDirection={'column'} gap={'20px'}>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Stack flexDirection={'row'} justifyContent={'space-between'}>
-              <Typography variant="h1">Королев Василий</Typography>
+              <Typography variant="h1">
+                {currentResume!.first_name} {currentResume!.last_name}
+              </Typography>
               <Tooltip title={'Добавить в избранное'}>
                 <img
                   src={isLike ? heartActive : heart}
                   alt={'избранное'}
                   onClick={() => handleLike()}
-                  style={{cursor: 'pointer'}}
+                  style={{ cursor: 'pointer' }}
                 />
               </Tooltip>
             </Stack>

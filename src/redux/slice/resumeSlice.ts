@@ -30,6 +30,8 @@ export type ResumeResponseType = {
       name: string;
     },
   ];
+  first_name: string,
+  last_name: string,
   activities: number;
   birthdate: string;
   brief: string;

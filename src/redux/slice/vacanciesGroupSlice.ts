@@ -1,25 +1,18 @@
 import { ActionReducerMapBuilder, createSlice } from '@reduxjs/toolkit';
-// import { getVacancies } from '../actions/vacanciesAction';
-
-type VacanciesGroupStateType = {
-  data: VacanciesResponseType | null;
-  total: number;
-  page: number;
-  size: number;
-  pages: number;
-  status: 'init' | 'loading' | 'success' | 'error';
-  error: string | undefined;
-};
-
+import { ResumeResponseType } from './resumeSlice';
 import { api, handleRequest } from '../api/api';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { API_BASE_ALL_VACANCIES_URL } from '../../utils/apiConstants';
 
-export const getVacanciesGroup = createAsyncThunk('vacanciesGroup/getVacanciesGroup', async (id:(string | undefined), { rejectWithValue }) => {
-  const request = api.get(`${API_BASE_ALL_VACANCIES_URL}${id}/groups/`);
-  return handleRequest(request, rejectWithValue);
-});
-
+type VacanciesGroupStateType = {
+    data: VacanciesResponseType | null;
+    total: number;
+    page: number;
+    size: number;
+    pages: number;
+    status: 'init' | 'loading' | 'success' | 'error';
+    error: string | undefined;
+  };
 
 export type VacanciesResponseType = {
     id: number
@@ -47,9 +40,9 @@ export type VacanciesResponseType = {
     is_active: boolean
     company: number
 
-    response: [],
-    favourites: [],
-    invitations: [],
+    response: ResumeResponseType[],
+    favourites: ResumeResponseType[],
+    invitations: ResumeResponseType[],
 };
 
 const initialState: VacanciesGroupStateType = {
@@ -61,6 +54,11 @@ const initialState: VacanciesGroupStateType = {
   status: 'init',
   error: undefined,
 };
+
+export const getVacanciesGroup = createAsyncThunk('vacanciesGroup/getVacanciesGroup', async (id:(string | undefined), { rejectWithValue }) => {
+    const request = api.get(`${API_BASE_ALL_VACANCIES_URL}${id}/groups/`);
+    return handleRequest(request, rejectWithValue);
+  });
 
 const vacanciesGroupSlice = createSlice({
   name: 'vacanciesGroup',

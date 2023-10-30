@@ -3,20 +3,10 @@ import picture from '../../../../assets/picture.png';
 import { Tooltip } from '@mui/material';
 import { useAppSelector } from '../../../../redux/store';
 import { Link } from 'react-router-dom';
-// import { getResumeСV } from '../../Resume';
-// import { getResumeСV } from '../../../../redux/slice/resumeSlice';
-// import { useParams } from 'react-router-dom';
 
 export default function GraphicBlock() {
   const {data: currentResume } = useAppSelector((state) => state.resume);
-  // const dispatch = useAppDispatch();
-  // const {id} = useParams();
 
-  // function handleDownloadCV(e) {
-  //   e.stopPropagation();
-  //   debugger;
-  //   dispatch(getResumeСV(id))
-  // }
 
   return (
     <>

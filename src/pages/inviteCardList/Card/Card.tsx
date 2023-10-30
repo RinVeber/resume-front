@@ -1,46 +1,24 @@
-import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
 import defAvatar from '../../../assets/defAvatar.png';
 import heart from '../../../assets/heart.svg';
 import suiltcase from '../../../assets/suilcase.png';
 import loc from '../../../assets/location.png';
-import Chips from './Chips/Chips';
+// import Chips from './Chips/Chips';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
-import heartActive from '../../../assets/heart_active.svg';
+import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
 
-type CardType = {
-  id: number;
-  name: string;
-  subname: string;
-  coincidence: string;
-  city: string;
-  suiltcase: string;
-  isCheked: boolean;
-  avatar: string;
-  skills: {
-    id: number;
-    title: string;
-  }[];
-};
 
 interface CardProps {
-  card: CardType;
+  card: ResumeResponseType;
 }
 
 export default function Card({ card }: CardProps) {
   const navigate = useNavigate();
-  const [isLike, setIsLike] = useState(false);
-
-  function handleLike(e) {
-    e.stopPropagation();
-    setIsLike(!isLike)
-  }
   return (
     <>
       <Stack
-      onClick={() => {
-        navigate(`${paths.resume}/${1}`)}}
+      onClick={() => navigate(`${paths.resume}/${card.id}`)}
         width={'316px'}
         height={'204px'}
         display={'flex'}
@@ -81,23 +59,22 @@ export default function Card({ card }: CardProps) {
             }}
           >
             <Typography fontSize={14} fontWeight={700}>
-              {card.name}
+              {card.first_name} {card.last_name}
             </Typography>
             <Typography fontSize={14} fontWeight={500}>
-              {card.subname}
+              {card.position}
             </Typography>
             <Typography
               fontSize={12}
               sx={{ p: '5px', bgcolor: '#C2E5CE', borderRadius: '4px' }}
             >
-              {card.coincidence}
+            100% совпадает
             </Typography>
           </Box>
           <img
-            src={isLike? heartActive : heart}
+            src={heart}
             alt={'heart'}
             style={{ width: '20px', height: '20px' }}
-            onClick={(e) => handleLike(e)}
           />
         </Stack>
         <Stack sx={{ color: '#959595' }} flexDirection={'column'} gap={'10px'}>
@@ -110,7 +87,7 @@ export default function Card({ card }: CardProps) {
           >
             <img src={loc} alt="иконка" />
             <Typography fontSize={13} sx={{ alignItems: 'center' }}>
-              {card.city}
+              {card.location}
             </Typography>
           </Box>
           <Box
@@ -123,14 +100,14 @@ export default function Card({ card }: CardProps) {
           >
             <img src={suiltcase} alt={'case'} />
             <Typography fontSize={13} sx={{ alignItems: 'center' }}>
-              Опыт работы: {card.suiltcase}
+              Опыт работы: {card.experience}
             </Typography>
           </Box>
-          <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
+          {/* <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
             {card.skills.map((item) => {
               return <Chips key={item.id} chip={item} />;
             })}
-          </Box>
+          </Box> */}
         </Stack>
       </Stack>
     </>
