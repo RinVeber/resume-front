@@ -9,7 +9,7 @@ const Statistic = () => {
             ml:'20px',
             textAlign:'left'
         }}>
-            <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Статистика по вакансии</Typography>
+            <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Количество откликов</Typography>
             <BarChart
             title='Отклики по месяцам, чел.'
                 xAxis={[
