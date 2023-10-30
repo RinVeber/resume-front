@@ -33,14 +33,13 @@ export default function Resume() {
           backgroundColor: '#F9FAFB',
         }}
       >
-        <ErrorServer />
 
 
-        {/* <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loading />}>
         {status == 'error' && <ErrorServer />}
         {status == 'success' && <HeaderResume />}
         {status == 'success' && <BlocksInfo />}
-        </Suspense> */}
+        </Suspense>
       </Box>
     </>
   );
