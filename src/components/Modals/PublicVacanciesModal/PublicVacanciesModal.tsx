@@ -1,16 +1,20 @@
 import WrapperModals from '../WrapperModal/WrapperModal';
 import { Stack, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 type PublicVacanciesModalProps = {
   open: boolean;
   handleClose: () => void;
   handleOpen?: () => void;
+  onSubmit: () => void;
 };
 
 export default function PublicVacanciesModal({
   open,
   handleClose,
+  onSubmit
 }: PublicVacanciesModalProps) {
+  const navigate = useNavigate();
   return (
     <>
       <WrapperModals open={open} handleClose={handleClose}>
@@ -37,8 +41,8 @@ export default function PublicVacanciesModal({
             </Typography>
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'20px'}>
-            <Button variant="outlined">Отмена</Button>
-            <Button variant="default">Опубликовать</Button>
+            <Button variant="outlined" onClick={() => navigate(-1)}>Отмена</Button>
+            <Button variant="default"  onClick={onSubmit}>Опубликовать</Button>
           </Stack>
         </Stack>
       </WrapperModals>
