@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography, IconButton } from '@mui/material';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 const fieldStyles = {
     width: '100%',
@@ -21,13 +23,10 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    title: 'Figma Photoshop CSS'
-}
-
 const VacanciesInfoProgram = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
+    const vacancyId = useAppSelector(vacanciesIdSelect);
 
     const onSubmit = (data: object) => {
         // Обработка данных формы (data)
@@ -59,7 +58,7 @@ const VacanciesInfoProgram = () => {
                             <Controller
                                 name="data"
                                 control={control}
-                                defaultValue={dataSet.title}
+                                defaultValue={vacancyId?.skills.map(item => item.name)}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -75,8 +74,8 @@ const VacanciesInfoProgram = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Знание программ</Typography>
                         <Typography fontSize={'16px'} lineHeight={'24px'} fontWeight={'400'} color={'#797981'}>
-                                {dataSet.title.split(' ').map((sentence, index) => (
-                                    <li key={index}>{sentence}</li>
+                                {vacancyId?.skills.map((sentence, index) => (
+                                    <li key={index}>{sentence.name}</li>
                                 ))}
                         </Typography>
                     </Box>

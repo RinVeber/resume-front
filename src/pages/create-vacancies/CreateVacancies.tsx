@@ -50,7 +50,7 @@ const schema = yup.object().shape({
   category: yup.string().required('Выберите категорию').notOneOf(['Выбрать'], 'Выберите категорию'),
   vacancyDescription: yup.string().required('Введите описание вакансии'),
   responsibilities: yup.string().required('Введите обязанности сотрудника'),
-  incomeLevelMoney: yup.string().required('Укажите уровень дохода'),
+  incomeLevelMoney: yup.number().required('Укажите уровень дохода'),
   incomeLevelRub: yup.string().required('Укажите валюту').notOneOf(['Валюта'], 'Выберите категорию'),
   workFormat: yup.string().required('Выберите формат работы').notOneOf(['Выбрать'], 'Выберите категорию'),
   workConditions: yup.string().required('Введите условия работы'),
@@ -66,7 +66,7 @@ interface IVacanciesData {
   companyInfo: string,
   city: string,
   vanaciesName: string,
-  incomeLevelMoney: string,
+  incomeLevelMoney: number,
   responsibilities: string,
   workConditions: string,
   refusalMessage: string,
@@ -86,12 +86,10 @@ export default function CreateVacancies() {
   const [money, setMoney] = useState('Валюта');
   const [workFormat, setWorkFormat] = useState('Выбрать');
   const [tags, setTags] = useState<{ name: string; weight: string }[]>([]);
-  const [selectedTag, setSelectedTag] = useState({ name: '', weight: 'Выбрать вес' });
+  const [selectedTag, setSelectedTag] = useState({ name: '', weight: '' });
   const [isInputValid, setInputValid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
-
-  console.log(tags);
 
   const onSubmit = (data: IVacanciesData) => {
     const dataToSend = {
@@ -147,6 +145,11 @@ export default function CreateVacancies() {
   const handleWeightChange = (event: SelectChangeEvent) => {
     setSelectedTag({ ...selectedTag, weight: event.target.value });
   };
+  
+  const handleRemoveTag = (index: number) => {
+    const updatedTags = tags.filter((_, i) => i !== index);
+    setTags(updatedTags);
+  };
 
   const handleAddTag = () => {
     if (selectedTag.name && selectedTag.weight) {
@@ -156,17 +159,9 @@ export default function CreateVacancies() {
     }
   };
 
-  const handleRemoveTag = (index: number) => {
-    const updatedTags = tags.filter((_, i) => i !== index);
-    setTags(updatedTags);
-  };
-
-  const handleEnterKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' && isInputValid) {
-      event.preventDefault();
-      handleAddTag();
-    }
-  };
+  useEffect(() => {
+    handleAddTag();
+  }, [selectedTag.name && selectedTag.weight]);
 
   const goBack = () => {
     navigate(-1);
@@ -419,7 +414,7 @@ export default function CreateVacancies() {
                   fullWidth
                   value={selectedTag.name}
                   onChange={handleTagChange}
-                  onKeyPress={handleEnterKeyPress}
+                  // onKeyPress={handleEnterKeyPress}
                 />
                 <Select
                   sx={{
@@ -512,9 +507,9 @@ export default function CreateVacancies() {
                       error={!!fieldState.error}
                     >
                       <MenuItem disabled value="Валюта" style={{ color: 'grey' }}>Валюта</MenuItem>
-                      <MenuItem value="rub">Рубль</MenuItem>
-                      <MenuItem value="teng">Тенге</MenuItem>
-                      <MenuItem value="com">Сомм</MenuItem>
+                      <MenuItem value="RUB">Рубль</MenuItem>
+                      <MenuItem value="EUR">Евро</MenuItem>
+                      <MenuItem value="USD">Доллар</MenuItem>
                     </Select>
                   )}
                 />

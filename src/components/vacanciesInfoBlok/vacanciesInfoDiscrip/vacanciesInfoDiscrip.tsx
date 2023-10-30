@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography, IconButton } from '@mui/material';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 const fieldStyles = {
     width: '100%',
@@ -21,13 +23,10 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    title: 'Мы в поисках UI/UX дизайнера, который готов вникать в потребности бизнеса и пользователей, поможет сделать наш продукт еще более удобным и современным. Нужно будет работать с интерфейсами на всех этапах CJM воронки; решать задачи, опираясь на метрики, бизнес-требования, боли пользователей и учитывая технические нюансы системы; проверять дизайн-решения быстрыми юзабилити-тестами и метриками.'
-}
-
 const VacanciesInfoDiscrip = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
+    const vacancyId = useAppSelector(vacanciesIdSelect);
 
     const onSubmit = (data: object) => {
         // Обработка данных формы (data)
@@ -59,7 +58,7 @@ const VacanciesInfoDiscrip = () => {
                             <Controller
                                 name="data"
                                 control={control}
-                                defaultValue={dataSet.title}
+                                defaultValue={vacancyId?.description}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -74,7 +73,7 @@ const VacanciesInfoDiscrip = () => {
                 ) : (
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Описание вакансии</Typography>
-                        <Typography fontSize={'16px'} lineHeight={'24px'} fontWeight={'400'} color={'#797981'}>{dataSet.title}</Typography>
+                        <Typography fontSize={'16px'} lineHeight={'24px'} fontWeight={'400'} color={'#797981'}>{vacancyId?.description}</Typography>
                     </Box>
                 )}
 

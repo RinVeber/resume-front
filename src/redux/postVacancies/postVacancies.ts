@@ -38,7 +38,7 @@ export const postVacanciesApi = createAsyncThunk(
             const { data } = arg;
             const response = await fetchVacanciesPost(data);
             const json = await response.json();
-            return fulfillWithValue(json.access);
+            return fulfillWithValue(json);
         } catch (error: unknown) {
             return rejectWithValue(error);
         }
