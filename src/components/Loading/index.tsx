@@ -6,8 +6,8 @@ export default function Loading() {
     <Box sx={{
         position: 'absolute',
 
-        top: '55vh',
-        left: '90vh'
+        top: '50vh',
+        left: '50vh'
     }}>
 <CircularProgress />
 
