@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography, IconButton } from '@mui/material';
 import Chip from '@mui/material/Chip';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 const fieldStyles = {
     width: '100%',
@@ -22,13 +24,10 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    title: 'Visual Studio Code IntelliJ IDEA PyCharm Eclipse Sublime Text Atom Xcode Android Studio NetBeans WebStorm'
-}
-
 const VacanciesInfoTags = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
+    const vacancyId = useAppSelector(vacanciesIdSelect);
 
     const onSubmit = (data: object) => {
         // Обработка данных формы (data)
@@ -55,12 +54,12 @@ const VacanciesInfoTags = () => {
 
                 {isEditing ? (
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Знание программ</Typography>
+                        <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Теги</Typography>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Controller
                                 name="data"
                                 control={control}
-                                defaultValue={dataSet.title}
+                                defaultValue={vacancyId?.tags.map(item => item.name)}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -74,12 +73,12 @@ const VacanciesInfoTags = () => {
                     </Box>
                 ) : (
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Знание программ</Typography>
+                        <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Теги</Typography>
                         <Box fontSize={'16px'} lineHeight={'24px'} fontWeight={'400'} color={'#797981'}>
-                                {dataSet.title.split(' ').map((sentence, index) => (
+                                {vacancyId?.tags.map((sentence, index) => (
                                     <Chip
                                         key={index}
-                                        label={sentence}
+                                        label={sentence.name}
                                         style={{ margin: '4px' }}
                                     />
                                 ))}

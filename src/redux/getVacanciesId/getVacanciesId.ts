@@ -26,6 +26,8 @@ interface IVacanciesData {
     additional_info: string
     is_active: boolean
     company: number
+    salary: number,
+    currency: string,
 }
 
 interface IVacanciesState {

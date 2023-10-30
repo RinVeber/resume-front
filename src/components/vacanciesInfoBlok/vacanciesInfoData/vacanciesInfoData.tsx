@@ -20,14 +20,6 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    data: '12.10.2023',
-    city: 'Караганда',
-    experience: '12 лет',
-    money: '90000 руб',
-    job: '2/2'
-}
-
 const VacanciesInfoData = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
@@ -99,7 +91,7 @@ const VacanciesInfoData = () => {
                             <Controller
                                 name="money"
                                 control={control}
-                                defaultValue={dataSet.money}
+                                defaultValue={vacancyId?.salary}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -139,7 +131,7 @@ const VacanciesInfoData = () => {
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>З/п:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${dataSet.money}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.salary} ${vacancyId?.currency}`}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Формат работы:</Typography>

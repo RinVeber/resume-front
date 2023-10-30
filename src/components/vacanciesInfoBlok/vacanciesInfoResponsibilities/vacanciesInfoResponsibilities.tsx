@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography, IconButton } from '@mui/material';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 const fieldStyles = {
     width: '100%',
@@ -21,13 +23,10 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    title: 'Создание артового интерфейса мобильных 2D игр; Прототипирование и отрисовка интерфейсов (PS, Figma - на ваше усмотрение); Работа в режиме постоянной обратной связи с художниками, аниматорами и VFX специалистами для достижения профессионально интересных игровых решений;'
-}
-
 const VacanciesInfoResponsibilities = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
+    const vacancyId = useAppSelector(vacanciesIdSelect);
 
     const onSubmit = (data: object) => {
         // Обработка данных формы (data)
@@ -59,7 +58,7 @@ const VacanciesInfoResponsibilities = () => {
                             <Controller
                                 name="data"
                                 control={control}
-                                defaultValue={dataSet.title}
+                                defaultValue={vacancyId?.responsibilities}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -75,7 +74,7 @@ const VacanciesInfoResponsibilities = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <Typography fontSize={'18px'} lineHeight={'24px'} fontWeight={'700'}>Обязанности сотрудника</Typography>
                         <Typography fontSize={'16px'} lineHeight={'24px'} fontWeight={'400'} color={'#797981'}>
-                                {dataSet.title.split('; ').map((sentence, index) => (
+                                {vacancyId?.responsibilities.split('; ').map((sentence, index) => (
                                     <li key={index}>{sentence}</li>
                                 ))}
                         </Typography>

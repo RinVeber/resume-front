@@ -54,15 +54,9 @@ const schema = yup.object().shape({
     .notOneOf(['Выбрать'], 'Выберите категорию'),
   vacancyDescription: yup.string().required('Введите описание вакансии'),
   responsibilities: yup.string().required('Введите обязанности сотрудника'),
-  incomeLevelMoney: yup.string().required('Укажите уровень дохода'),
-  incomeLevelRub: yup
-    .string()
-    .required('Укажите валюту')
-    .notOneOf(['Валюта'], 'Выберите категорию'),
-  workFormat: yup
-    .string()
-    .required('Выберите формат работы')
-    .notOneOf(['Выбрать'], 'Выберите категорию'),
+  incomeLevelMoney: yup.number().required('Укажите уровень дохода'),
+  incomeLevelRub: yup.string().required('Укажите валюту').notOneOf(['Валюта'], 'Выберите категорию'),
+  workFormat: yup.string().required('Выберите формат работы').notOneOf(['Выбрать'], 'Выберите категорию'),
   workConditions: yup.string().required('Введите условия работы'),
   additionalInfo: yup.string().required('Введите дополнительную информацию'),
   tags: yup.string().required('Добавьте хотя бы один тег'),
@@ -70,18 +64,18 @@ const schema = yup.object().shape({
 });
 
 interface IVacanciesData {
-  category: string;
-  vacancyDescription: string;
-  companyName: string;
-  companyInfo: string;
-  city: string;
-  vanaciesName: string;
-  incomeLevelMoney: string;
-  responsibilities: string;
-  workConditions: string;
-  refusalMessage: string;
-  additionalInfo: string;
-  workFormat: string;
+  category: string,
+  vacancyDescription: string,
+  companyName: string,
+  companyInfo: string,
+  city: string,
+  vanaciesName: string,
+  incomeLevelMoney: number,
+  responsibilities: string,
+  workConditions: string,
+  refusalMessage: string,
+  additionalInfo: string,
+  workFormat: string
 }
 
 export default function CreateVacancies() {
@@ -97,10 +91,7 @@ export default function CreateVacancies() {
   const [money, setMoney] = useState('Валюта');
   const [workFormat, setWorkFormat] = useState('Выбрать');
   const [tags, setTags] = useState<{ name: string; weight: string }[]>([]);
-  const [selectedTag, setSelectedTag] = useState({
-    name: '',
-    weight: 'Выбрать вес',
-  });
+  const [selectedTag, setSelectedTag] = useState({ name: '', weight: '' });
   const [isInputValid, setInputValid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
@@ -170,6 +161,11 @@ export default function CreateVacancies() {
   const handleWeightChange = (event: SelectChangeEvent) => {
     setSelectedTag({ ...selectedTag, weight: event.target.value });
   };
+  
+  const handleRemoveTag = (index: number) => {
+    const updatedTags = tags.filter((_, i) => i !== index);
+    setTags(updatedTags);
+  };
 
   const handleAddTag = () => {
     if (selectedTag.name && selectedTag.weight) {
@@ -179,17 +175,9 @@ export default function CreateVacancies() {
     }
   };
 
-  const handleRemoveTag = (index: number) => {
-    const updatedTags = tags.filter((_, i) => i !== index);
-    setTags(updatedTags);
-  };
-
-  const handleEnterKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' && isInputValid) {
-      event.preventDefault();
-      handleAddTag();
-    }
-  };
+  useEffect(() => {
+    handleAddTag();
+  }, [selectedTag.name && selectedTag.weight]);
 
   const goBack = () => {
     handleCloseVacancies();
@@ -460,246 +448,201 @@ export default function CreateVacancies() {
               />
             </Box>
 
-            <Box
-              sx={{
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: '16px',
+            width: '100%'
+          }}>
+            <Typography variant="h4">Знание программ* </Typography>
+            <Box>
+              <Box sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                mt: '16px',
-                width: '100%',
-              }}
-            >
-              <Typography variant="h4">Знание программ* </Typography>
-              <Box>
-                <Box
+                width: '400px',
+                gap: '20px'
+              }}>
+                <TextField
+                  sx={fieldStyles}
+                  id="companyName"
+                  placeholder="Тег"
+                  multiline
+                  fullWidth
+                  value={selectedTag.name}
+                  onChange={handleTagChange}
+                  // onKeyPress={handleEnterKeyPress}
+                />
+                <Select
                   sx={{
-                    display: 'flex',
-                    width: '400px',
-                    gap: '20px',
+                    maxWidth: '400px',
+                    '& div': {
+                      p: '10px 12px',
+                    },
+                    '& .MuiSelect-select': { color: selectedTag.weight == "Выбрать вес" ? '#797981' : 'black' }
                   }}
+                  id="category"
+                  value={selectedTag.weight}
+                  fullWidth
+                  onChange={handleWeightChange}
                 >
-                  <TextField
-                    sx={fieldStyles}
-                    id="companyName"
-                    placeholder="Тег"
-                    multiline
-                    fullWidth
-                    value={selectedTag.name}
-                    onChange={handleTagChange}
-                    onKeyPress={handleEnterKeyPress}
+                  <MenuItem disabled value="Выбрать вес" style={{ color: 'grey' }}>Выбрать вес</MenuItem>
+                  <MenuItem value={1}>Критически важно</MenuItem>
+                  <MenuItem value={2}>Желательно</MenuItem>
+                  <MenuItem value={3}>Будет преимуществом</MenuItem>
+                </Select>
+              </Box>
+              <Box sx={{ mt: '12px', display: 'flex', gap: '10px' }}>
+                {tags.map((tag, index) => (
+                  <Chip
+                    key={index}
+                    label={tag.name}
+                    onDelete={() => handleRemoveTag(index)}
                   />
-                  <Select
-                    sx={{
-                      maxWidth: '400px',
-                      '& div': {
-                        p: '10px 12px',
-                      },
-                      '& .MuiSelect-select': {
-                        color:
-                          selectedTag.weight == 'Выбрать вес'
-                            ? '#797981'
-                            : 'black',
-                      },
-                    }}
-                    id="category"
-                    value={selectedTag.weight}
-                    fullWidth
-                    onChange={handleWeightChange}
-                  >
-                    <MenuItem
-                      disabled
-                      value="Выбрать вес"
-                      style={{ color: 'grey' }}
-                    >
-                      Выбрать вес
-                    </MenuItem>
-                    <MenuItem value={1}>Критически важно</MenuItem>
-                    <MenuItem value={2}>Желательно</MenuItem>
-                    <MenuItem value={3}>Будет преимуществом</MenuItem>
-                  </Select>
-                </Box>
-                <Box sx={{ mt: '12px', display: 'flex', gap: '10px' }}>
-                  {tags.map((tag, index) => (
-                    <Chip
-                      key={index}
-                      label={tag.name}
-                      onDelete={() => handleRemoveTag(index)}
-                    />
-                  ))}
-                </Box>
+                ))}
               </Box>
             </Box>
           </Box>
+        </Box>
 
           {/* третий блок */}
 
-          <Box
-            sx={{
-              m: '44px 40px',
-              maxWidth: '707px',
-            }}
-          >
-            <Typography variant="h2">Условия сотрудничества</Typography>
-            <Box
-              sx={{
+        <Box sx={{
+          m: '44px 40px',
+          maxWidth: '707px'
+        }}>
+          <Typography variant="h2">Условия сотрудничества</Typography>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: '16px',
+            width: '100%'
+          }}>
+            <Typography variant="h4">Уровень дохода*</Typography>
+            <Box>
+              <Box sx={{
                 display: 'flex',
-                justifyContent: 'space-between',
-                mt: '16px',
-                width: '100%',
-              }}
-            >
-              <Typography variant="h4">Уровень дохода*</Typography>
-              <Box>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    width: '400px',
-                    gap: '20px',
-                  }}
-                >
-                  <Controller
-                    name="incomeLevelMoney"
-                    control={control}
-                    render={({ field, fieldState }) => (
-                      <TextField
-                        {...field}
-                        sx={fieldStyles}
-                        placeholder="999999"
-                        multiline
-                        fullWidth
-                        error={!!fieldState.error}
-                        helperText={
-                          fieldState.error ? fieldState.error.message : ''
-                        }
-                      />
-                    )}
-                  />
-                  <Controller
-                    name="incomeLevelRub"
-                    control={control}
-                    render={({ field, fieldState }) => (
-                      <Select
-                        {...field}
-                        sx={{
-                          maxWidth: '400px',
-                          height: '43px',
-                          '& div': {
-                            p: '10px 12px',
-                          },
-                          '& .MuiSelect-select': {
-                            color: money == 'Валюта' ? '#797981' : 'black',
-                          },
-                        }}
-                        id="category"
-                        value={money}
-                        fullWidth
-                        onChange={(e) => {
-                          field.onChange(e);
-                          handleMoneyChange(e);
-                        }}
-                        error={!!fieldState.error}
-                      >
-                        <MenuItem
-                          disabled
-                          value="Валюта"
-                          style={{ color: 'grey' }}
-                        >
-                          Валюта
-                        </MenuItem>
-                        <MenuItem value="rub">Рубль</MenuItem>
-                        <MenuItem value="teng">Тенге</MenuItem>
-                        <MenuItem value="com">Сомм</MenuItem>
-                      </Select>
-                    )}
-                  />
-                </Box>
+                width: '400px',
+                gap: '20px'
+              }}>
+                <Controller
+                  name="incomeLevelMoney"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <TextField
+                      {...field}
+                      sx={fieldStyles}
+                      placeholder="999999"
+                      multiline
+                      fullWidth
+                      error={!!fieldState.error}
+                      helperText={fieldState.error ? fieldState.error.message : ''}
+                    />
+                  )}
+                />
+                <Controller
+                  name="incomeLevelRub"
+                  control={control}
+                  render={({ field, fieldState }) => (
+                    <Select
+                      {...field}
+                      sx={{
+                        maxWidth: '400px',
+                        height: '43px',
+                        '& div': {
+                          p: '10px 12px',
+                        },
+                        '& .MuiSelect-select': { color: money == "Валюта" ? '#797981' : 'black' }
+                      }}
+                      id="category"
+                      value={money}
+                      fullWidth
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleMoneyChange(e);
+                      }}
+                      error={!!fieldState.error}
+                    >
+                      <MenuItem disabled value="Валюта" style={{ color: 'grey' }}>Валюта</MenuItem>
+                      <MenuItem value="RUB">Рубль</MenuItem>
+                      <MenuItem value="EUR">Евро</MenuItem>
+                      <MenuItem value="USD">Доллар</MenuItem>
+                    </Select>
+                  )}
+                />
               </Box>
             </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                mt: '20px',
-                width: '100%',
-              }}
-            >
-              <Typography variant="h4">Формат работы</Typography>
-              <Controller
-                name="workFormat"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <Select
-                    {...field}
-                    sx={{
-                      maxWidth: '400px',
-                      '& div': {
-                        p: '10px 12px',
-                      },
-                      '& .MuiSelect-select': {
-                        color: workFormat == 'Выбрать' ? '#797981' : 'black',
-                      },
-                    }}
-                    value={workFormat}
-                    fullWidth
-                    onChange={(e) => {
-                      field.onChange(e);
-                      handleWorkFormatChange(e);
-                    }}
-                    error={!!fieldState.error}
-                  >
-                    <MenuItem
-                      disabled
-                      value="Выбрать"
-                      style={{ color: 'grey' }}
-                    >
-                      Выбрать
-                    </MenuItem>
-                    <MenuItem value="В Офисе">В Офисе</MenuItem>
-                    <MenuItem value="Удаленно">Удаленно</MenuItem>
-                  </Select>
-                )}
-              />
-            </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                mt: '16px',
-                width: '100%',
-              }}
-            >
-              <Typography variant="h4">Условия работы*</Typography>
-              <Controller
-                name="workConditions"
-                control={control}
-                render={({ field, fieldState }) => (
-                  <TextField
-                    {...field}
-                    sx={{
-                      maxWidth: '400px',
-                      '& fieldset': {
-                        whiteSpace: 'pre-wrap',
-                      },
-                      '& textarea': {
-                        fontSize: '14px',
-                        fontWeight: '400',
-                      },
-                      '& div': {
-                        p: '10px 12px',
-                      },
-                    }}
-                    id="companyName"
-                    placeholder="Рабские"
-                    multiline
-                    fullWidth
-                    error={!!fieldState.error}
-                    helperText={
-                      fieldState.error ? fieldState.error.message : ''
-                    }
-                  />
-                )}
-              />
-            </Box>
           </Box>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: '20px',
+            width: '100%'
+          }}>
+            <Typography variant="h4">Формат работы</Typography>
+            <Controller
+              name="workFormat"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Select
+                  {...field}
+                  sx={{
+                    maxWidth: '400px',
+                    '& div': {
+                      p: '10px 12px',
+                    },
+                    '& .MuiSelect-select': { color: workFormat == "Выбрать" ? '#797981' : 'black' }
+                  }}
+                  value={workFormat}
+                  fullWidth
+                  onChange={(e) => {
+                    field.onChange(e);
+                    handleWorkFormatChange(e);
+                  }}
+                  error={!!fieldState.error}
+                >
+                  <MenuItem disabled value="Выбрать" style={{ color: 'grey' }}>Выбрать</MenuItem>
+                  <MenuItem value="В Офисе">В Офисе</MenuItem>
+                  <MenuItem value="Удаленно">Удаленно</MenuItem>
+                </Select>
+              )}
+            />
+          </Box>
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            mt: '16px',
+            width: '100%'
+          }}>
+            <Typography variant="h4">Условия работы*</Typography>
+            <Controller
+              name="workConditions"
+              control={control}
+              render={({ field, fieldState }) => (
+                <TextField
+                  {...field}
+                  sx={{
+                    maxWidth: '400px',
+                    '& fieldset': {
+                      whiteSpace: 'pre-wrap',
+                    },
+                    '& textarea': {
+                      fontSize: '14px',
+                      fontWeight: '400',
+                    },
+                    '& div': {
+                      p: '10px 12px',
+                    },
+                  }}
+                  id="companyName"
+                  placeholder="Рабские"
+                  multiline
+                  fullWidth
+                  error={!!fieldState.error}
+                  helperText={fieldState.error ? fieldState.error.message : ''}
+                />
+              )}
+            />
+          </Box>
+        </Box>
 
           {/* четвертый блок */}
 

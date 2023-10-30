@@ -63,3 +63,6 @@
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/9e67a4fa-bffa-462d-b6d4-6b7d850c352b)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/c9d8218d-77c6-4b51-827a-0fe6d45d60fe)
 
+
+
+
