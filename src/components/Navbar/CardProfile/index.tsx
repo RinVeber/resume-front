@@ -1,6 +1,6 @@
-import def from '../../../assets/default.png';
 import { Box, Paper, Stack, Typography } from '@mui/material';
 import {Tooltip} from '@mui/material';
+import Pic from '../../../assets/Pic.svg';
 
 export default function CardProfile() {
   return (
@@ -26,7 +26,7 @@ export default function CardProfile() {
         }}
       >
         <img
-          src={def}
+          src={Pic}
           alt={'avatar'}
           style={{ width: '32px', height: '32px', marginTop: '5px' }}
         />
