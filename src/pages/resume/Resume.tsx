@@ -3,8 +3,6 @@ import { getResume } from '../../redux/slice/resumeSlice';
 import { useParams } from 'react-router-dom';
 import React, { lazy } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { CircularProgress } from '@mui/material';
-// import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
 import ErrorServer from '../../components/Error';
 import Loading from '../../components/Loading';
 
@@ -50,22 +48,3 @@ export default function Resume() {
   );
 }
 
-// export async function getResumeСV(file) {
-//   const {id} = useParams();
-
-//   const response = await fetch(API_BASE_ALL_RESUME_URL + `/${id}/` +`download_cv/`, {
-//     method: 'GET',
-
-//   });
-// if(response.status == 200) {
-//   const blob = await response.blob();
-//   const downloadURL = window.URL.createObjectURL(blob);
-//   const link = document.createElement('a');
-//   link.href = downloadURL;
-//   link.download = file.name;
-//   document.appendChild(link);
-//   link.click();
-//   link.remove();
-
-// }}
-// ;
