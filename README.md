@@ -50,14 +50,18 @@
 - 1440 width
 
 ## Screen
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/1aa5173d-051e-414b-afa8-da431f1671c1)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/687af6d3-c0c9-411b-8faf-84584cfe59b7)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/f7ef9553-515b-4512-866b-c1016bf6664f)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/63fb1e54-9317-4ac1-9a0d-d967545302a2)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/93b3b539-8bfa-46ff-afc4-e526f7badc03)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/a7695111-641b-40b7-8f1b-3daec6eadc45)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/5cdae862-8601-47eb-9752-eb59fd97c8e8)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/9ea86043-e868-4f05-af2f-fd46f3955483)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/a1aca567-4eac-4d5f-a89f-14bffdc87a08)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/9e67a4fa-bffa-462d-b6d4-6b7d850c352b)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/c9d8218d-77c6-4b51-827a-0fe6d45d60fe)
 
-![Alt text](image.png)
-![Alt text](image-1.png)
-![Alt text](image-2.png)
-![Alt text](image-3.png)
-![Alt text](image-4.png)
-![Alt text](image-5.png)
-![Alt text](image-6.png)
-![Alt text](image-7.png)
-![Alt text](image-8.png)
-![Alt text](image-9.png)
+
+
+
