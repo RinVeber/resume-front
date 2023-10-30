@@ -37,12 +37,12 @@ export default function HeaderResume() {
       </Button>
       <Stack flexDirection={'row'} gap={'38px'}>
         <Avatar
-          img={''}  // currentResume.photo лежит битая картинка
+          img={currentResume!.photo}
           textSize={'96px'}
           nameUser={'Королев Василий'}
           sizes={'207px'}
         />
-        {/* <img src={currentResume!.photo} alt={'аватар'} /> */}
+
         <Stack flexDirection={'column'} gap={'20px'}>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Stack flexDirection={'row'} justifyContent={'space-between'}>
