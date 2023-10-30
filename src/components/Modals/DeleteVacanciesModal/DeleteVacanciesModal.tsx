@@ -48,6 +48,7 @@ export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanc
               onClick={() => {
                 navigate(-1)
                 handleDeleteVacancy()
+                handleClose()
               }}
             >Удалить вакансию</Button>
             <Button variant="default"
