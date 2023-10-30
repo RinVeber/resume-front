@@ -13,9 +13,11 @@ import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import CustomCheckbox from '../../components/Checkbox';
+import { useAppDispatch } from '../../redux/store';
+import { postVacanciesApi } from '../../redux/postVacancies/postVacancies';
 
 const fieldStyles = {
-  maxWidth: '400px',
+  // maxWidth: '400px',
   '& textarea': {
     fontSize: '14px',
     fontWeight: '400',
@@ -26,8 +28,8 @@ const fieldStyles = {
 };
 
 const checkboxStyles = {
-  maxWidth: '500px',
-  textAlign: 'center',
+  // maxWidth: '500px',
+  // textAlign: 'center',
   '& fieldset': {
     whiteSpace: 'pre-wrap',
   },
@@ -57,7 +59,23 @@ const schema = yup.object().shape({
   refusalMessage: yup.string().required('Введите сообщение об отказе'),
 });
 
+interface IVacanciesData {
+  category: string,
+  vacancyDescription: string,
+  companyName: string,
+  companyInfo: string,
+  city: string,
+  vanaciesName: string,
+  incomeLevelMoney: string,
+  responsibilities: string,
+  workConditions: string,
+  refusalMessage: string,
+  additionalInfo: string,
+  workFormat: string
+}
+
 export default function CreateVacancies() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
@@ -67,13 +85,30 @@ export default function CreateVacancies() {
   const [category, setCategory] = useState('Выбрать');
   const [money, setMoney] = useState('Валюта');
   const [workFormat, setWorkFormat] = useState('Выбрать');
-  const [tags, setTags] = useState<{ tag: string; weight: string }[]>([]);
-  const [selectedTag, setSelectedTag] = useState({ tag: '', weight: 'Выбрать вес' });
+  const [tags, setTags] = useState<{ name: string; weight: string }[]>([]);
+  const [selectedTag, setSelectedTag] = useState({ name: '', weight: 'Выбрать вес' });
   const [isInputValid, setInputValid] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
 
-  const onSubmit = (data: object) => {
+  console.log(tags);
+
+  const onSubmit = (data: IVacanciesData) => {
+    const dataToSend = {
+      tags: [data.category],
+      skills: tags,
+      company_name: data.companyName,
+      company_info: data.companyInfo,
+      location: data.city,
+      name: data.vanaciesName,
+      experience: data.category,
+      description: data.vacancyDescription,
+      form: data.workFormat,
+      reject_letter: data.refusalMessage,
+      additional_info: data.additionalInfo,
+      responsibilities: data.responsibilities
+    };
+    dispatch(postVacanciesApi({ data: dataToSend }))
     console.log('Данные:', data);
   };
 
@@ -82,7 +117,7 @@ export default function CreateVacancies() {
   };
 
   useEffect(() => {
-    setInputValid(selectedTag.tag !== '' && selectedTag.weight !== 'Выбрать вес');
+    setInputValid(selectedTag.name !== '' && selectedTag.weight !== 'Выбрать вес');
   }, [selectedTag]);
 
   const handleCategoryChange = (event: SelectChangeEvent) => {
@@ -106,7 +141,7 @@ export default function CreateVacancies() {
   };
 
   const handleTagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedTag({ ...selectedTag, tag: event.target.value });
+    setSelectedTag({ ...selectedTag, name: event.target.value });
   };
 
   const handleWeightChange = (event: SelectChangeEvent) => {
@@ -114,9 +149,9 @@ export default function CreateVacancies() {
   };
 
   const handleAddTag = () => {
-    if (selectedTag.tag && selectedTag.weight) {
+    if (selectedTag.name && selectedTag.weight) {
       setTags([...tags, selectedTag]);
-      setSelectedTag({ tag: '', weight: '' });
+      setSelectedTag({ name: '', weight: '' });
       setInputValid(false);
     }
   };
@@ -175,8 +210,8 @@ export default function CreateVacancies() {
                   {...field}
                   sx={fieldStyles}
                   placeholder="ООО «Квант»"
-                  fullWidth
                   multiline
+                  fullWidth
                   rows={1}
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
@@ -200,8 +235,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyInfo"
                   placeholder="Наша компания является разработчиком игровых платформ. У нас классный и дружный коллектив, работаем на удаленке."
-                  fullWidth
                   multiline
+                  fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
                 />
@@ -225,8 +260,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="vanaciesName"
                   placeholder="Web-разработчик"
-                  fullWidth
                   multiline
+                  fullWidth
                   rows={1}
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
@@ -250,8 +285,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="Москва"
-                  fullWidth
                   multiline
+                  fullWidth
                   rows={1}
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
@@ -295,8 +330,8 @@ export default function CreateVacancies() {
                     },
                   }}
                   id="category"
-                  fullWidth
                   value={category}
+                  fullWidth
                   onChange={(e) => {
                     field.onChange(e);
                     handleCategoryChange(e);
@@ -329,8 +364,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="У нас классный и дружный коллектив, работаем на удаленке."
-                  fullWidth
                   multiline
+                  fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
                 />
@@ -354,8 +389,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="Наша компания является разработчиком игровых платформ."
-                  fullWidth
                   multiline
+                  fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
                 />
@@ -380,9 +415,9 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="Тег"
-                  fullWidth
                   multiline
-                  value={selectedTag.tag}
+                  fullWidth
+                  value={selectedTag.name}
                   onChange={handleTagChange}
                   onKeyPress={handleEnterKeyPress}
                 />
@@ -395,21 +430,21 @@ export default function CreateVacancies() {
                     '& .MuiSelect-select': { color: selectedTag.weight == "Выбрать вес" ? '#797981' : 'black' }
                   }}
                   id="category"
-                  fullWidth
                   value={selectedTag.weight}
+                  fullWidth
                   onChange={handleWeightChange}
                 >
                   <MenuItem disabled value="Выбрать вес" style={{ color: 'grey' }}>Выбрать вес</MenuItem>
-                  <MenuItem value="Критически важно">Критически важно</MenuItem>
-                  <MenuItem value="Желательно">Желательно</MenuItem>
-                  <MenuItem value="Будет преимуществом">Будет преимуществом</MenuItem>
+                  <MenuItem value={1}>Критически важно</MenuItem>
+                  <MenuItem value={2}>Желательно</MenuItem>
+                  <MenuItem value={3}>Будет преимуществом</MenuItem>
                 </Select>
               </Box>
               <Box sx={{ mt: '12px', display: 'flex', gap: '10px' }}>
                 {tags.map((tag, index) => (
                   <Chip
                     key={index}
-                    label={tag.tag}
+                    label={tag.name}
                     onDelete={() => handleRemoveTag(index)}
                   />
                 ))}
@@ -446,8 +481,8 @@ export default function CreateVacancies() {
                       {...field}
                       sx={fieldStyles}
                       placeholder="999999"
-                      fullWidth
                       multiline
+                      fullWidth
                       error={!!fieldState.error}
                       helperText={fieldState.error ? fieldState.error.message : ''}
                     />
@@ -468,8 +503,8 @@ export default function CreateVacancies() {
                         '& .MuiSelect-select': { color: money == "Валюта" ? '#797981' : 'black' }
                       }}
                       id="category"
-                      fullWidth
                       value={money}
+                      fullWidth
                       onChange={(e) => {
                         field.onChange(e);
                         handleMoneyChange(e);
@@ -498,7 +533,7 @@ export default function CreateVacancies() {
               control={control}
               render={({ field, fieldState }) => (
                 <Select
-                {...field}
+                  {...field}
                   sx={{
                     maxWidth: '400px',
                     '& div': {
@@ -506,8 +541,8 @@ export default function CreateVacancies() {
                     },
                     '& .MuiSelect-select': { color: workFormat == "Выбрать" ? '#797981' : 'black' }
                   }}
-                  fullWidth
                   value={workFormat}
+                  fullWidth
                   onChange={(e) => {
                     field.onChange(e);
                     handleWorkFormatChange(e);
@@ -515,8 +550,8 @@ export default function CreateVacancies() {
                   error={!!fieldState.error}
                 >
                   <MenuItem disabled value="Выбрать" style={{ color: 'grey' }}>Выбрать</MenuItem>
-                  <MenuItem value="rub">В Офисе</MenuItem>
-                  <MenuItem value="teng">Удаленно</MenuItem>
+                  <MenuItem value="В Офисе">В Офисе</MenuItem>
+                  <MenuItem value="Удаленно">Удаленно</MenuItem>
                 </Select>
               )}
             />
@@ -549,8 +584,8 @@ export default function CreateVacancies() {
                   }}
                   id="companyName"
                   placeholder="Рабские"
-                  fullWidth
                   multiline
+                  fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
                 />
@@ -582,8 +617,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="Готов вкалывать"
-                  fullWidth
                   multiline
+                  fullWidth
                   rows={1}
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
@@ -607,8 +642,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="#Город-дорог"
-                  fullWidth
                   multiline
+                  fullWidth
                   rows={1}
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
@@ -632,8 +667,8 @@ export default function CreateVacancies() {
                   sx={fieldStyles}
                   id="companyName"
                   placeholder="Уважаемый кандидат,  благодарим вас за внимание к нашей компании. В данный момент мы не готовы сделать вам предложение. Надеемся, что сможем сотрудничать в будущем."
-                  fullWidth
                   multiline
+                  fullWidth
                   error={!!fieldState.error}
                   helperText={fieldState.error ? fieldState.error.message : ''}
                 />
@@ -650,16 +685,16 @@ export default function CreateVacancies() {
           p: '32px 0',
           minHeight: '43px'
         }}>
-          <FormControlLabel 
-          control={<CustomCheckbox checked={isChecked} onChange={handleCheckboxChange} />}
-          label="Показать инпут"
+          <FormControlLabel
+            control={<CustomCheckbox checked={isChecked} onChange={handleCheckboxChange} />}
+            label="Показать инпут"
           />
 
           {isChecked && (
             <TextField
               sx={checkboxStyles}
-              fullWidth
               multiline
+              fullWidth
               placeholder="Сопроводительное письмо"
               variant="outlined"
               value={inputText}
