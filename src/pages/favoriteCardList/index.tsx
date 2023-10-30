@@ -2,10 +2,12 @@ import { Grid } from '@mui/material';
 import { useAppSelector } from '../../redux/store';
 import { Skeleton } from '@mui/material';
 import { lazy, Suspense } from 'react';
+import { dataMokCardVacanciesFavorites } from '../../utils/mokData';
 
-const Card = lazy(() => import('./Card/Card'));
+const Card = lazy(() => import('./../../components/CardList/Card/Card'));
 
-export default function InviteCardList() {
+export default function FavoritesCardList() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { status, data: currentListCard } = useAppSelector(
     (state) => state.cardGroup,
   );
@@ -19,7 +21,7 @@ export default function InviteCardList() {
     >
       {status == 'success' && (
         <Suspense fallback={<Skeleton />}>
-          {currentListCard?.invitations.map((item) => {
+          {dataMokCardVacanciesFavorites.map((item) => {
             return <Card card={item} key={item.id} />;
           })}
         </Suspense>

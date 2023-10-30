@@ -15,6 +15,7 @@ import InviteCardList from '../pages/inviteCardList';
 import { useAppDispatch } from '../redux/store';
 import { getVacanciesGroup } from '../redux/slice/vacanciesGroupSlice';
 import { useParams } from 'react-router-dom';
+import FavoritesCardList from '../pages/favoriteCardList';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
@@ -66,7 +67,7 @@ export default function VacanciesLayout() {
               </Stack>
 
               {activeTab === 0 && <Vacancies />}
-              {activeTab === 1 && <MainPage />}
+              {activeTab === 1 && <FavoritesCardList />}
               {activeTab === 2 && <InviteCardList />}
               {activeTab === 3 && <VacanciesInfo />}
             </>

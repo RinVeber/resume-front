@@ -1,9 +1,10 @@
-import React from 'react';
 import def from '../../../assets/default.png';
 import { Box, Paper, Stack, Typography } from '@mui/material';
+import {Tooltip} from '@mui/material';
 
 export default function CardProfile() {
   return (
+    <Tooltip title={'Ваша компания...'}>  
     <Paper
       sx={{
         display: 'flex',
@@ -16,6 +17,7 @@ export default function CardProfile() {
         height: 96,
       }}
     >
+  
       <Box
         sx={{
           display: 'flex',
@@ -37,7 +39,9 @@ export default function CardProfile() {
         
         p={'0 8px'}
       >
+       
         <Typography sx={{ fontSize: '16px' }}>Компания</Typography>
+  
         <Box
           sx={{
             display: 'flex',
@@ -49,7 +53,9 @@ export default function CardProfile() {
             ООО Квант
           </Typography>
         </Box>
+  
       </Stack>
     </Paper>
+    </Tooltip>
   );
 }

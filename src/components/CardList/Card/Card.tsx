@@ -30,7 +30,7 @@ interface CardProps {
 
 export default function Card({ card }: CardProps) {
   const navigate = useNavigate();
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState(card.isCheked);
 
   function handleLike(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
     e.stopPropagation();
@@ -40,7 +40,7 @@ export default function Card({ card }: CardProps) {
     <>
       <Stack
       onClick={() => {
-        navigate(`${paths.resume}/${1}`)}}
+        navigate(`${paths.resume}/${card.id}`)}}
         width={'316px'}
         height={'204px'}
         display={'flex'}
