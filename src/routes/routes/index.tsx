@@ -36,7 +36,14 @@ export const router = createBrowserRouter([
       {
         path: paths.vacancies,
         element: <VacanciesLayout />,
+        children: [
+          {
+            path: `${paths.vacancies}/:id`,
+            element: <VacanciesLayout />,
+          },
+        ]
       },
+   
       {
         path: `${paths.resume}/:id`,
         element: <Resume />,

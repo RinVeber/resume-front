@@ -5,14 +5,13 @@ import Collapse from '@mui/material/Collapse';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import {
-  Checkbox,
   Autocomplete,
   TextField,
-  InputAdornment,
 } from '@mui/material';
 import del from '../../../assets/delete.svg';
-import SearchIcon from '@mui/icons-material/Search';
+
 import {ListItemButtonCustom} from '../CustomListItemButton/CustomListItemButton'
+import CustomCheckbox from '../../Checkbox';
 
 export default function FilterLayout() {
   const [openStatus, setOpenStatus] = React.useState(false);
@@ -65,12 +64,12 @@ export default function FilterLayout() {
       <Collapse in={openStatus} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Откликнулись" />
           </ListItemButtonCustom>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Без отклика" />
           </ListItemButtonCustom>
@@ -96,13 +95,13 @@ export default function FilterLayout() {
                 <TextField
                   {...params}
                   fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <SearchIcon />
-                      </InputAdornment>
-                    ),
-                  }}
+                  // InputProps={{
+                  //   startAdornment: (
+                  //     <InputAdornment position="start">
+                  //       <SearchIcon />
+                  //     </InputAdornment>
+                  //   ),
+                  // }}
                   placeholder="Поиск по названию"
                 />
               )}
@@ -141,17 +140,17 @@ export default function FilterLayout() {
       <Collapse in={openFormat} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Офис" />
           </ListItemButtonCustom>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Гибрид" />
           </ListItemButtonCustom>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Удаленка" />
           </ListItemButtonCustom>
@@ -165,12 +164,12 @@ export default function FilterLayout() {
       <Collapse in={openPortfolio} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Есть портфолио" />
           </ListItemButtonCustom>
           <ListItemButtonCustom>
-            <Checkbox />
+            <CustomCheckbox />
 
             <ListItemText primary="Есть сопроводительное письмо" />
           </ListItemButtonCustom>
