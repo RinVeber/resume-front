@@ -139,9 +139,6 @@ export const muiTheme = createTheme({
             border: buttonsStyles.red.border,
             padding: '12px 24px',
             borderRadius: buttonsStyles.borderRadius,
-            ':focus': {
-              backgroundColor: buttonsStyles.red.focus.backgroundColor,
-            },
           },
         },
       ],

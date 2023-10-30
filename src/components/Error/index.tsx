@@ -8,7 +8,6 @@ export default function ErrorServer() {
       sx={{
         height: '95%',
         width: '90%',
-        position: 'fixed',
       }}
       flexDirection={'column'}
       justifyContent={'center'}
