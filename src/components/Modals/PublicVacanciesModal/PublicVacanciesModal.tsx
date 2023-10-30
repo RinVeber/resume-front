@@ -5,12 +5,15 @@ type PublicVacanciesModalProps = {
   open: boolean;
   handleClose: () => void;
   handleOpen?: () => void;
+  onSubmit: () => void;
 };
 
 export default function PublicVacanciesModal({
   open,
   handleClose,
+  onSubmit
 }: PublicVacanciesModalProps) {
+
   return (
     <>
       <WrapperModals open={open} handleClose={handleClose}>
@@ -37,8 +40,8 @@ export default function PublicVacanciesModal({
             </Typography>
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'20px'}>
-            <Button variant="outlined">Отмена</Button>
-            <Button variant="default">Опубликовать</Button>
+            <Button variant="outlined" onClick={() => handleClose()}>Отмена</Button>
+            <Button variant="default"  onClick={onSubmit}>Опубликовать</Button>
           </Stack>
         </Stack>
       </WrapperModals>

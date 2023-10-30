@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -15,6 +14,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import CustomCheckbox from '../../components/Checkbox';
 import { useAppDispatch } from '../../redux/store';
 import { postVacanciesApi } from '../../redux/postVacancies/postVacancies';
+import PublicVacanciesModal from '../../components/Modals/PublicVacanciesModal/PublicVacanciesModal';
+import CloseVacanciesModal from '../../components/Modals/CloseVacanciesModal/CloseVacanciesModal';
 
 const fieldStyles = {
   // maxWidth: '400px',
@@ -47,7 +48,10 @@ const schema = yup.object().shape({
   companyInfo: yup.string().required('Введите информацию о компании'),
   vanaciesName: yup.string().required('Введите название вакансии'),
   city: yup.string().required('Введите город в котором размещаете вакансию'),
-  category: yup.string().required('Выберите категорию').notOneOf(['Выбрать'], 'Выберите категорию'),
+  category: yup
+    .string()
+    .required('Выберите категорию')
+    .notOneOf(['Выбрать'], 'Выберите категорию'),
   vacancyDescription: yup.string().required('Введите описание вакансии'),
   responsibilities: yup.string().required('Введите обязанности сотрудника'),
   incomeLevelMoney: yup.number().required('Укажите уровень дохода'),
@@ -76,7 +80,8 @@ interface IVacanciesData {
 
 export default function CreateVacancies() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const [isPublicVacancies, setPublickVacancies] = useState(false);
+  const [isCloseVacancies, setCloseVacancies] = useState(false);
   const { handleSubmit, control } = useForm({
     resolver: yupResolver(schema),
   });
@@ -91,6 +96,15 @@ export default function CreateVacancies() {
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
 
+  console.log(tags);
+
+  function handlePublicVacancies() {
+    setPublickVacancies(!isPublicVacancies);
+  }
+  function handleCloseVacancies() {
+    setCloseVacancies(!isCloseVacancies);
+  }
+
   const onSubmit = (data: IVacanciesData) => {
     const dataToSend = {
       tags: [data.category],
@@ -104,9 +118,9 @@ export default function CreateVacancies() {
       form: data.workFormat,
       reject_letter: data.refusalMessage,
       additional_info: data.additionalInfo,
-      responsibilities: data.responsibilities
+      responsibilities: data.responsibilities,
     };
-    dispatch(postVacanciesApi({ data: dataToSend }))
+    dispatch(postVacanciesApi({ data: dataToSend }));
     console.log('Данные:', data);
   };
 
@@ -115,7 +129,9 @@ export default function CreateVacancies() {
   };
 
   useEffect(() => {
-    setInputValid(selectedTag.name !== '' && selectedTag.weight !== 'Выбрать вес');
+    setInputValid(
+      selectedTag.name !== '' && selectedTag.weight !== 'Выбрать вес',
+    );
   }, [selectedTag]);
 
   const handleCategoryChange = (event: SelectChangeEvent) => {
@@ -164,234 +180,273 @@ export default function CreateVacancies() {
   }, [selectedTag.name && selectedTag.weight]);
 
   const goBack = () => {
-    navigate(-1);
+    handleCloseVacancies();
   };
 
   return (
-    <Box sx={{
-      mt: '40px',
-      ml: '40px',
-      mb: '100px',
-      maxWidth: '785px'
-    }}>
-      <Button sx={{
-        color: '#797981',
-        mb: '28px',
-        p: '0'
-      }} onClick={goBack}>
-        <ArrowBackIcon />
-        Назад
-      </Button>
+    <>
+      <Box
+        sx={{
+          mt: '40px',
+          ml: '40px',
+          mb: '100px',
+          maxWidth: '785px',
+        }}
+      >
+        <Button
+          sx={{
+            color: '#797981',
+            mb: '28px',
+            p: '0',
+          }}
+          onClick={goBack}
+        >
+          <ArrowBackIcon />
+          Назад
+        </Button>
 
-      {/* первый блок */}
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box sx={{
-          m: '44px 40px',
-          maxWidth: '707px'
-        }}>
-          <Typography variant="h2">Общая информация о вакансии</Typography>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '20px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Название  компании*</Typography>
-            <Controller
-              name="companyName"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  placeholder="ООО «Квант»"
-                  multiline
-                  fullWidth
-                  rows={1}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '16px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Информация о компании</Typography>
-            <Controller
-              name="companyInfo"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyInfo"
-                  placeholder="Наша компания является разработчиком игровых платформ. У нас классный и дружный коллектив, работаем на удаленке."
-                  multiline
-                  fullWidth
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '20px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Название  вакансии*</Typography>
-            <Controller
-              name="vanaciesName"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  value={field.value}
-                  sx={fieldStyles}
-                  id="vanaciesName"
-                  placeholder="Web-разработчик"
-                  multiline
-                  fullWidth
-                  rows={1}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '20px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Город *</Typography>
-            <Controller
-              name="city"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="Москва"
-                  multiline
-                  fullWidth
-                  rows={1}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-        </Box>
-
-        {/* второй блок */}
-
-        <Box sx={{
-          m: '44px 40px',
-          maxWidth: '707px'
-        }}>
-          <Typography variant="h2">Требования к вакансии</Typography>
-
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '16px',
-            width: '100%',
-          }}>
-            <Typography variant="h4">Выберите категорию*</Typography>
-            <Controller
-              name="category"
-              control={control}
-              render={({ field, fieldState }) => (
-                <Select
-                  {...field}
-                  sx={{
-                    maxWidth: '400px',
-                    '& div': {
-                      p: '10px 12px',
-                    },
-                    '& .MuiSelect-select': {
-                      color:
-                        category === 'Выбрать'
-                          ? '#797981'
-                          : 'black',
-                    },
-                  }}
-                  id="category"
-                  value={category}
-                  fullWidth
-                  onChange={(e) => {
-                    field.onChange(e);
-                    handleCategoryChange(e);
-                  }}
-                  error={!!fieldState.error}
-                >
-                  <MenuItem disabled value="Выбрать" style={{ color: 'grey' }}>Выбрать</MenuItem>
-                  <MenuItem value="до 1 года">до 1 года</MenuItem>
-                  <MenuItem value="1-3 года">1-3 года</MenuItem>
-                  <MenuItem value="3-6 лет">3-6 лет</MenuItem>
-                  <MenuItem value="более 6 лет">более 6 лет</MenuItem>
-                </Select>
-              )}
-            />
+        {/* первый блок */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box
+            sx={{
+              m: '44px 40px',
+              maxWidth: '707px',
+            }}
+          >
+            <Typography variant="h2">Общая информация о вакансии</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '20px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Название компании*</Typography>
+              <Controller
+                name="companyName"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    placeholder="ООО «Квант»"
+                    multiline
+                    fullWidth
+                    rows={1}
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '16px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Информация о компании</Typography>
+              <Controller
+                name="companyInfo"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyInfo"
+                    placeholder="Наша компания является разработчиком игровых платформ. У нас классный и дружный коллектив, работаем на удаленке."
+                    multiline
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '20px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Название вакансии*</Typography>
+              <Controller
+                name="vanaciesName"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    value={field.value}
+                    sx={fieldStyles}
+                    id="vanaciesName"
+                    placeholder="Web-разработчик"
+                    multiline
+                    fullWidth
+                    rows={1}
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '20px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Город *</Typography>
+              <Controller
+                name="city"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="Москва"
+                    multiline
+                    fullWidth
+                    rows={1}
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
           </Box>
 
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '16px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Описание  вакансии*</Typography>
-            <Controller
-              name="vacancyDescription"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="У нас классный и дружный коллектив, работаем на удаленке."
-                  multiline
-                  fullWidth
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
+          {/* второй блок */}
 
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '16px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Обязанности сотрудника*</Typography>
-            <Controller
-              name="responsibilities"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="Наша компания является разработчиком игровых платформ."
-                  multiline
-                  fullWidth
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
+          <Box
+            sx={{
+              m: '44px 40px',
+              maxWidth: '707px',
+            }}
+          >
+            <Typography variant="h2">Требования к вакансии</Typography>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '16px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Выберите категорию*</Typography>
+              <Controller
+                name="category"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <Select
+                    {...field}
+                    sx={{
+                      maxWidth: '400px',
+                      '& div': {
+                        p: '10px 12px',
+                      },
+                      '& .MuiSelect-select': {
+                        color: category === 'Выбрать' ? '#797981' : 'black',
+                      },
+                    }}
+                    id="category"
+                    value={category}
+                    fullWidth
+                    onChange={(e) => {
+                      field.onChange(e);
+                      handleCategoryChange(e);
+                    }}
+                    error={!!fieldState.error}
+                  >
+                    <MenuItem
+                      disabled
+                      value="Выбрать"
+                      style={{ color: 'grey' }}
+                    >
+                      Выбрать
+                    </MenuItem>
+                    <MenuItem value="до 1 года">до 1 года</MenuItem>
+                    <MenuItem value="1-3 года">1-3 года</MenuItem>
+                    <MenuItem value="3-6 лет">3-6 лет</MenuItem>
+                    <MenuItem value="более 6 лет">более 6 лет</MenuItem>
+                  </Select>
+                )}
+              />
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '16px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Описание вакансии*</Typography>
+              <Controller
+                name="vacancyDescription"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="У нас классный и дружный коллектив, работаем на удаленке."
+                    multiline
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '16px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Обязанности сотрудника*</Typography>
+              <Controller
+                name="responsibilities"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="Наша компания является разработчиком игровых платформ."
+                    multiline
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
 
           <Box sx={{
             display: 'flex',
@@ -448,7 +503,7 @@ export default function CreateVacancies() {
           </Box>
         </Box>
 
-        {/* третий блок */}
+          {/* третий блок */}
 
         <Box sx={{
           m: '44px 40px',
@@ -589,139 +644,181 @@ export default function CreateVacancies() {
           </Box>
         </Box>
 
-        {/* четвертый блок */}
+          {/* четвертый блок */}
 
-        <Box sx={{
-          m: '44px 40px',
-          maxWidth: '707px'
-        }}>
-          <Typography variant="h2">Дополнительная информация</Typography>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '20px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Доп информация</Typography>
-            <Controller
-              name="additionalInfo"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="Готов вкалывать"
-                  multiline
-                  fullWidth
-                  rows={1}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
+          <Box
+            sx={{
+              m: '44px 40px',
+              maxWidth: '707px',
+            }}
+          >
+            <Typography variant="h2">Дополнительная информация</Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '20px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Доп информация</Typography>
+              <Controller
+                name="additionalInfo"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="Готов вкалывать"
+                    multiline
+                    fullWidth
+                    rows={1}
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '20px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Теги*</Typography>
+              <Controller
+                name="tags"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="#Город-дорог"
+                    multiline
+                    fullWidth
+                    rows={1}
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                mt: '16px',
+                width: '100%',
+              }}
+            >
+              <Typography variant="h4">Отказ соискателю</Typography>
+              <Controller
+                name="refusalMessage"
+                control={control}
+                render={({ field, fieldState }) => (
+                  <TextField
+                    {...field}
+                    sx={fieldStyles}
+                    id="companyName"
+                    placeholder="Уважаемый кандидат,  благодарим вас за внимание к нашей компании. В данный момент мы не готовы сделать вам предложение. Надеемся, что сможем сотрудничать в будущем."
+                    multiline
+                    fullWidth
+                    error={!!fieldState.error}
+                    helperText={
+                      fieldState.error ? fieldState.error.message : ''
+                    }
+                  />
+                )}
+              />
+            </Box>
           </Box>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '20px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Теги*</Typography>
-            <Controller
-              name="tags"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="#Город-дорог"
-                  multiline
-                  fullWidth
-                  rows={1}
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-          <Box sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            mt: '16px',
-            width: '100%'
-          }}>
-            <Typography variant="h4">Отказ соискателю</Typography>
-            <Controller
-              name="refusalMessage"
-              control={control}
-              render={({ field, fieldState }) => (
-                <TextField
-                  {...field}
-                  sx={fieldStyles}
-                  id="companyName"
-                  placeholder="Уважаемый кандидат,  благодарим вас за внимание к нашей компании. В данный момент мы не готовы сделать вам предложение. Надеемся, что сможем сотрудничать в будущем."
-                  multiline
-                  fullWidth
-                  error={!!fieldState.error}
-                  helperText={fieldState.error ? fieldState.error.message : ''}
-                />
-              )}
-            />
-          </Box>
-        </Box>
 
-        {/* нижние кнопки */}
+          {/* нижние кнопки */}
 
-        <Box sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          p: '32px 0',
-          minHeight: '43px'
-        }}>
-          <FormControlLabel
-            control={<CustomCheckbox checked={isChecked} onChange={handleCheckboxChange} />}
-            label="Показать инпут"
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              p: '32px 0',
+              minHeight: '43px',
+            }}
+          >
+            <FormControlLabel
+              control={
+                <CustomCheckbox
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                />
+              }
+              label="Показать инпут"
+            />
+
+            {isChecked && (
+              <TextField
+                sx={checkboxStyles}
+                multiline
+                fullWidth
+                placeholder="Сопроводительное письмо"
+                variant="outlined"
+                value={inputText}
+                onChange={handleInputChange}
+              />
+            )}
+          </Box>
+          <Box sx={{ display: 'flex', gap: '56px' }}>
+            <Button
+              variant="default"
+              onClick={() => {
+                handlePublicVacancies();
+                // handleSubmit(onSubmit);
+              }}
+              sx={{
+                p: '15px 42px',
+                backgroundColor: '#5A9BFF',
+                color: '#fff',
+                fontSize: '16px',
+                '&:hover': {
+                  color: '#000',
+                },
+              }}
+            >
+              Разместить вакансию
+            </Button>
+
+            <Button
+              onClick={handleSubmit(onSaveDraft)}
+              sx={{
+                p: '15px 42px',
+                backgroundColor: '#fff',
+                border: '1px solid #1D6BF3',
+                color: '#1D6BF3',
+                fontSize: '16px',
+              }}
+            >
+              Сохранить черновик
+            </Button>
+          </Box>
+
+          <PublicVacanciesModal
+            open={isPublicVacancies}
+            handleClose={handlePublicVacancies}
+            onSubmit={handleSubmit(onSubmit)}
           />
+        </form>
+      </Box>
 
-          {isChecked && (
-            <TextField
-              sx={checkboxStyles}
-              multiline
-              fullWidth
-              placeholder="Сопроводительное письмо"
-              variant="outlined"
-              value={inputText}
-              onChange={handleInputChange}
-            />
-          )}
-        </Box>
-        <Box sx={{ display: 'flex', gap: '56px' }}>
-          <Button
-            type='submit'
-            onClick={handleSubmit(onSubmit)}
-            sx={{
-              p: '15px 42px',
-              backgroundColor: '#5A9BFF',
-              color: '#fff',
-              fontSize: '16px',
-              '&:hover': {
-                color: '#000',
-              },
-            }}>Разместить вакансию</Button>
-
-          <Button
-            onClick={handleSubmit(onSaveDraft)}
-            sx={{
-              p: '15px 42px',
-              backgroundColor: '#fff',
-              border: '1px solid #1D6BF3',
-              color: '#1D6BF3',
-              fontSize: '16px',
-            }}>Сохранить черновик</Button>
-        </Box>
-      </form>
-    </Box >
-  )
+      <CloseVacanciesModal
+        open={isCloseVacancies}
+        handleClose={handleCloseVacancies}
+      />
+    </>
+  );
 }

@@ -37,9 +37,6 @@ export const buttonsStyles = {
   red: {
     color: 'rgba(255, 2, 0, 1)',
     border: '1px solid rgba(255, 2, 0, 1)',
-    hover: {
-      backgroundColor: '#FF0200',
-    },
     focus: {
       backgroundColor: '#FF0200',
     },
