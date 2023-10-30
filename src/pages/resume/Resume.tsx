@@ -1,10 +1,24 @@
 import { Box } from '@mui/material';
-
 import HeaderResume from './HeaderResume/HeaderResume';
-
 import BlocksInfo from './BlocksInfo/BlocksInfo';
+import { getResume } from '../../redux/slice/resumeSlice';
+import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { getVacancies } from '../../redux/slice/vacanciesSlice';
 
 export default function Resume() {
+  const {id} = useParams();
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    dispatch(getResume(id));
+    dispatch(getVacancies());
+  }, [dispatch]);
+
+  
+
+  
   return (
     <Box
       sx={{
@@ -23,3 +37,15 @@ export default function Resume() {
     </Box>
   );
 }
+
+
+// export const ResumeLoader = async () => {
+// const res = await fetch(`http://career-tracker.duckdns.org/api/v1/vacancies/`);
+// return res.json();
+// }
+
+
+// export const ResumeLoader = async () => {
+// console.log('что тут у нас?');
+// return 2;
+// }
