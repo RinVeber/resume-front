@@ -68,13 +68,15 @@ const VacanciesMenu = () => {
                     ml: '24px',
                     padding: '10px 20px',
                 }}>Создать вакансию</Button>
-            <Box sx={{ mt: '28px', mb: '8px', ml: '24px', }}>
+            <Box sx={{ mt: '28px', mb: '8px'}}>
                 <Button onClick={toggleExpansion} sx={{
                     color: '#000',
                     fontSize: '14px',
                     fontWeight: '500',
                     lineHeight: '20px',
+               
                     m: '0',
+                    marginLeft: '24px',
                     p: '0'
                 }}>
                     Активные {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
@@ -86,7 +88,12 @@ const VacanciesMenu = () => {
                             sx={{
                                 m: '12px 0',
                                 cursor: 'pointer',
+                                padding: '5px 24px',
+                                backgroundColor:  vacancy.id === selectedItem ? '#F1F6FF' : null,
                                 borderRight: vacancy.id === selectedItem ? '2px solid black' : 'transparent',
+                                '&:hover': {
+                                    backgroundColor: '#F1F6FF'
+                                } 
                             }}
                             onClick={() => {
                                 navigate(`${paths.vacancies}/${vacancy.id}`)
