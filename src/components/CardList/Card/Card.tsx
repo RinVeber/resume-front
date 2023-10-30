@@ -32,7 +32,7 @@ export default function Card({ card }: CardProps) {
   const navigate = useNavigate();
   const [isLike, setIsLike] = useState(false);
 
-  function handleLike(e) {
+  function handleLike(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
     e.stopPropagation();
     setIsLike(!isLike)
   }
