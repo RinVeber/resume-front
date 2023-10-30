@@ -1,48 +1,57 @@
 import { Box } from '@mui/material';
-import HeaderResume from './HeaderResume/HeaderResume';
-import BlocksInfo from './BlocksInfo/BlocksInfo';
 import { getResume } from '../../redux/slice/resumeSlice';
 import { useParams } from 'react-router-dom';
-import React from 'react';
+import React, { lazy } from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import {Skeleton} from '@mui/material';
+import { CircularProgress } from '@mui/material';
 // import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
+import ErrorServer from '../../components/Error';
+import Loading from '../../components/Loading';
+
+const HeaderResume = lazy(() => import('./HeaderResume/HeaderResume'));
+const BlocksInfo = lazy(() => import('./BlocksInfo/BlocksInfo'));
 
 export default function Resume() {
-  const {id} = useParams();
+  const { id } = useParams();
   const dispatch = useAppDispatch();
-const {status} = useAppSelector((state) => state.resume);
-
+  const { status } = useAppSelector((state) => state.resume);
+  const [isLoading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(getResume(id));
-  }, [dispatch]);
-  
-  
-  return (
-    <Box
-      sx={{
-        // maxWidth: '1190px',
-        width: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '40px',
-        padding: '0 40px 0 0',
-        backgroundColor: '#F9FAFB',
-      }}
-    >
-      {status == 'loading' &&  <Skeleton />}
-      {status == 'success' &&  <HeaderResume />}
-      {status == 'success' &&  <BlocksInfo />}
- 
+    if (status == 'success') {
+      setLoading(true);
+    }
+    if (status == 'error') {
+      setLoading(false);
+    }
+  }, [dispatch, isLoading]);
 
-    </Box>
+  return (
+    <>
+      {status == 'loading' && <Loading  />}
+
+      <Box
+        sx={{
+          // maxWidth: '1190px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '40px',
+          padding: '0 40px 0 0',
+          backgroundColor: '#F9FAFB',
+        }}
+      >
+        {status == 'error' && <ErrorServer />}
+        {status == 'success' && <HeaderResume />}
+        {status == 'success' && <BlocksInfo />}
+      </Box>
+    </>
   );
 }
 
 // export async function getResumeСV(file) {
 //   const {id} = useParams();
-
 
 //   const response = await fetch(API_BASE_ALL_RESUME_URL + `/${id}/` +`download_cv/`, {
 //     method: 'GET',
@@ -57,7 +66,6 @@ const {status} = useAppSelector((state) => state.resume);
 //   document.appendChild(link);
 //   link.click();
 //   link.remove();
-
 
 // }}
 // ;
