@@ -11,24 +11,6 @@ export const getResume = createAsyncThunk(
     return handleRequest(request, rejectWithValue);
   },
 );
-export const getResumeСV = createAsyncThunk(
-  'resume/getResumeСV',
-  async (id, { rejectWithValue }) => {
-    const request = api.get(
-      API_BASE_ALL_RESUME_URL + `/${id}/` + `download_cv/`,
-    );
-    return handleRequest(request, rejectWithValue);
-  },
-);
-export const getResumePortfolio = createAsyncThunk(
-  'resume/getResumePortfolio',
-  async (id, { rejectWithValue }) => {
-    const request = api.get(
-      API_BASE_ALL_RESUME_URL + `/${id}/` + `download_portfolio/`,
-    );
-    return handleRequest(request, rejectWithValue);
-  },
-);
 
 type ResumeStateType = {
   data: ResumeResponseType | null;
@@ -95,18 +77,6 @@ const resumeSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(getResume.rejected, (state) => {
-        state.status = 'error';
-        state.error = 'error';
-      })
-      .addCase(getResumeСV.fulfilled, (state, action) => {
-        state.status = 'success';
-
-        state.cv = action.payload;
-      })
-      .addCase(getResumeСV.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(getResumeСV.rejected, (state) => {
         state.status = 'error';
         state.error = 'error';
       });

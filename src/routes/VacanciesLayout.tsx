@@ -25,12 +25,15 @@ export default function VacanciesLayout() {
           display={'flex'}
           flexDirection={'column'}
           gap={'10px'}
-          sx={{ padding: '40px 40px' }}
+          sx={{ padding: '40px 40px', width: '100%', }}
         >
+
+      
           {vacancies == null ? (
-            <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', width:'calc(100vw - 300px)', height:'100vh'}}>
-              <Typography fontSize={'18px'} lineHeight={'32PX'} fontWeight={'400'}>Выберите вакансию которую хотите посмотреть</Typography>
-            </Box>
+            // <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', width:'calc(100vw - 300px)', height:'100vh'}}>
+            //   <Typography fontSize={'18px'} lineHeight={'32PX'} fontWeight={'400'}>Выберите вакансию которую хотите посмотреть</Typography>
+            // </Box>
+            <MainPage />
           ) : (
             <>
               <Typography fontSize={'32px'} lineHeight={'32PX'} fontWeight={'500'}>{vacancies.name}</Typography>
