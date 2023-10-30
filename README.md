@@ -53,6 +53,7 @@
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/1aa5173d-051e-414b-afa8-da431f1671c1)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/687af6d3-c0c9-411b-8faf-84584cfe59b7)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/f7ef9553-515b-4512-866b-c1016bf6664f)
+![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/571d3933-543e-4039-9511-276f96a1bd36)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/63fb1e54-9317-4ac1-9a0d-d967545302a2)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/93b3b539-8bfa-46ff-afc4-e526f7badc03)
 ![image](https://github.com/Hakaton-resume/resume-front/assets/96541093/a7695111-641b-40b7-8f1b-3daec6eadc45)
