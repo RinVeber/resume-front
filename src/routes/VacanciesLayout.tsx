@@ -16,9 +16,11 @@ import { useAppDispatch } from '../redux/store';
 import { getVacanciesGroup } from '../redux/slice/vacanciesGroupSlice';
 import { useParams } from 'react-router-dom';
 import FavoritesCardList from '../pages/favoriteCardList';
+import DeleteVacanciesModal from '../components/Modals/DeleteVacanciesModal/DeleteVacanciesModal';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
+  const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const dispatch = useAppDispatch();
   const { id } = useParams();
@@ -26,6 +28,15 @@ export default function VacanciesLayout() {
   useEffect(() => {
     dispatch(getVacanciesGroup(id));
   }, [dispatch]);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <>
@@ -41,13 +52,24 @@ export default function VacanciesLayout() {
             <MainPage />
           ) : (
             <>
-              <Typography
-                fontSize={'32px'}
-                lineHeight={'32PX'}
-                fontWeight={'500'}
-              >
-                {vacancies.name}
-              </Typography>
+              <Box sx={{ display: 'flex', justifyContent:'space-between' }}>
+                <Typography
+                  fontSize={'32px'}
+                  lineHeight={'32PX'}
+                  fontWeight={'500'}
+                >
+                  {vacancies.name}
+                </Typography>
+                <Box sx={{display:'flex', gap:'20px'}}>
+                  {activeTab == 4 ? (
+                    <Button variant='outlined' onClick={handleOpen}>Закрыть вакансию</Button>
+                  ): (
+                    <></>
+                  )}
+                  <Button variant='outlined' onClick={handleOpen}>Закрыть вакансию</Button>
+                  <DeleteVacanciesModal open={open} handleClose={handleClose} />
+                </Box>
+              </Box>
               <CustomizedTabs onTabChange={setActiveTab} />
               <Stack
                 display={'flex'}
