@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { Outlet } from 'react-router-dom';
 import VacanciesMenu from '../components/vacanciesMenu/vacanciesMenu';
 import Box from '@mui/material/Box';
@@ -11,11 +11,20 @@ import MainPage from '../pages/main-page/MainPage';
 import VacanciesInfo from '../pages/vacanciesInfo/vacanciesInfo';
 import { useAppSelector } from '../redux/store';
 import { vacanciesIdSelect } from '../redux/getVacanciesId/getVacanciesId';
-
+import InviteCardList from '../pages/inviteCardList';
+import { useAppDispatch } from '../redux/store';
+import { getVacanciesGroup } from '../redux/slice/vacanciesGroupSlice';
+import { useParams } from 'react-router-dom';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
   const [activeTab, setActiveTab] = useState(0);
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(getVacanciesGroup(id));
+  }, [dispatch]);
 
   return (
     <>
@@ -25,12 +34,19 @@ export default function VacanciesLayout() {
           display={'flex'}
           flexDirection={'column'}
           gap={'10px'}
-          sx={{ padding: '40px 40px', width: '100%', }}
+          sx={{ padding: '40px 40px', width: '100%' }}
         >
-          {vacancies == null ? (<MainPage />
+          {vacancies == null ? (
+            <MainPage />
           ) : (
             <>
-              <Typography fontSize={'32px'} lineHeight={'32PX'} fontWeight={'500'}>{vacancies.name}</Typography>
+              <Typography
+                fontSize={'32px'}
+                lineHeight={'32PX'}
+                fontWeight={'500'}
+              >
+                {vacancies.name}
+              </Typography>
               <CustomizedTabs onTabChange={setActiveTab} />
               <Stack
                 display={'flex'}
@@ -40,17 +56,21 @@ export default function VacanciesLayout() {
                 justifyContent={'flex-end'}
               >
                 <FilterRespond>
-                  <img src={setting} alt={'текст'} style={{ cursor: 'pointer' }} />
+                  <img
+                    src={setting}
+                    alt={'текст'}
+                    style={{ cursor: 'pointer' }}
+                  />
                   <Button sx={{ color: '#1A1B22' }}>Фильтры</Button>
                 </FilterRespond>
               </Stack>
 
               {activeTab === 0 && <Vacancies />}
               {activeTab === 1 && <MainPage />}
-              {activeTab === 2 && <MainPage />}
-              {activeTab === 3 && <VacanciesInfo />}</>
+              {activeTab === 2 && <InviteCardList />}
+              {activeTab === 3 && <VacanciesInfo />}
+            </>
           )}
-
         </Stack>
       </Box>
     </>

@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { resumeReducer } from './slice/resumeSlice';
 import { vacanciesReducer } from './getVacancies/getVacancies';
 import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
+import { vacanciesGroupReducer } from './slice/vacanciesGroupSlice';
 
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     vacanciesId: vacanciesIdReducer,
     vacancies: vacanciesReducer,
     resume: resumeReducer,
+    cardGroup: vacanciesGroupReducer,
   },
 });
 
