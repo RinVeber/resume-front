@@ -5,7 +5,6 @@ import { getResume } from '../../redux/slice/resumeSlice';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { getVacancies } from '../../redux/slice/vacanciesSlice';
 import {Skeleton} from '@mui/material';
 // import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
 
@@ -17,7 +16,6 @@ const {status} = useAppSelector((state) => state.resume);
 
   React.useEffect(() => {
     dispatch(getResume(id));
-    dispatch(getVacancies());
   }, [dispatch]);
   
   
