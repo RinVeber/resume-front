@@ -9,10 +9,10 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import CustomCheckbox from '../../components/Checkbox';
 
 const fieldStyles = {
   maxWidth: '400px',
@@ -48,7 +48,6 @@ const schema = yup.object().shape({
   category: yup.string().required('Выберите категорию').notOneOf(['Выбрать'], 'Выберите категорию'),
   vacancyDescription: yup.string().required('Введите описание вакансии'),
   responsibilities: yup.string().required('Введите обязанности сотрудника'),
-  //   .required('Добавьте хотя бы один тег'),
   incomeLevelMoney: yup.string().required('Укажите уровень дохода'),
   incomeLevelRub: yup.string().required('Укажите валюту').notOneOf(['Валюта'], 'Выберите категорию'),
   workFormat: yup.string().required('Выберите формат работы').notOneOf(['Выбрать'], 'Выберите категорию'),
@@ -651,9 +650,9 @@ export default function CreateVacancies() {
           p: '32px 0',
           minHeight: '43px'
         }}>
-          <FormControlLabel
-            control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-            label="Показать инпут"
+          <FormControlLabel 
+          control={<CustomCheckbox checked={isChecked} onChange={handleCheckboxChange} />}
+          label="Показать инпут"
           />
 
           {isChecked && (
