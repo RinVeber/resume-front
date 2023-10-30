@@ -5,13 +5,16 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Typography from '@mui/material/Typography';
+import { vacanciesSelect } from '../../redux/getVacancies/getVacancies';
+import { useAppSelector } from '../../redux/store';
 
 const VacanciesMenu = () => {
     const [expanded, setExpanded] = useState(false);
     const [archive, setArchive] = useState(false);
     const [draft, setDraft] = useState(false);
     const [planned, setPlanned] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState<number | null>(null);
+    const vacancies = useAppSelector(vacanciesSelect);
 
     const toggleExpansion = () => {
         setExpanded(!expanded);
@@ -30,24 +33,37 @@ const VacanciesMenu = () => {
         setPlanned(!planned);
     };
 
-    const handleItemClick = (itemIndex) => {
+    const handleItemClick = (itemIndex: number) => {
         setSelectedItem(itemIndex);
-      };
+
+    };
+
+    function determineLevel(experience: string) {
+        if (experience === "до 1 года") {
+            return "Junior";
+        } else if (experience === "1-3 года") {
+            return "Middle";
+        } else if (experience === "3-6 лет") {
+            return "Senior";
+        } else if (experience === "более 6 лет") {
+            return "Senior";
+        }
+    }
 
     return (
-        <Box sx={{ minWidth: '237px',height:'calc(100vh - 60px)', borderRight:'1px solid #E6E6E6', backgroundColor: '#F9FAFB' }}>
+        <Box sx={{ minWidth: '237px', height: 'calc(100vh - 60px)', borderRight: '1px solid #E6E6E6', backgroundColor: '#F9FAFB' }}>
             <Button href='/create'
-            variant='default'
-            sx={{
-                fontFamily:'YS-Text',
-                fontSize: '14px',
-                fontWeight: '500',
-                lineHeight: '20px',
-                mt:'40px',
-                ml:'24px',
-                padding: '10px 20px',
-            }}>Создать вакансию</Button>
-            <Box sx={{ mt: '28px', mb:'8px', ml:'24px', }}>
+                variant='default'
+                sx={{
+                    fontFamily: 'YS-Text',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    lineHeight: '20px',
+                    mt: '40px',
+                    ml: '24px',
+                    padding: '10px 20px',
+                }}>Создать вакансию</Button>
+            <Box sx={{ mt: '28px', mb: '8px', ml: '24px', }}>
                 <Button onClick={toggleExpansion} sx={{
                     color: '#000',
                     fontSize: '14px',
@@ -58,70 +74,33 @@ const VacanciesMenu = () => {
                 }}>
                     Активные {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </Button>
-                <Collapse in={expanded} sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                }}>
-                    <Box key={1} sx={{
-                        m:'12px 0',
-                        cursor:'pointer',
-                        borderRight: 1 == selectedItem ? '2px solid black' : 'transparent',
-                    }}
-                    onClick={() => handleItemClick(1)}
-                    >
-                        <Typography sx={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                        }}>Frontent-разработчик</Typography>
-                        <Typography sx={{
-                            fontSize: '12px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                            color:'#afafaf'
-                        }}>Middle</Typography>
-                    </Box>
-                    <Box key={2} sx={{
-                        m:'12px 0',
-                        cursor:'pointer',
-                        borderRight: 2 == selectedItem ? '2px solid black' : 'transparent',
-                    }}
-                    onClick={() => handleItemClick(2)}
-                    >
-                        <Typography sx={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                        }}>Frontent-разработчик</Typography>
-                        <Typography sx={{
-                            fontSize: '12px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                            color:'#afafaf'
-                        }}>Middle</Typography>
-                    </Box>
-                    <Box key={3} sx={{
-                        m:'12px 0',
-                        cursor:'pointer',
-                        borderRight: 3 == selectedItem ? '2px solid black' : 'transparent',
-                    }}
-                    onClick={() => handleItemClick(3)}
-                    >
-                        <Typography sx={{
-                            fontSize: '14px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                        }}>Frontent-разработчик</Typography>
-                        <Typography sx={{
-                            fontSize: '12px',
-                            fontWeight: '400',
-                            lineHeight: '20px',
-                            color:'#afafaf'
-                        }}>Middle</Typography>
-                    </Box>
+                <Collapse in={expanded} sx={{ display: 'flex', flexDirection: 'column' }}>
+                    {vacancies.map((vacancy, index) => (
+                        <Box
+                            key={index}
+                            sx={{
+                                m: '12px 0',
+                                cursor: 'pointer',
+                                borderRight: index + 1 === selectedItem ? '2px solid black' : 'transparent',
+                            }}
+                            onClick={() => handleItemClick(index + 1)}
+                        >
+                            <Typography sx={{
+                                fontSize: '14px',
+                                fontWeight: '400',
+                                lineHeight: '20px',
+                            }}>{vacancy.name}</Typography>
+                            <Typography sx={{
+                                fontSize: '12px',
+                                fontWeight: '400',
+                                lineHeight: '20px',
+                                color: '#afafaf',
+                            }}>{determineLevel(vacancy.experience)}</Typography>
+                        </Box>
+                    ))}
                 </Collapse>
             </Box>
-            <Box sx={{ m: '8px 0', ml:'24px', }}>
+            <Box sx={{ m: '8px 0', ml: '24px', }}>
                 <Button onClick={toggleArchive} sx={{
                     color: '#000',
                     fontSize: '14px',
@@ -137,7 +116,7 @@ const VacanciesMenu = () => {
                     flexDirection: 'column',
                 }}>
                     <Box sx={{
-                        m:'12px 0'
+                        m: '12px 0'
                     }}>
                         <Typography sx={{
                             fontSize: '14px',
@@ -148,11 +127,11 @@ const VacanciesMenu = () => {
                             fontSize: '12px',
                             fontWeight: '400',
                             lineHeight: '20px',
-                            color:'#afafaf'
+                            color: '#afafaf'
                         }}>Middle</Typography>
                     </Box>
                     <Box sx={{
-                        m:'12px 0'
+                        m: '12px 0'
                     }}>
                         <Typography sx={{
                             fontSize: '14px',
@@ -163,12 +142,12 @@ const VacanciesMenu = () => {
                             fontSize: '12px',
                             fontWeight: '400',
                             lineHeight: '20px',
-                            color:'#afafaf'
+                            color: '#afafaf'
                         }}>Middle</Typography>
                     </Box>
                 </Collapse>
             </Box>
-            <Box sx={{ m: '8px 0', ml:'24px', }}>
+            <Box sx={{ m: '8px 0', ml: '24px', }}>
                 <Button onClick={toggleDraft} sx={{
                     color: '#000',
                     fontSize: '14px',
@@ -184,7 +163,7 @@ const VacanciesMenu = () => {
                     flexDirection: 'column',
                 }}>
                     <Box sx={{
-                        m:'12px 0'
+                        m: '12px 0'
                     }}>
                         <Typography sx={{
                             fontSize: '14px',
@@ -195,12 +174,12 @@ const VacanciesMenu = () => {
                             fontSize: '12px',
                             fontWeight: '400',
                             lineHeight: '20px',
-                            color:'#afafaf'
+                            color: '#afafaf'
                         }}>Middle</Typography>
                     </Box>
                 </Collapse>
             </Box>
-            <Box sx={{ m: '8px 0', ml:'24px', }}>
+            <Box sx={{ m: '8px 0', ml: '24px', }}>
                 <Button onClick={togglePlanned} sx={{
                     color: '#000',
                     fontSize: '14px',
@@ -209,7 +188,7 @@ const VacanciesMenu = () => {
                     m: '0',
                     p: '0'
                 }}
-                disabled
+                    disabled
                 >
                     Запланированные {planned ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </Button>
@@ -218,7 +197,7 @@ const VacanciesMenu = () => {
                     flexDirection: 'column',
                 }}>
                     <Box sx={{
-                        m:'12px 0'
+                        m: '12px 0'
                     }}>
                         <Typography sx={{
                             fontSize: '14px',
@@ -229,7 +208,7 @@ const VacanciesMenu = () => {
                             fontSize: '12px',
                             fontWeight: '400',
                             lineHeight: '20px',
-                            color:'#afafaf'
+                            color: '#afafaf'
                         }}>Middle</Typography>
                     </Box>
                 </Collapse>
