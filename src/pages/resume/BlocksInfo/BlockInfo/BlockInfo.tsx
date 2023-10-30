@@ -5,7 +5,7 @@ interface BlockInfoProps {
   title: string;
   subtitle: string;
   first: string;
-  second?: string;
+  second?: string | number;
   skills?: Array<{
     name: string
   }>;

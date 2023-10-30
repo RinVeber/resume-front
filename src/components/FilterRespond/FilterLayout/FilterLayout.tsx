@@ -180,7 +180,7 @@ export default function FilterLayout() {
         sx={{ display: 'flex', flexDirection: 'row', gap: '5px' }}
       >
         <img src={del} alt={'delete'} />
-        <ListItemText primary="Отчистить фильтры" />
+        <ListItemText primary="Очистить фильтры" />
       </ListItemButtonCustom>
     </List>
   );

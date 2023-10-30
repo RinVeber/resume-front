@@ -3,12 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import arrow from '../../../assets/arrow_left.svg';
 import Avatar from '../../../components/Avatar';
 import heart from '../../../assets/heart.svg';
+import heartActive from '../../../assets/heart_active.svg';
 import { Tooltip } from '@mui/material';
 import { useAppSelector } from '../../../redux/store';
+import React from 'react';
 
 export default function HeaderResume() {
   const navigate = useNavigate();
   const { data: currentResume } = useAppSelector((state) => state.resume);
+  const [isLike, setIsLike] = React.useState(false);
+
+  function handleLike() {
+    setIsLike(!isLike);
+  }
   return (
     <Stack
       flexDirection={'column'}
@@ -39,16 +46,23 @@ export default function HeaderResume() {
         <Avatar
           img={currentResume!.photo}
           textSize={'96px'}
-          nameUser={'Королев Василий'}
+          nameUser={currentResume!.first_name}
           sizes={'207px'}
         />
 
         <Stack flexDirection={'column'} gap={'20px'}>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Stack flexDirection={'row'} justifyContent={'space-between'}>
-              <Typography variant="h1">Королев Василий</Typography>
+              <Typography variant="h1">
+                {currentResume!.first_name} {currentResume!.last_name}
+              </Typography>
               <Tooltip title={'Добавить в избранное'}>
-                <img src={heart} alt={'избранное'} />
+                <img
+                  src={isLike ? heartActive : heart}
+                  alt={'избранное'}
+                  onClick={() => handleLike()}
+                  style={{ cursor: 'pointer' }}
+                />
               </Tooltip>
             </Stack>
 
@@ -83,7 +97,6 @@ export default function HeaderResume() {
           </Typography>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Typography variant={'h4'} fontWeight={'700'}>
-        
               Контакты
             </Typography>
             <Stack flexDirection={'row'} gap={'52px'}>

@@ -7,6 +7,7 @@ export default function MainPage() {
       display={'flex'}
       sx={{
         height: '90%',
+        width: '100%',
       }}
       flexDirection={'column'}
       justifyContent={'center'}
