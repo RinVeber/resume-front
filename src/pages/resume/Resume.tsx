@@ -5,19 +5,19 @@ import { getResume } from '../../redux/slice/resumeSlice';
 import { useParams } from 'react-router-dom';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { getVacancies } from '../../redux/slice/vacanciesSlice';
+import {Skeleton} from '@mui/material';
+// import { API_BASE_ALL_RESUME_URL } from '../../utils/apiConstants';
 
 export default function Resume() {
   const {id} = useParams();
   const dispatch = useAppDispatch();
+const {status} = useAppSelector((state) => state.resume);
+
 
   React.useEffect(() => {
     dispatch(getResume(id));
-    dispatch(getVacancies());
   }, [dispatch]);
-
   
-
   
   return (
     <Box
@@ -31,21 +31,33 @@ export default function Resume() {
         backgroundColor: '#F9FAFB',
       }}
     >
-      <HeaderResume />
-      <BlocksInfo />
+      {status == 'loading' &&  <Skeleton />}
+      {status == 'success' &&  <HeaderResume />}
+      {status == 'success' &&  <BlocksInfo />}
+ 
 
     </Box>
   );
 }
 
-
-// export const ResumeLoader = async () => {
-// const res = await fetch(`http://career-tracker.duckdns.org/api/v1/vacancies/`);
-// return res.json();
-// }
+// export async function getResumeСV(file) {
+//   const {id} = useParams();
 
 
-// export const ResumeLoader = async () => {
-// console.log('что тут у нас?');
-// return 2;
-// }
+//   const response = await fetch(API_BASE_ALL_RESUME_URL + `/${id}/` +`download_cv/`, {
+//     method: 'GET',
+
+//   });
+// if(response.status == 200) {
+//   const blob = await response.blob();
+//   const downloadURL = window.URL.createObjectURL(blob);
+//   const link = document.createElement('a');
+//   link.href = downloadURL;
+//   link.download = file.name;
+//   document.appendChild(link);
+//   link.click();
+//   link.remove();
+
+
+// }}
+// ;
