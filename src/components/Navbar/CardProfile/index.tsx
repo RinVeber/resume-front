@@ -1,7 +1,6 @@
 import React from 'react';
 import def from '../../../assets/default.png';
 import { Box, Paper, Stack, Typography } from '@mui/material';
-import { KeyboardArrowDown } from '@mui/icons-material';
 
 export default function CardProfile() {
   return (
@@ -33,8 +32,9 @@ export default function CardProfile() {
       <Stack
         display={'flex'}
         flexDirection={'column'}
-        alignContent={'center'}
+        alignItems={'center'}
         justifyContent={'flex-start'}
+        
         p={'0 8px'}
       >
         <Typography sx={{ fontSize: '16px' }}>Компания</Typography>
@@ -48,7 +48,6 @@ export default function CardProfile() {
           <Typography sx={{ fontSize: '12px', color: '#7A7A7A' }}>
             ООО Квант
           </Typography>
-          <KeyboardArrowDown />
         </Box>
       </Stack>
     </Paper>
