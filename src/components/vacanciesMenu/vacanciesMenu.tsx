@@ -86,7 +86,12 @@ const VacanciesMenu = () => {
                             sx={{
                                 m: '12px 0',
                                 cursor: 'pointer',
+                                padding: '4px 4px',
+                                backgroundColor:  vacancy.id === selectedItem ? '#F1F6FF' : null,
                                 borderRight: vacancy.id === selectedItem ? '2px solid black' : 'transparent',
+                                '&:hover': {
+                                    backgroundColor: '#F1F6FF'
+                                } 
                             }}
                             onClick={() => {
                                 navigate(`${paths.vacancies}/${vacancy.id}`)
