@@ -67,7 +67,7 @@ export default function Card({ card }: CardProps) {
             }}
           >
             <Typography fontSize={14} fontWeight={700}>
-              {card.student.first_name} {card.student.last_name}
+              {card.student.first_name.split(' ')[0]} {card.student.last_name}
             </Typography>
             <Typography fontSize={14} fontWeight={500}>
               {card.student.position}

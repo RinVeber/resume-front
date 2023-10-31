@@ -16,6 +16,7 @@ import { useAppDispatch } from '../../redux/store';
 import { postVacanciesApi } from '../../redux/postVacancies/postVacancies';
 import PublicVacanciesModal from '../../components/Modals/PublicVacanciesModal/PublicVacanciesModal';
 import CloseVacanciesModal from '../../components/Modals/CloseVacanciesModal/CloseVacanciesModal';
+import { useNavigate } from 'react-router-dom';
 
 const fieldStyles = {
   maxWidth: '400px',
@@ -106,6 +107,8 @@ export default function CreateVacancies() {
     setCloseVacancies(!isCloseVacancies);
   }
 
+  const navigate = useNavigate()
+
   const onSubmit = (data: IVacanciesData) => {
     const dataToSend = {
       tags: [data.category],
@@ -123,6 +126,7 @@ export default function CreateVacancies() {
     };
     dispatch(postVacanciesApi({ data: dataToSend }));
     console.log('Данные:', data);
+    navigate(-1);
   };
 
   const onSaveDraft = (data: object) => {
