@@ -10,6 +10,7 @@ import MainPage from '../../pages/main-page/MainPage';
 import RootLayout from '../RootLayout';
 import Auth from '../../pages/auth/Auth';
 import AuthLayout from '../AuthLayout';
+import SearchLayout from '../SearchLayout';
 
 export const router = createBrowserRouter([
 
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: paths.vacancies,
         element: <VacanciesLayout />,
+      },
+      {
+        path: `${paths.search}?`,
+        element: <SearchLayout />,
       },
       {
         path: `${paths.resume}/:id`,
