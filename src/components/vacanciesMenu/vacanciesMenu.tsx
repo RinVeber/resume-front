@@ -10,6 +10,8 @@ import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { getVacanciesIdApi } from '../../redux/getVacanciesId/getVacanciesId';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../routes/routes/paths';
+import { getVacanciesGroup } from '../../redux/slice/vacanciesGroupSlice';
+
 
 const VacanciesMenu = () => {
     const dispatch = useAppDispatch();
@@ -41,6 +43,7 @@ const VacanciesMenu = () => {
     const handleItemClick = (itemIndex: number) => {
         setSelectedItem(itemIndex);
         dispatch(getVacanciesIdApi({id: itemIndex}))
+        dispatch(getVacanciesGroup(itemIndex));
     };
 
     function determineLevel(experience: string) {
