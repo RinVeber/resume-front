@@ -10,7 +10,7 @@ import MainPage from '../../pages/main-page/MainPage';
 import RootLayout from '../RootLayout';
 import Auth from '../../pages/auth/Auth';
 import AuthLayout from '../AuthLayout';
-import SearchLayout from '../SearchLayout';
+// import { ResumeLoader } from '../../pages/resume/Resume';
 
 export const router = createBrowserRouter([
 
@@ -44,10 +44,6 @@ export const router = createBrowserRouter([
         ]
       },
    
-      {
-        path: `${paths.search}?`,
-        element: <SearchLayout />,
-      },
       {
         path: `${paths.resume}/:id`,
         element: <Resume />,
