@@ -50,46 +50,51 @@ export default function Card({ card }: CardProps) {
         <Stack
           display={'flex'}
           flexDirection={'row'}
-          justifyContent={'space-around'}
+          justifyContent={'space-between'}
           gap={'7px'}
         >
+          <Box sx={{
+            display: 'flex',
+            gap: '10px'
+          }}>
 
-          <Avatar img={card.student.photo} sizes={'64px'} nameUser={card.student.first_name} textSize={'18px'} />
-          {/* <img
+            <Avatar img={card.student.photo} sizes={'64px'} nameUser={card.student.first_name} textSize={'18px'} />
+            {/* <img
             src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
           /> */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignContent: 'center',
-              alignItems: 'flex-start',
-              gap: '5px',
-            }}
-          >
-            <Typography fontSize={14} fontWeight={700}>
-              {card.student.first_name.split(' ')[0]} {card.student.last_name}
-            </Typography>
-            <Typography fontSize={14} fontWeight={500}>
-              {card.student.position}
-            </Typography>
-            <Typography
-              fontSize={12}
+            <Box
               sx={{
-                p: '5px',
-                bgcolor:
-                  card.similarity > 50
-                    ? '#C2E5CE'
-                    : card.similarity > 30
-                    ? '#FFE1BD'
-                    : '#FFDDE5',
-                borderRadius: '4px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignContent: 'center',
+                alignItems: 'flex-start',
+                gap: '5px',
               }}
             >
-              {card.similarity}% совпадает
-            </Typography>
+              <Typography fontSize={14} fontWeight={700}>
+                {card.student.first_name.split(' ')[0]} {card.student.last_name}
+              </Typography>
+              <Typography fontSize={14} fontWeight={500}>
+                {card.student.position}
+              </Typography>
+              <Typography
+                fontSize={12}
+                sx={{
+                  p: '5px',
+                  bgcolor:
+                    card.similarity > 50
+                      ? '#C2E5CE'
+                      : card.similarity > 30
+                        ? '#FFE1BD'
+                        : '#FFDDE5',
+                  borderRadius: '4px',
+                }}
+              >
+                {card.similarity}% совпадает
+              </Typography>
+            </Box>
           </Box>
           <img
             src={isLike ? heartActive : heart}

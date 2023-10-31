@@ -21,8 +21,8 @@ export default function ResponseCardList() {
       {status == 'success' && (
         <Suspense fallback={<Skeleton />}>
           {currentListCard?.response
-            .slice() // Создаем копию массива, чтобы не изменять исходный
-            .sort((a, b) => b.similarity - a.similarity) // Сортируем по убыванию симуляр
+            .slice()
+            .sort((a, b) => b.similarity - a.similarity)
             .map((item) => {
               console.log(item);
               return <Card card={item} key={item.id} />;
