@@ -24,6 +24,7 @@ type ResumeStateType = {
 };
 
 export type ResumeResponseType = {
+  student: any;
   id: number;
   skills: [
     {
