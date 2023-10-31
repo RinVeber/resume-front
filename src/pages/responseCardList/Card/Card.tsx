@@ -6,11 +6,9 @@ import loc from '../../../assets/location.png';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
 import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
-
-import Chips from './Chips/Chips';
+import Chips from '../Chips/Chips';
 import { Key, useState } from 'react';
 import heartActive from '../../../assets/heart_active.svg'
-
 
 
 interface CardProps {
@@ -54,9 +52,7 @@ export default function Card({ card }: CardProps) {
           justifyContent={'space-around'}
           gap={'7px'}
         >
-
-         <img
-
+          <img
             src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
@@ -117,7 +113,7 @@ export default function Card({ card }: CardProps) {
             </Typography>
           </Box>
           <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
-            {card.student.skills.slice(0, 3).map((item: { name: string; }, index: Key | null | undefined) => {
+            {card.student.skills.slice(0,3).map((item: { name: string; }, index: Key | null | undefined) => {
               return <Chips key={index} chip={item} />;
             })}
           </Box>

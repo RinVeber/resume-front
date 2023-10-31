@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { Outlet } from 'react-router-dom';
 import VacanciesMenu from '../components/vacanciesMenu/vacanciesMenu';
 import Box from '@mui/material/Box';
@@ -12,22 +12,23 @@ import VacanciesInfo from '../pages/vacanciesInfo/vacanciesInfo';
 import { useAppSelector } from '../redux/store';
 import { vacanciesIdSelect } from '../redux/getVacanciesId/getVacanciesId';
 import InviteCardList from '../pages/inviteCardList';
-import { useAppDispatch } from '../redux/store';
-import { getVacanciesGroup } from '../redux/slice/vacanciesGroupSlice';
-import { useParams } from 'react-router-dom';
+// import { useAppDispatch } from '../redux/store';
+// import { getVacanciesGroup } from '../redux/slice/vacanciesGroupSlice';
+// import { useParams } from 'react-router-dom';
 import FavoritesCardList from '../pages/favoriteCardList';
 import DeleteVacanciesModal from '../components/Modals/DeleteVacanciesModal/DeleteVacanciesModal';
+import ResponseCardList from '../pages/responseCardList/ResponseCardList';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
-  const dispatch = useAppDispatch();
-  const { id } = useParams();
+  // const dispatch = useAppDispatch();
+  // const { id } = useParams();
 
-  useEffect(() => {
-    dispatch(getVacanciesGroup(id));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getVacanciesGroup(vacancies?.id));
+  // }, [dispatch]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -89,7 +90,7 @@ export default function VacanciesLayout() {
                 </FilterRespond>
               </Stack>
 
-              {activeTab === 0 && <Vacancies />}
+              {activeTab === 0 && <ResponseCardList />}
               {activeTab === 1 && <FavoritesCardList />}
               {activeTab === 2 && <InviteCardList />}
               {activeTab === 3 && <VacanciesInfo />}

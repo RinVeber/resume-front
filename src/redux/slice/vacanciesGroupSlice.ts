@@ -55,7 +55,7 @@ const initialState: VacanciesGroupStateType = {
   error: undefined,
 };
 
-export const getVacanciesGroup = createAsyncThunk('vacanciesGroup/getVacanciesGroup', async (id:(string | undefined), { rejectWithValue }) => {
+export const getVacanciesGroup = createAsyncThunk('vacanciesGroup/getVacanciesGroup', async (id:(number | undefined), { rejectWithValue }) => {
     const request = api.get(`${API_BASE_ALL_VACANCIES_URL}${id}/groups/`);
     return handleRequest(request, rejectWithValue);
   });
