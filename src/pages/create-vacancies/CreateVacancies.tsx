@@ -98,8 +98,6 @@ export default function CreateVacancies() {
   const [isChecked, setIsChecked] = useState(false);
   const [inputText, setInputText] = useState('');
 
-  console.log(tags);
-
   function handlePublicVacancies() {
     setPublickVacancies(!isPublicVacancies);
   }
@@ -354,7 +352,7 @@ export default function CreateVacancies() {
                 width: '100%',
               }}
             >
-              <Typography variant="h4">Выберите категорию*</Typography>
+              <Typography variant="h4">Требуемый опыт*</Typography>
               <Controller
                 name="category"
                 control={control}
@@ -763,7 +761,7 @@ export default function CreateVacancies() {
                   onChange={handleCheckboxChange}
                 />
               }
-              label="Показать инпут"
+              label="Сопроводительное письмо"
             />
 
             {isChecked && (
