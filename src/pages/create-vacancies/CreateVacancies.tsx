@@ -18,7 +18,7 @@ import PublicVacanciesModal from '../../components/Modals/PublicVacanciesModal/P
 import CloseVacanciesModal from '../../components/Modals/CloseVacanciesModal/CloseVacanciesModal';
 
 const fieldStyles = {
-  // maxWidth: '400px',
+  maxWidth: '400px',
   '& textarea': {
     fontSize: '14px',
     fontWeight: '400',
@@ -29,8 +29,8 @@ const fieldStyles = {
 };
 
 const checkboxStyles = {
-  // maxWidth: '500px',
-  // textAlign: 'center',
+  maxWidth: '500px',
+  textAlign: 'center',
   '& fieldset': {
     whiteSpace: 'pre-wrap',
   },
@@ -260,7 +260,7 @@ export default function CreateVacancies() {
                     {...field}
                     sx={fieldStyles}
                     id="companyInfo"
-                    placeholder="Наша компания является разработчиком игровых платформ. У нас классный и дружный коллектив, работаем на удаленке."
+                    placeholder="Наша компания является..."
                     multiline
                     fullWidth
                     error={!!fieldState.error}
@@ -408,7 +408,7 @@ export default function CreateVacancies() {
                     {...field}
                     sx={fieldStyles}
                     id="companyName"
-                    placeholder="У нас классный и дружный коллектив, работаем на удаленке."
+                    placeholder="У нас классный и дружный коллектив..."
                     multiline
                     fullWidth
                     error={!!fieldState.error}
@@ -437,7 +437,7 @@ export default function CreateVacancies() {
                     {...field}
                     sx={fieldStyles}
                     id="companyName"
-                    placeholder="Наша компания является разработчиком игровых платформ."
+                    placeholder="Наша компания является..."
                     multiline
                     fullWidth
                     error={!!fieldState.error}
@@ -729,7 +729,7 @@ export default function CreateVacancies() {
                     {...field}
                     sx={fieldStyles}
                     id="companyName"
-                    placeholder="Уважаемый кандидат,  благодарим вас за внимание к нашей компании. В данный момент мы не готовы сделать вам предложение. Надеемся, что сможем сотрудничать в будущем."
+                    placeholder="Уважаемый кандидат,  благодарим вас..."
                     multiline
                     fullWidth
                     error={!!fieldState.error}
