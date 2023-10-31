@@ -9,9 +9,7 @@ import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
 
 import Chips from './Chips/Chips';
 import { Key, useState } from 'react';
-import heartActive from '../../../assets/heart_active.svg'
-
-
+import heartActive from '../../../assets/heart_active.svg';
 
 interface CardProps {
   card: ResumeResponseType;
@@ -23,12 +21,12 @@ export default function Card({ card }: CardProps) {
 
   function handleLike(e: React.MouseEvent<HTMLImageElement, MouseEvent>) {
     e.stopPropagation();
-    setIsLike(!isLike)
+    setIsLike(!isLike);
   }
   return (
     <>
       <Stack
-      onClick={() => navigate(`${paths.resume}/${card.id}`)}
+        onClick={() => navigate(`${paths.resume}/${card.student.id}`)}
         width={'322px'}
         height={'204px'}
         display={'flex'}
@@ -40,12 +38,12 @@ export default function Card({ card }: CardProps) {
 
           boxSizing: 'border-box',
           borderRadius: '12px',
-          "&:hover": {
+          '&:hover': {
             border: '1px solid #B5B5B7',
           },
-          "&:focus": {
+          '&:focus': {
             border: '1px solid #1D6BF3',
-          }
+          },
         }}
       >
         <Stack
@@ -54,9 +52,7 @@ export default function Card({ card }: CardProps) {
           justifyContent={'space-around'}
           gap={'7px'}
         >
-
-         <img
-
+          <img
             src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
@@ -71,20 +67,29 @@ export default function Card({ card }: CardProps) {
             }}
           >
             <Typography fontSize={14} fontWeight={700}>
-            {card.student.first_name.split(' ')[0]} {card.student.last_name}
+              {card.student.first_name.split(' ')[0]} {card.student.last_name}
             </Typography>
             <Typography fontSize={14} fontWeight={500}>
               {card.student.position}
             </Typography>
             <Typography
               fontSize={12}
-              sx={{ p: '5px', bgcolor: '#C2E5CE', borderRadius: '4px' }}
+              sx={{
+                p: '5px',
+                bgcolor:
+                  card.similarity > 50
+                    ? '#C2E5CE'
+                    : card.similarity > 30
+                    ? '#FFE1BD'
+                    : '#FFDDE5',
+                borderRadius: '4px',
+              }}
             >
-            {card.similarity}% совпадает
+              {card.similarity}% совпадает
             </Typography>
           </Box>
           <img
-            src={isLike ? heartActive :heart}
+            src={isLike ? heartActive : heart}
             alt={'heart'}
             style={{ width: '20px', height: '20px' }}
             onClick={(e) => handleLike(e)}
@@ -117,9 +122,11 @@ export default function Card({ card }: CardProps) {
             </Typography>
           </Box>
           <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
-            {card.student.skills.slice(0, 3).map((item: { name: string; }, index: Key | null | undefined) => {
-              return <Chips key={index} chip={item} />;
-            })}
+            {card.student.skills
+              .slice(0, 3)
+              .map((item: { name: string }, index: Key | null | undefined) => {
+                return <Chips key={index} chip={item} />;
+              })}
           </Box>
         </Stack>
       </Stack>
