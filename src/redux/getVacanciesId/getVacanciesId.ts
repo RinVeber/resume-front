@@ -57,7 +57,9 @@ const initialState: IVacanciesState = {
 const vacanciesIdSlice = createSlice({
     name: '@@vacanciesId',
     initialState,
-    reducers: {},
+    reducers: {
+		clearState: () => initialState,
+	},
     extraReducers: (builder) => {
         builder.addCase(getVacanciesIdApi.fulfilled, (state, action) => {
             state.data = action.payload;
@@ -68,4 +70,5 @@ const vacanciesIdSlice = createSlice({
 export const vacanciesIdReducer = vacanciesIdSlice.reducer;
 
 export const vacanciesIdSelect = (state: { vacanciesId: IVacanciesState }) => state.vacanciesId.data;
-;
+
+export const { clearState } = vacanciesIdSlice.actions;
