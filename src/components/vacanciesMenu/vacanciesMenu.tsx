@@ -5,11 +5,15 @@ import Collapse from '@mui/material/Collapse';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Typography from '@mui/material/Typography';
+import FilterVacancies from '../FilterVacancies';
+import FilterIcon from '../../assets/settings.svg';
 import { vacanciesSelect } from '../../redux/getVacancies/getVacancies';
 import { useAppSelector, useAppDispatch } from '../../redux/store';
 import { getVacanciesIdApi } from '../../redux/getVacanciesId/getVacanciesId';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../routes/routes/paths';
+import FilterVacancies from '../FilterVacancies';
+import FilterIcon from '../../assets/settings.svg';
 
 const VacanciesMenu = () => {
     const dispatch = useAppDispatch();
@@ -18,25 +22,34 @@ const VacanciesMenu = () => {
     const [draft, setDraft] = useState(false);
     const [planned, setPlanned] = useState(false);
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
+    const [showFilters, setShowFilters] = useState(false);
     const vacancies = useAppSelector(vacanciesSelect);
     const navigate = useNavigate();
 
-    const toggleExpansion = () => {
-        setExpanded(!expanded);
-        setSelectedItem(null);
-    };
+  const toggleExpansion = () => {
+    setExpanded(!expanded);
+    setSelectedItem(null);
+  };
 
-    const toggleArchive = () => {
-        setArchive(!archive);
-    };
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
+  }
 
-    const toggleDraft = () => {
-        setDraft(!draft);
-    };
+  const toggleArchive = () => {
+    setArchive(!archive);
+  };
 
-    const togglePlanned = () => {
-        setPlanned(!planned);
-    };
+  const toggleDraft = () => {
+    setDraft(!draft);
+  };
+
+  const togglePlanned = () => {
+    setPlanned(!planned);
+  };
+
+  const handleItemClick = (itemIndex: number | null) => {
+    setSelectedItem(itemIndex);
+  };
 
     const handleItemClick = (itemIndex: number) => {
         setSelectedItem(itemIndex);
@@ -68,7 +81,7 @@ const VacanciesMenu = () => {
                     ml: '24px',
                     padding: '10px 20px',
                 }}>Создать вакансию</Button>
-            <Box sx={{ mt: '28px', mb: '8px'}}>
+            <Box sx={{ mt: '28px', mb: '8px', ml: '22px', }}>
                 <Button onClick={toggleExpansion} sx={{
                     color: '#000',
                     fontSize: '14px',
@@ -81,6 +94,25 @@ const VacanciesMenu = () => {
                 }}>
                     Активные {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </Button>
+                        </Button>
+          <Button onClick={toggleFilters} sx={{
+            color: '#000',
+            fontSize: '14px',
+            fontWeight: '500',
+            lineHeight: '20px',
+            m: '0',
+            p: '7px 10px',
+            gap: '5px'
+          }}>
+            <img src={FilterIcon} alt="фильтры" />
+            Фильтры
+          </Button>
+        <Collapse in={showFilters} sx={{
+          display: 'flex',
+          flexDirection: 'column',
+        }}>
+          <FilterVacancies></FilterVacancies>
+        </Collapse>
                 <Collapse in={expanded} sx={{ display: 'flex', flexDirection: 'column' }}>
                     {vacancies.map((vacancy) => (
                         <Box
@@ -227,8 +259,6 @@ const VacanciesMenu = () => {
                     </Box>
                 </Collapse>
             </Box>
-        </Box>
-    )
-}
 
 export default VacanciesMenu;
+
