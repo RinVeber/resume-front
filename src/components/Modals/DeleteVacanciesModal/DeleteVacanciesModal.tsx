@@ -14,7 +14,7 @@ export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanc
   const navigate = useNavigate();
   const vacancy = useAppSelector(vacanciesIdSelect);
 
-  const resourceUrl = `http://career-tracker.duckdns.org/api/v1/vacancies/${vacancy?.id}/`;
+  const resourceUrl = `https://career-tracker.duckdns.org/api/v1/vacancies/${vacancy?.id}/`;
 
   const handleDeleteVacancy = async () => {
     await fetch(resourceUrl, {

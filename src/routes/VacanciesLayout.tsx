@@ -40,11 +40,12 @@ export default function VacanciesLayout() {
 
   return (
     <>
-      <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', }}>
         <VacanciesMenu />
         <Stack
           display={'flex'}
           flexDirection={'column'}
+          
           gap={'10px'}
           sx={{ padding: '40px 40px', width: '100%' }}
         >
