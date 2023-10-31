@@ -1,5 +1,4 @@
 import { Box, Stack, Typography } from '@mui/material';
-import defAvatar from '../../../assets/defAvatar.png';
 import heart from '../../../assets/heart.svg';
 import suiltcase from '../../../assets/suilcase.png';
 import loc from '../../../assets/location.png';
@@ -7,6 +6,7 @@ import loc from '../../../assets/location.png';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
 import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
+import Chips from '../Chips/Chips';
 
 
 interface CardProps {
@@ -45,7 +45,7 @@ export default function Card({ card }: CardProps) {
           gap={'7px'}
         >
           <img
-            src={defAvatar}
+            src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
           />
@@ -59,10 +59,10 @@ export default function Card({ card }: CardProps) {
             }}
           >
             <Typography fontSize={14} fontWeight={700}>
-              {card.first_name} {card.last_name}
+              {card.student.first_name} {card.student.last_name}
             </Typography>
             <Typography fontSize={14} fontWeight={500}>
-              {card.position}
+              {card.student.position}
             </Typography>
             <Typography
               fontSize={12}
@@ -87,7 +87,7 @@ export default function Card({ card }: CardProps) {
           >
             <img src={loc} alt="иконка" />
             <Typography fontSize={13} sx={{ alignItems: 'center' }}>
-              {card.location}
+              {card.student.location}
             </Typography>
           </Box>
           <Box
@@ -100,14 +100,14 @@ export default function Card({ card }: CardProps) {
           >
             <img src={suiltcase} alt={'case'} />
             <Typography fontSize={13} sx={{ alignItems: 'center' }}>
-              Опыт работы: {card.experience}
+              Опыт работы: {card.student.experience}
             </Typography>
           </Box>
-          {/* <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
-            {card.skills.map((item) => {
-              return <Chips key={item.id} chip={item} />;
+          <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
+            {card && card.student.skills.slice(0, 2).map((item, index) => {
+              return <Chips key={index} chip={item} />;
             })}
-          </Box> */}
+          </Box>
         </Stack>
       </Stack>
     </>
