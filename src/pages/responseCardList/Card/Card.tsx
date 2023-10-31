@@ -76,7 +76,7 @@ export default function Card({ card }: CardProps) {
               fontSize={12}
               sx={{ p: '5px', bgcolor: '#C2E5CE', borderRadius: '4px' }}
             >
-            100% совпадает
+                 {card.similarity}% совпадает
             </Typography>
           </Box>
           <img

@@ -24,6 +24,7 @@ type ResumeStateType = {
 };
 
 export type ResumeResponseType = {
+  similarity: ReactNode;
   student: any;
   id: number;
   skills: [
