@@ -85,7 +85,7 @@ export default function Card({ card }: CardProps) {
             </Typography>
           </Box>
           <img
-            src={isLike ? heartActive : heart}
+            src={!isLike ? heartActive : heart}
             alt={'heart'}
             style={{ width: '20px', height: '20px' }}
             onClick={(e) => handleLike(e)}
