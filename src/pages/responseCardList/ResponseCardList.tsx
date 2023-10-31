@@ -24,7 +24,6 @@ export default function ResponseCardList() {
             .slice()
             .sort((a, b) => b.similarity - a.similarity)
             .map((item) => {
-              console.log(item);
               return <Card card={item} key={item.id} />;
             })}
         </Suspense>
