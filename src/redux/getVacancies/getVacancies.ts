@@ -54,7 +54,9 @@ const initialState: IСategoriesState = {
 const vacanciesSlice = createSlice({
     name: '@@vacancies',
     initialState,
-    reducers: {},
+    reducers: {
+		clearState: () => initialState,
+	},
     extraReducers: (builder) => {
         builder.addCase(getVacanciesApi.fulfilled, (state, action) => {
             state.data = action.payload;
@@ -65,4 +67,5 @@ const vacanciesSlice = createSlice({
 export const vacanciesReducer = vacanciesSlice.reducer;
 
 export const vacanciesSelect = (state: { vacancies: IСategoriesState }) => state.vacancies.data;
-;
+
+export const { clearState } = vacanciesSlice.actions;

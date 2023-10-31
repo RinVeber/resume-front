@@ -3,6 +3,9 @@ import { Stack, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/store';
 import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
+import { clearState } from '../../../redux/getVacanciesId/getVacanciesId';
+import { useAppDispatch } from '../../../redux/store';
+import { getVacanciesApi } from '../../../redux/getVacancies/getVacancies';
 
 type DeleteVacanciesModalProps = {
   open: boolean;
@@ -11,6 +14,7 @@ type DeleteVacanciesModalProps = {
 };
 
 export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanciesModalProps) {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const vacancy = useAppSelector(vacanciesIdSelect);
 
@@ -49,6 +53,8 @@ export default function DeleteVacanciesModal({ open, handleClose }: DeleteVacanc
                 navigate(-1)
                 handleDeleteVacancy()
                 handleClose()
+                dispatch(clearState())
+                dispatch(getVacanciesApi())
               }}
             >Удалить вакансию</Button>
             <Button variant="default"
