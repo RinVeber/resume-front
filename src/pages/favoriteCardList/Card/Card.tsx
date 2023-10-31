@@ -9,6 +9,7 @@ import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
 import Chips from './Chips/Chips';
 import { Key, useState } from 'react';
 import heartActive from '../../../assets/heart_active.svg';
+import Avatar from '../../../components/Avatar';
 
 interface CardProps {
   card: ResumeResponseType;
@@ -51,11 +52,7 @@ export default function Card({ card }: CardProps) {
           justifyContent={'space-around'}
           gap={'7px'}
         >
-          <img
-            src={card.student.photo}
-            alt={'avatar'}
-            style={{ borderRadius: '50%', width: '64px', height: '64px' }}
-          />
+          <Avatar img={card.student.photo} sizes={'64px'} nameUser={card.student.first_name} textSize={'18px'} />
           <Box
             sx={{
               display: 'flex',
