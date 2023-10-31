@@ -6,9 +6,11 @@ import loc from '../../../assets/location.png';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../../routes/routes/paths';
 import { ResumeResponseType } from '../../../redux/slice/resumeSlice';
+
 import Chips from './Chips/Chips';
 import { Key, useState } from 'react';
 import heartActive from '../../../assets/heart_active.svg'
+
 
 
 interface CardProps {
@@ -52,7 +54,9 @@ export default function Card({ card }: CardProps) {
           justifyContent={'space-around'}
           gap={'7px'}
         >
+
          <img
+
             src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
