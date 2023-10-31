@@ -52,7 +52,7 @@ export default function Card({ card }: CardProps) {
           justifyContent={'space-around'}
           gap={'7px'}
         >
-         <img
+          <img
             src={card.student.photo}
             alt={'avatar'}
             style={{ borderRadius: '50%', width: '64px', height: '64px' }}
@@ -113,7 +113,7 @@ export default function Card({ card }: CardProps) {
             </Typography>
           </Box>
           <Box display={'flex'} flexDirection={'row'} gap={'4px'}>
-            {card.student.skills.slice(0, 3).map((item: { name: string; }, index: Key | null | undefined) => {
+            {card.student.skills.slice(0,3).map((item: { name: string; }, index: Key | null | undefined) => {
               return <Chips key={index} chip={item} />;
             })}
           </Box>

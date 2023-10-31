@@ -17,6 +17,7 @@ import InviteCardList from '../pages/inviteCardList';
 // import { useParams } from 'react-router-dom';
 import FavoritesCardList from '../pages/favoriteCardList';
 import DeleteVacanciesModal from '../components/Modals/DeleteVacanciesModal/DeleteVacanciesModal';
+import ResponseCardList from '../pages/responseCardList/ResponseCardList';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
@@ -88,7 +89,7 @@ export default function VacanciesLayout() {
                 </FilterRespond>
               </Stack>
 
-              {activeTab === 0 && <Vacancies />}
+              {activeTab === 0 && <ResponseCardList />}
               {activeTab === 1 && <FavoritesCardList />}
               {activeTab === 2 && <InviteCardList />}
               {activeTab === 3 && <VacanciesInfo />}
