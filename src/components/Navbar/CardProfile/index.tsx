@@ -1,10 +1,10 @@
-import React from 'react';
-import def from '../../../assets/default.png';
 import { Box, Paper, Stack, Typography } from '@mui/material';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import {Tooltip} from '@mui/material';
+import Pic from '../../../assets/Pic.svg';
 
 export default function CardProfile() {
   return (
+    <Tooltip title={'Ваша компания...'}>  
     <Paper
       sx={{
         display: 'flex',
@@ -17,6 +17,7 @@ export default function CardProfile() {
         height: 96,
       }}
     >
+  
       <Box
         sx={{
           display: 'flex',
@@ -25,7 +26,7 @@ export default function CardProfile() {
         }}
       >
         <img
-          src={def}
+          src={Pic}
           alt={'avatar'}
           style={{ width: '32px', height: '32px', marginTop: '5px' }}
         />
@@ -33,11 +34,14 @@ export default function CardProfile() {
       <Stack
         display={'flex'}
         flexDirection={'column'}
-        alignContent={'center'}
+        alignItems={'center'}
         justifyContent={'flex-start'}
+        
         p={'0 8px'}
       >
+       
         <Typography sx={{ fontSize: '16px' }}>Компания</Typography>
+  
         <Box
           sx={{
             display: 'flex',
@@ -48,9 +52,10 @@ export default function CardProfile() {
           <Typography sx={{ fontSize: '12px', color: '#7A7A7A' }}>
             ООО Квант
           </Typography>
-          <KeyboardArrowDown />
         </Box>
+  
       </Stack>
     </Paper>
+    </Tooltip>
   );
 }

@@ -1,11 +1,21 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { vacanciesReducer } from './slice/vacanciesSlice';
+// import { vacanciesReducer } from './slice/vacanciesSlice';
+import { resumeReducer } from './slice/resumeSlice';
+import { vacanciesReducer } from './getVacancies/getVacancies';
+import { vacanciesIdReducer } from './getVacanciesId/getVacanciesId';
+import { vacanciesPostReducer } from './postVacancies/postVacancies';
+import { vacanciesGroupReducer } from './slice/vacanciesGroupSlice';
+
 
 
 const store = configureStore({
   reducer: {
-vacancies: vacanciesReducer
+    vacanciesPost: vacanciesPostReducer,
+    vacanciesId: vacanciesIdReducer,
+    vacancies: vacanciesReducer,
+    resume: resumeReducer,
+    cardGroup: vacanciesGroupReducer,
   },
 });
 

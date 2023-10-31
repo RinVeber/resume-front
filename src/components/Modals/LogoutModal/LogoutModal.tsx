@@ -1,5 +1,7 @@
 import WrapperModals from '../WrapperModal/WrapperModal';
 import { Stack, Typography, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../routes/routes/paths';
 
 type LogoutModalProps = {
   open: boolean;
@@ -8,6 +10,7 @@ type LogoutModalProps = {
 };
 
 export default function LogoutModal({ open, handleClose }: LogoutModalProps) {
+  const navigate = useNavigate();
   return (
     <>
       <WrapperModals open={open} handleClose={handleClose}>
@@ -29,7 +32,7 @@ export default function LogoutModal({ open, handleClose }: LogoutModalProps) {
           </Stack>
           <Stack display={'flex'} flexDirection={'row'} gap={'20px'}>
             <Button variant="outlined">Остаться</Button>
-            <Button variant="default">Выйти</Button>
+            <Button variant="default"     onClick={() => navigate(`${paths.auth}`)}>Выйти</Button>
           </Stack>
         </Stack>
       </WrapperModals>

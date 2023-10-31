@@ -1,8 +1,13 @@
 import { Stack, Button, Typography, Box, Divider } from '@mui/material';
 import picture from '../../../../assets/picture.png';
 import { Tooltip } from '@mui/material';
+import { useAppSelector } from '../../../../redux/store';
+import { Link } from 'react-router-dom';
 
 export default function GraphicBlock() {
+  const {data: currentResume } = useAppSelector((state) => state.resume);
+
+
   return (
     <>
       <Stack
@@ -16,40 +21,46 @@ export default function GraphicBlock() {
         }}
       >
         <Stack flexDirection={'row'} gap={'68px'}>
-          <Button
-            sx={{
-              color: '#5A9BFF',
-              fontSize: '18px',
-              fontWeight: '600',
-              '&:focus': {
-                color: '#1D6BF3',
-              },
-              '&:hover': {
-                color: '#1D6BF3',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Портфолио
-          </Button>
-          <Divider orientation="vertical" flexItem />
-          <Button
-            sx={{
-              color: '#5A9BFF',
-              fontSize: '18px',
-              fontWeight: '600',
+          <Link to={currentResume!.portfolio}>
+            <Button
+              sx={{
+                color: '#5A9BFF',
+                fontSize: '18px',
+                fontWeight: '600',
+                '&:focus': {
+                  color: '#1D6BF3',
+                },
+                '&:hover': {
+                  color: '#1D6BF3',
+                  bgcolor: 'transparent',
+                },
+              }}
+            >
+              Портфолио
+            </Button>
+          </Link>
 
-              '&:focus': {
-                color: '#1D6BF3',
-              },
-              '&:hover': {
-                color: '#1D6BF3',
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            Резюме
-          </Button>
+          <Divider orientation="vertical" flexItem />
+          <Link to={currentResume!.cv}>
+            <Button
+            // onClick={(e) => handleDownloadCV(e)}
+              sx={{
+                color: '#5A9BFF',
+                fontSize: '18px',
+                fontWeight: '600',
+
+                '&:focus': {
+                  color: '#1D6BF3',
+                },
+                '&:hover': {
+                  color: '#1D6BF3',
+                  bgcolor: 'transparent',
+                },
+              }}
+            >
+              Резюме
+            </Button>
+          </Link>
         </Stack>
       </Stack>
       <Stack

@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
   },
   {
     path: paths.main,
-    element: <RootLayout />,
+    element: <RootLayout /> ,
     children: [
       {
         path: '/',
@@ -36,7 +36,14 @@ export const router = createBrowserRouter([
       {
         path: paths.vacancies,
         element: <VacanciesLayout />,
+        children: [
+          {
+            path: `${paths.vacancies}/:id`,
+            element: <VacanciesLayout />,
+          },
+        ]
       },
+   
       {
         path: `${paths.search}?`,
         element: <SearchLayout />,
@@ -44,6 +51,7 @@ export const router = createBrowserRouter([
       {
         path: `${paths.resume}/:id`,
         element: <Resume />,
+        // loader: ResumeLoader,
       },
       {
         path: paths.create,

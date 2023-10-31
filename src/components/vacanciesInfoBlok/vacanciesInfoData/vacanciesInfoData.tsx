@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import EditIcon from '@mui/icons-material/Edit';
 import { Typography, IconButton } from '@mui/material';
+import { useAppSelector } from '../../../redux/store';
+import { vacanciesIdSelect } from '../../../redux/getVacanciesId/getVacanciesId';
 
 const fieldStyles = {
     width: 'auto',
@@ -18,17 +20,10 @@ const fieldStyles = {
     },
 };
 
-const dataSet = {
-    data: '12.10.2023',
-    city: 'Караганда',
-    experience: '12 лет',
-    money: '90000 руб',
-    job: '2/2'
-}
-
 const VacanciesInfoData = () => {
     const { control, handleSubmit, reset } = useForm();
     const [isEditing, setEditing] = React.useState(false);
+    const vacancyId = useAppSelector(vacanciesIdSelect);
 
     const onSubmit = (data: object) => {
         // Обработка данных формы (data)
@@ -57,16 +52,10 @@ const VacanciesInfoData = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Дата публикации:</Typography>
-                            <Controller
-                                name="data"
-                                control={control}
-                                defaultValue={dataSet.data}
-                                render={({ field }) => (
-                                    <TextField
-                                        {...field}
-                                        sx={fieldStyles}
-                                    />
-                                )}
+
+                            <TextField
+                                sx={fieldStyles}
+                                defaultValue={vacancyId?.pub_date}
                             />
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -74,7 +63,7 @@ const VacanciesInfoData = () => {
                             <Controller
                                 name="city"
                                 control={control}
-                                defaultValue={dataSet.city}
+                                defaultValue={vacancyId?.location}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -88,7 +77,7 @@ const VacanciesInfoData = () => {
                             <Controller
                                 name="experience"
                                 control={control}
-                                defaultValue={dataSet.experience}
+                                defaultValue={vacancyId?.experience}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -102,7 +91,7 @@ const VacanciesInfoData = () => {
                             <Controller
                                 name="money"
                                 control={control}
-                                defaultValue={dataSet.money}
+                                defaultValue={vacancyId?.salary}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -116,7 +105,7 @@ const VacanciesInfoData = () => {
                             <Controller
                                 name="job"
                                 control={control}
-                                defaultValue={dataSet.job}
+                                defaultValue={vacancyId?.form}
                                 render={({ field }) => (
                                     <TextField
                                         {...field}
@@ -130,23 +119,23 @@ const VacanciesInfoData = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Дата публикации:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`${dataSet.data}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.pub_date}`}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Город:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`${dataSet.city}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.location}`}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Опыт работы:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`${dataSet.experience}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.experience}`}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>З/п:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`${dataSet.money}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.salary} ${vacancyId?.currency}`}</Typography>
                         </Box>
                         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
                             <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'700'}>Формат работы:</Typography>
-                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`${dataSet.job}`}</Typography>
+                            <Typography fontSize={'14px'} lineHeight={'20px'} fontWeight={'400'}>{`\u00A0${vacancyId?.form}`}</Typography>
                         </Box>
                     </Box>
                 )}

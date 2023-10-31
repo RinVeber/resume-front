@@ -4,8 +4,11 @@ import { FormAuth } from '../libs/ValidSchema';
 import InputLayout from './InputLayout/InputLayout';
 import { SlideForgot } from '../../../components/SlideBar';
 import CustomCheckbox from '../../../components/Checkbox';
+import { useNavigate } from 'react-router-dom';
+import { paths } from '../../../routes/routes/paths';
 
 export default function InputField() {
+  const navigate = useNavigate();
   const {
     formState: { isValid },
   } = useFormContext<FormAuth>();
@@ -41,6 +44,7 @@ export default function InputField() {
         disabled={!isValid}
         sx={{ height: '50px', fontWeight: '500' }}
         variant="default"
+        onClick={() => navigate(`${paths.vacancies}`)}
       >
         Войти
       </Button>
