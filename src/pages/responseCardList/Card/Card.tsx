@@ -67,7 +67,7 @@ export default function Card({ card }: CardProps) {
             }}
           >
             <Typography fontSize={14} fontWeight={700}>
-              {card.student.first_name} {card.student.last_name}
+            {card.student.first_name.split(' ')[0]} {card.student.last_name}
             </Typography>
             <Typography fontSize={14} fontWeight={500}>
               {card.student.position}
@@ -76,7 +76,7 @@ export default function Card({ card }: CardProps) {
               fontSize={12}
               sx={{ p: '5px', bgcolor: '#C2E5CE', borderRadius: '4px' }}
             >
-            100% совпадает
+                 {card.similarity}% совпадает
             </Typography>
           </Box>
           <img
