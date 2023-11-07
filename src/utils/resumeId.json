@@ -1,0 +1,39 @@
+    {
+      "id": 4,
+      "skills": [
+        {
+          "name": "Azure"
+        },
+        {
+          "name": "Docker"
+        },
+        {
+          "name": "iptables"
+        },
+        {
+          "name": "Jenkins"
+        }
+      ],
+      "activities": 1,
+      "last_name": "Васильев",
+      "first_name": "Фёдор Ярославович",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m09_EiJiyXN.jpeg",
+      "birthdate": "1994-10-14",
+      "brief": "Я системный администратор с опытом работы более 7 лет. Имею опыт администрирования серверов на базе ОС Linux и Windows, а также построения инфраструктуры с использованием виртуализации. Владею инструментарием для диагностики и устранения неполадок в работе систем и сетей.",
+      "telegram": "@vasilevfya005",
+      "phone": "+79760048369",
+      "location": "Тбилиси",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_b7jd0f3.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_PjRrNBf.pdf",
+      "education": "МФТИ",
+      "education_year": 2016,
+      "course": "SkillBox",
+      "course_year": 2020,
+      "seeking_for": true,
+      "position": "Devops-инженер",
+      "level": "junior",
+      "experience": "6",
+      "format": "гибрид",
+      "salary": 25000,
+      "user": 5
+    }

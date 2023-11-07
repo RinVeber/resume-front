@@ -4,9 +4,12 @@ import { mokDataResume } from '../../../utils/mokData';
 import GraphicBlock from './GraphicBlock/GraphicBlock';
 import BlockButtons from './BlockButtons/BlockButtons';
 import { useAppSelector } from '../../../redux/store';
+import resumeId from '../../../utils/resumeId.json';
+import React from 'react';
 
 export default function BlocksInfo() {
   const { data: currentResume } = useAppSelector((state) => state.resume);
+  const [resumeMok, setResumeMok] = React.useState(resumeId)
   return (
     <Stack
       flexDirection={'row'}
@@ -16,15 +19,15 @@ export default function BlocksInfo() {
       <Stack flexDirection={'column'} gap={'20px'}>
         <Stack flexDirection={'row'} gap={'20px'}>
           <BlockInfo
-            second={currentResume!.format}
-            first={currentResume!.location}
+            second={resumeMok!.format}
+            first={resumeMok!.location}
             titleBlock={'Локация'}
             title={'Город'}
             subtitle={'Формат работы'}
           />
           <BlockInfo
-            second={currentResume!.salary}
-            first={`${currentResume!.experience} года(лет)`}
+            second={resumeMok!.salary}
+            first={`${resumeMok!.experience} года(лет)`}
             title={'Опыт работы'}
             titleBlock={'Опыт'}
             subtitle={'Уровень дохода'}
@@ -32,15 +35,15 @@ export default function BlocksInfo() {
         </Stack>
         <BlockInfo
           type={'skills'}
-          skills={currentResume?.skills}
+          skills={resumeMok?.skills}
           first={mokDataResume.language}
           title={'Язык'}
           titleBlock={'Скиллы'}
           subtitle={'Ключевые программы'}
         />
         <BlockInfo
-          second={currentResume!.course}
-          first={currentResume!.education}
+          second={resumeMok!.course}
+          first={resumeMok!.education}
           title={'Основное'}
           titleBlock={'Образование'}
           subtitle={'Курсы'}

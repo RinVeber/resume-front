@@ -3,7 +3,7 @@ import treangle from '../../assets/treangle.svg';
 import circle from '../../assets/circle.svg';
 import square from '../../assets/square.svg';
 import { makeStyles } from '@mui/styles';
-import background404 from '../../assets/background404.png';
+// import background404 from '../../assets/background404.png';
 
 const useStyles: () => { rotate: string, rotateReverse: string } = makeStyles({
   rotate: {
@@ -62,13 +62,13 @@ export default function AnimationBackgroundLayout() {
         left: '0',
         zIndex: '-1',
         overflow: 'hidden',
-        backgroundImage: `url(${background404})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
+        // backgroundImage: `url(${background404})`,
+        // backgroundRepeat: 'no-repeat',
+        // backgroundPosition: 'center',
+        // backgroundSize: 'cover',
       }}
     >
-      {/* <Box
+      <Box
         component="div"
         sx={{
           backgroundImage: `url(${treangle})`,
@@ -111,7 +111,7 @@ export default function AnimationBackgroundLayout() {
           animationDuration: '20s'
         }}
         className={classes.rotate}
-      /> */}
+      />
     </Box>
   );
 }

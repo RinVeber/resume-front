@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchVacancies } from './getVacanciesAPI';
+import vacanciesMok from '../../utils/vacabciesMok.json';
 
 interface IСategoriesData {
     id: number
@@ -36,13 +37,13 @@ export const getVacanciesApi = createAsyncThunk(
     '@@vacancies/vacancies',
     async (
         _,
-        { fulfillWithValue, rejectWithValue },
+        { fulfillWithValue },
     ) => {
         try {
             const response = await fetchVacancies();
             return fulfillWithValue(response);
         } catch (error: unknown) {
-            return rejectWithValue(error);
+            return vacanciesMok;
         }
     },
 );

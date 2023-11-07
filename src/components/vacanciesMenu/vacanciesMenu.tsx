@@ -11,6 +11,7 @@ import { getVacanciesIdApi } from '../../redux/getVacanciesId/getVacanciesId';
 import { useNavigate } from 'react-router-dom';
 import { paths } from '../../routes/routes/paths';
 import { getVacanciesGroup } from '../../redux/slice/vacanciesGroupSlice';
+import vacanciesMok from '../../utils/vacabciesMok.json';
 
 
 const VacanciesMenu = () => {
@@ -21,6 +22,7 @@ const VacanciesMenu = () => {
     const [planned, setPlanned] = useState(false);
     const [selectedItem, setSelectedItem] = useState<number | null>(null);
     const vacancies = useAppSelector(vacanciesSelect);
+    const [vacanciesListMok, setVacanciesListMok] = useState(vacanciesMok);
     const navigate = useNavigate();
 
     const toggleExpansion = () => {
@@ -85,7 +87,7 @@ const VacanciesMenu = () => {
                     Активные {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                 </Button>
                 <Collapse in={expanded} sx={{ display: 'flex', flexDirection: 'column' }}>
-                    {vacancies.map((vacancy) => (
+                    {vacanciesListMok.map((vacancy) => (
                         <Box
                             key={vacancy.id}
                             sx={{

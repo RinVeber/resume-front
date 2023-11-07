@@ -20,7 +20,6 @@ export default function Resume() {
 
   return (
     <>
-      {status == 'loading' && <Loading  />}
       <Box
         sx={{
           // maxWidth: '1190px',
@@ -36,9 +35,9 @@ export default function Resume() {
 
 
         <Suspense fallback={<Loading />}>
-        {status == 'error' && <ErrorServer />}
-        {status == 'success' && <HeaderResume />}
-        {status == 'success' && <BlocksInfo />}
+        {<ErrorServer />}
+        {<HeaderResume />}
+        {<BlocksInfo />}
         </Suspense>
       </Box>
     </>

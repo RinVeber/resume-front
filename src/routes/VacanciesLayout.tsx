@@ -18,6 +18,7 @@ import InviteCardList from '../pages/inviteCardList';
 import FavoritesCardList from '../pages/favoriteCardList';
 import DeleteVacanciesModal from '../components/Modals/DeleteVacanciesModal/DeleteVacanciesModal';
 import ResponseCardList from '../pages/responseCardList/ResponseCardList';
+import vacanciesId from '../utils/vacanciesId.json';
 
 export default function VacanciesLayout() {
   const vacancies = useAppSelector(vacanciesIdSelect);
@@ -29,6 +30,7 @@ export default function VacanciesLayout() {
   // useEffect(() => {
   //   dispatch(getVacanciesGroup(vacancies?.id));
   // }, [dispatch]);
+  const [selectVacanciesMok, setSelectVacanciesMok] = useState(vacanciesId);
 
   const handleOpen = () => {
     setOpen(true);
@@ -50,7 +52,7 @@ export default function VacanciesLayout() {
           gap={'10px'}
           sx={{ padding: '40px 40px', width: '100%' }}
         >
-          {vacancies == null ? (
+          {selectVacanciesMok == null ? (
             <MainPage />
           ) : (
             <>
@@ -60,7 +62,7 @@ export default function VacanciesLayout() {
                   lineHeight={'32PX'}
                   fontWeight={'500'}
                 >
-                  {vacancies.name}
+                  {selectVacanciesMok.name} Junior-разработчик
                 </Typography>
                 <Box sx={{display:'flex', gap:'20px'}}>
                   {activeTab == 4 ? (
@@ -90,9 +92,9 @@ export default function VacanciesLayout() {
                 </FilterRespond>
               </Stack>
 
-              {activeTab === 0 && <ResponseCardList />}
-              {activeTab === 1 && <FavoritesCardList />}
-              {activeTab === 2 && <InviteCardList />}
+              {activeTab === 0 && <Vacancies />}
+              {activeTab === 1 && <Vacancies />}
+              {activeTab === 2 && <MainPage />}
               {activeTab === 3 && <VacanciesInfo />}
             </>
           )}

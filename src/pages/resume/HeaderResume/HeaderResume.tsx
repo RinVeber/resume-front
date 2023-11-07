@@ -7,11 +7,13 @@ import heartActive from '../../../assets/heart_active.svg';
 import { Tooltip } from '@mui/material';
 import { useAppSelector } from '../../../redux/store';
 import React from 'react';
+import resumeId from '../../../utils/resumeId.json';
 
 export default function HeaderResume() {
   const navigate = useNavigate();
   const { data: currentResume } = useAppSelector((state) => state.resume);
   const [isLike, setIsLike] = React.useState(false);
+  const [resumeMok, setResumeMok] = React.useState(resumeId)
 
   function handleLike() {
     setIsLike(!isLike);
@@ -44,9 +46,9 @@ export default function HeaderResume() {
       </Button>
       <Stack flexDirection={'row'} gap={'38px'}>
         <Avatar
-          img={currentResume!.photo}
+          img={''}
           textSize={'96px'}
-          nameUser={currentResume!.first_name}
+          nameUser={resumeMok!.first_name}
           sizes={'207px'}
         />
 
@@ -54,7 +56,7 @@ export default function HeaderResume() {
           <Stack flexDirection={'column'} gap={'9px'}>
             <Stack flexDirection={'row'} justifyContent={'space-between'}>
               <Typography variant="h1">
-                {currentResume!.first_name} {currentResume!.last_name}
+                {resumeMok!.first_name} {resumeMok!.last_name}
               </Typography>
               <Tooltip title={'Добавить в избранное'}>
                 <img
@@ -67,7 +69,7 @@ export default function HeaderResume() {
             </Stack>
 
             <Typography variant="h3" fontWeight={'600'}>
-              {currentResume?.position}, {currentResume?.level}
+              {resumeMok?.position}, {resumeMok?.level}
             </Typography>
             <Box display={'flex'} flexDirection={'row'} gap={'24px'}>
               <Typography
@@ -88,21 +90,21 @@ export default function HeaderResume() {
                   borderRadius: '4px',
                 }}
               >
-                {currentResume?.activities} activities
+                {resumeMok?.activities} activities
               </Typography>
             </Box>
           </Stack>
           <Typography variant="h4" maxWidth={'886px'}>
-            {currentResume?.brief}
+            {resumeMok?.brief}
           </Typography>
           <Stack flexDirection={'column'} gap={'9px'}>
             <Typography variant={'h4'} fontWeight={'700'}>
               Контакты
             </Typography>
             <Stack flexDirection={'row'} gap={'52px'}>
-              <Typography variant={'h4'}>{currentResume?.telegram}</Typography>
+              <Typography variant={'h4'}>{resumeMok?.telegram}</Typography>
               <Typography variant={'h4'}>korol@ya.ru</Typography>
-              <Typography variant={'h4'}>{currentResume?.phone}</Typography>
+              <Typography variant={'h4'}>{resumeMok?.phone}</Typography>
             </Stack>
           </Stack>
         </Stack>

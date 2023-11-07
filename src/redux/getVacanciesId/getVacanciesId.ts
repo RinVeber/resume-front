@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchVacanciesId } from './getVacanciesIdAPI';
+import vacanciesId from '../../utils/vacanciesId.json';
 
 interface IVacanciesData {
     id: number
@@ -42,10 +43,11 @@ export const getVacanciesIdApi = createAsyncThunk(
     ) => {
         try {
             const { id } = arg;
-            const response = await fetchVacanciesId(id);
+            const response = await fetchVacanciesId(12);
             return fulfillWithValue(response);
         } catch (error: unknown) {
-            return rejectWithValue(error);
+            return vacanciesId;
+            // return rejectWithValue(error);
         }
     },
 );

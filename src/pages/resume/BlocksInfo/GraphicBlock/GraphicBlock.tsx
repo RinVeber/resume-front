@@ -3,9 +3,12 @@ import picture from '../../../../assets/picture.png';
 import { Tooltip } from '@mui/material';
 import { useAppSelector } from '../../../../redux/store';
 import { Link } from 'react-router-dom';
+import resumeId from '../../../../utils/resumeId.json';
+import React from 'react';
 
 export default function GraphicBlock() {
   const {data: currentResume } = useAppSelector((state) => state.resume);
+  const [resumeMok, setResumeMok] = React.useState(resumeId)
 
 
   return (
@@ -21,7 +24,7 @@ export default function GraphicBlock() {
         }}
       >
         <Stack flexDirection={'row'} gap={'68px'}>
-          <Link to={currentResume!.portfolio}>
+          <Link to={resumeMok!.portfolio}>
             <Button
               sx={{
                 color: '#5A9BFF',
@@ -41,7 +44,7 @@ export default function GraphicBlock() {
           </Link>
 
           <Divider orientation="vertical" flexItem />
-          <Link to={currentResume!.cv}>
+          <Link to={resumeMok!.cv}>
             <Button
             // onClick={(e) => handleDownloadCV(e)}
               sx={{
