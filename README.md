@@ -26,6 +26,7 @@
 - [Swagger](http://career-tracker.duckdns.org/swagger/)
 - [Figma](https://www.figma.com/file/fScLqcy5lDtJ8f9MBKd5jx/%D0%A7%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA?node-id=18%3A547&mode=dev)
 - [Деплой](https://career-tracker.duckdns.org/auth)
+- [Деплой Versel](https://resume-front-three.vercel.app/auth)
 
 
 ## Установка Frontend :factory: <a name = "getting_started"></a>
