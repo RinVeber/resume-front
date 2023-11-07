@@ -1,0 +1,374 @@
+[
+    {
+      "id": 4,
+      "skills": [
+        {
+          "name": "Azure"
+        },
+        {
+          "name": "Docker"
+        },
+        {
+          "name": "iptables"
+        },
+        {
+          "name": "Jenkins"
+        }
+      ],
+      "activities": 1,
+      "last_name": "Васильев",
+      "first_name": "Фёдор Ярославович",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m09_EiJiyXN.jpeg",
+      "birthdate": "1994-10-14",
+      "brief": "Я системный администратор с опытом работы более 7 лет. Имею опыт администрирования серверов на базе ОС Linux и Windows, а также построения инфраструктуры с использованием виртуализации. Владею инструментарием для диагностики и устранения неполадок в работе систем и сетей.",
+      "telegram": "@vasilevfya005",
+      "phone": "+79760048369",
+      "location": "Тбилиси",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_b7jd0f3.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_PjRrNBf.pdf",
+      "education": "МФТИ",
+      "education_year": 2016,
+      "course": "SkillBox",
+      "course_year": 2020,
+      "seeking_for": true,
+      "position": "Devops-инженер",
+      "level": "junior",
+      "experience": "6",
+      "format": "гибрид",
+      "salary": 25000,
+      "user": 5
+    },
+    {
+      "id": 3,
+      "skills": [
+        {
+          "name": "3ds Max"
+        }
+      ],
+      "activities": 1,
+      "last_name": "Орлова",
+      "first_name": "Ульяна Александровна",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/f23_XMUgj9o.jpeg",
+      "birthdate": "2005-08-14",
+      "brief": "Дизайнер с широким спектром навыков и опытом в различных областях дизайна. Сильные стороны включают графический дизайн, UI/UX дизайн и разработку креативных концепций. Обладаю опытом работы с широким спектром программного обеспечения для дизайна, таким как Adobe Creative Suite, Sketch и InVision. Также имею опыт работы с Agile методологиями и Scrum.",
+      "telegram": "@orlovaua313",
+      "phone": "+79692126537",
+      "location": "Казань",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_5XSuMxP.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_qyh5HQW.pdf",
+      "education": "МИФИ",
+      "education_year": 2030,
+      "course": "Codeby",
+      "course_year": 2022,
+      "seeking_for": true,
+      "position": "Разработчик интерфейсов",
+      "level": "junior",
+      "experience": "36",
+      "format": "гибрид",
+      "salary": 50000,
+      "user": 4
+    },
+    {
+      "id": 5,
+      "skills": [
+        {
+          "name": "HTML5"
+        },
+        {
+          "name": "Javascript"
+        },
+        {
+          "name": "Wordpress"
+        },
+        {
+          "name": "React"
+        },
+        {
+          "name": "REST"
+        },
+        {
+          "name": "CI/CD"
+        }
+      ],
+      "activities": 0,
+      "last_name": "Иванова",
+      "first_name": "Дарья Глебовна",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/f11_mhAdCoM.jpeg",
+      "birthdate": "2004-04-13",
+      "brief": "Я разработчик React с более чем 3-х летним опытом работы. Работал над проектами различной сложности, от небольших веб-приложений до крупных e-commerce систем. Владею современными инструментами и технологиями, такими как Redux, Typescript, Jest. Постоянно совершенствую свои навыки и слежу за новыми тенденциями в разработке.",
+      "telegram": "@ivanovadg724",
+      "phone": "+79633137339",
+      "location": "Екатеринбург",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_mLYVvOe.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_FwxMArU.pdf",
+      "education": "МГУ им. Ломоносова",
+      "education_year": 2030,
+      "course": "Нетология",
+      "course_year": 2023,
+      "seeking_for": true,
+      "position": "Junior разработчик",
+      "level": "middle",
+      "experience": "0",
+      "format": "гибрид",
+      "salary": 12000,
+      "user": 6
+    },
+    {
+      "id": 7,
+      "skills": [
+        {
+          "name": "TCP/IP"
+        },
+        {
+          "name": "Python"
+        },
+        {
+          "name": "Github"
+        }
+      ],
+      "activities": 4,
+      "last_name": "Соловьёв",
+      "first_name": "Кирилл Егорович",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m09_uCp4TO1.jpeg",
+      "birthdate": "1985-03-15",
+      "brief": "Я DevOps-инженер с 3-летним опытом работы в крупных проектах. Владею навыками работы с Linux, Docker, Kubernetes, Gitlab, Jenkins. Имею опыт автоматизации процессов сборки, тестирования и развертывания приложений. Ответственный и коммуникабельный специалист, способный работать в команде.",
+      "telegram": "@solovevke551",
+      "phone": "+79533443115",
+      "location": "Нижний Новгород",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_qPZiGcw.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_GFmjcfB.pdf",
+      "education": "ВШЭ",
+      "education_year": 2006,
+      "course": "Getproff",
+      "course_year": 2022,
+      "seeking_for": true,
+      "position": "Системный администратор",
+      "level": "middle",
+      "experience": "36",
+      "format": "гибрид",
+      "salary": 12000,
+      "user": 8
+    },
+    {
+      "id": 8,
+      "skills": [
+        {
+          "name": "HTML5"
+        },
+        {
+          "name": "HTML"
+        },
+        {
+          "name": "Illustrator"
+        }
+      ],
+      "activities": 2,
+      "last_name": "Орлова",
+      "first_name": "Елизавета Никитична",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/f09_UUq7mvn.jpeg",
+      "birthdate": "1975-11-02",
+      "brief": "Дизайнер с опытом создания креативных и функциональных проектов в различных областях, таких как графический дизайн, веб-дизайн и UX/UI дизайн. Владею широким спектром инструментов и программ, включая Adobe Creative Suite, Figma, Sketch, и Invision. Имею опыт в создании прототипов, Wireframes и интерактивных прототипов.",
+      "telegram": "@orlovaen229",
+      "phone": "+79290667557",
+      "location": "Стамбул",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_8GInZ80.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_B2is3Tu.pdf",
+      "education": "ВШЭ",
+      "education_year": 2000,
+      "course": "Нетология",
+      "course_year": 2023,
+      "seeking_for": true,
+      "position": "Графический дизайнер",
+      "level": "middle",
+      "experience": "0",
+      "format": "удаленно",
+      "salary": 12000,
+      "user": 9
+    },
+    {
+      "id": 1,
+      "skills": [
+        {
+          "name": "proxy"
+        },
+        {
+          "name": "Azure"
+        },
+        {
+          "name": "iptables"
+        }
+      ],
+      "activities": 3,
+      "last_name": "Никитина",
+      "first_name": "Ульяна Ильинична",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/f07_Y8RPbbF.jpeg",
+      "birthdate": "1997-09-28",
+      "brief": "Я DevOps-инженер с 3-летним опытом работы в крупных проектах. Владею навыками работы с Linux, Docker, Kubernetes, Gitlab, Jenkins. Имею опыт автоматизации процессов сборки, тестирования и развертывания приложений. Ответственный и коммуникабельный специалист, способный работать в команде.",
+      "telegram": "@nikitinaui912",
+      "phone": "+79392589451",
+      "location": "Санкт-Петербург",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_JZihEcf.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_PENi8qx.pdf",
+      "education": "МФТИ",
+      "education_year": 2022,
+      "course": "Skysmart",
+      "course_year": 2023,
+      "seeking_for": true,
+      "position": "Devops",
+      "level": "junior",
+      "experience": "24",
+      "format": "удаленно",
+      "salary": 25000,
+      "user": 2
+    },
+    {
+      "id": 2,
+      "skills": [
+        {
+          "name": "Photoshop"
+        },
+        {
+          "name": "Unreal"
+        },
+        {
+          "name": "3ds Max"
+        }
+      ],
+      "activities": 4,
+      "last_name": "Павлов",
+      "first_name": "Матвей Львович",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m15_wvA8xWB.jpeg",
+      "birthdate": "1997-10-15",
+      "brief": "Дизайнер с опытом создания креативных и функциональных проектов в различных областях, таких как графический дизайн, веб-дизайн и UX/UI дизайн. Владею широким спектром инструментов и программ, включая Adobe Creative Suite, Figma, Sketch, и Invision. Имею опыт в создании прототипов, Wireframes и интерактивных прототипов.",
+      "telegram": "@pavlovml462",
+      "phone": "+79958283132",
+      "location": "Москва",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_i8xmtVr.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_mwvrIvN.pdf",
+      "education": "МГТУ им. Баумана",
+      "education_year": 2024,
+      "course": "Яндекс Практикум",
+      "course_year": 2020,
+      "seeking_for": true,
+      "position": "Иллюстратор",
+      "level": "junior",
+      "experience": "36",
+      "format": "удаленно",
+      "salary": 12000,
+      "user": 3
+    },
+    {
+      "id": 6,
+      "skills": [
+        {
+          "name": "git"
+        },
+        {
+          "name": "Docker"
+        },
+        {
+          "name": "Kubernetes"
+        }
+      ],
+      "activities": 3,
+      "last_name": "Смирнова",
+      "first_name": "Валерия Никитична",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/f01_8iVJ4v9.jpeg",
+      "birthdate": "1977-11-25",
+      "brief": "Я DevOps-инженер с 3-летним опытом работы в крупных проектах. Владею навыками работы с Linux, Docker, Kubernetes, Gitlab, Jenkins. Имею опыт автоматизации процессов сборки, тестирования и развертывания приложений. Ответственный и коммуникабельный специалист, способный работать в команде.",
+      "telegram": "@smirnovavn166",
+      "phone": "+79802457395",
+      "location": "Казань",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_Dc7qyxK.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_ynVpon0.pdf",
+      "education": "МГТУ им. Баумана",
+      "education_year": 2001,
+      "course": "Skysmart",
+      "course_year": 2021,
+      "seeking_for": true,
+      "position": "Инженер техподдержки",
+      "level": "middle",
+      "experience": "24",
+      "format": "удаленно",
+      "salary": 50000,
+      "user": 7
+    },
+    {
+      "id": 9,
+      "skills": [
+        {
+          "name": "Photoshop"
+        },
+        {
+          "name": "Unreal"
+        },
+        {
+          "name": "Illustrator"
+        },
+        {
+          "name": "miro"
+        }
+      ],
+      "activities": 3,
+      "last_name": "Фёдоров",
+      "first_name": "Кирилл Арсениевич",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m24_0mo6lNw.jpeg",
+      "birthdate": "1988-12-08",
+      "brief": "Дизайнер с опытом создания креативных и функциональных проектов в различных областях, таких как графический дизайн, веб-дизайн и UX/UI дизайн. Владею широким спектром инструментов и программ, включая Adobe Creative Suite, Figma, Sketch, и Invision. Имею опыт в создании прототипов, Wireframes и интерактивных прототипов.",
+      "telegram": "@fedorovka544",
+      "phone": "+79820937205",
+      "location": "Казань",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_7muGBMm.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_sOsBfaN.pdf",
+      "education": "МИСиС",
+      "education_year": 2013,
+      "course": "Яндекс Практикум",
+      "course_year": 2022,
+      "seeking_for": true,
+      "position": "Художник",
+      "level": "junior",
+      "experience": "36",
+      "format": "удаленно",
+      "salary": 100000,
+      "user": 10
+    },
+    {
+      "id": 10,
+      "skills": [
+        {
+          "name": "Vue"
+        },
+        {
+          "name": "Joomla"
+        },
+        {
+          "name": "React"
+        },
+        {
+          "name": "CI/CD"
+        }
+      ],
+      "activities": 3,
+      "last_name": "Васильев",
+      "first_name": "Павел Кириллович",
+      "photo": "http://career-tracker.duckdns.org/media/students/photoes/m15_nF5nG5F.jpeg",
+      "birthdate": "1999-04-29",
+      "brief": "Я разработчик React с более чем 3-х летним опытом работы. Работал над проектами различной сложности, от небольших веб-приложений до крупных e-commerce систем. Владею современными инструментами и технологиями, такими как Redux, Typescript, Jest. Постоянно совершенствую свои навыки и слежу за новыми тенденциями в разработке.",
+      "telegram": "@vasilevpk283",
+      "phone": "+79902045609",
+      "location": "Санкт-Петербург",
+      "cv": "http://career-tracker.duckdns.org/media/students/cvs/resume_9wLmghg.pdf",
+      "portfolio": "http://career-tracker.duckdns.org/media/students/portfolios/letter_58pRzNe.pdf",
+      "education": "МИФИ",
+      "education_year": 2021,
+      "course": "Coursera",
+      "course_year": 2021,
+      "seeking_for": true,
+      "position": "Программист",
+      "level": "junior",
+      "experience": "24",
+      "format": "удаленно",
+      "salary": 25000,
+      "user": 11
+    }
+  ]
